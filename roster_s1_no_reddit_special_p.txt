@@ -1,0 +1,187 @@
+,Player Name (Username),Type,Hand,G,PA,AB,H,2B,3B,HR,R,RBI,SO,BB,SB,AVG,OBP,SLG,wOBA,IP_P,R_P,ER_P,H_P,HR_P,BB_P,K_P,ERA_P,WHIP_P,K/6_P,TEAM
+"P (1-1), 1 SV",Syd Kidd,Balanced/Contact,Left,4,2,2,0,0,0,0,0,0,1,0,0,0,0,0,0,14,10,10,13,5,4,10,4.29,1.21,4.29,ARI
+P (2-2),Einhorn,Strikeout/Contact,Right,5,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,20,7,7,26,1,5,26,2.1,1.55,7.8,ARI
+C,Garren Smudge,Neutral,Left,7,21,21,6,1,0,0,3,2,3,0,0,0.286,0.286,0.333,0.267,,,,,,,,,,,ARI
+C,Burt Maclin,Power,Left,5,18,17,2,0,0,0,0,0,11,1,0,0.118,0.167,0.118,0.137,,,,,,,,,,,ARI
+1B,Luis Flemus,Neutral,Left,1,3,3,1,1,0,0,1,0,0,0,0,0.333,0.333,0.667,0.411,,,,,,,,,,,ARI
+1B,I.M. Organic,Power,Right,5,9,8,1,1,0,0,1,0,4,2,0,0.125,0.333,0.25,0.297,,,,,,,,,,,ARI
+2B,Will Power,Neutral,Right,7,18,15,6,5,0,0,7,4,3,3,0,0.4,0.5,0.733,0.511,,,,,,,,,,,ARI
+3B,Brent Royal,Power,Left,4,11,11,2,0,0,2,2,2,6,0,0,0.182,0.182,0.727,0.36,,,,,,,,,,,ARI
+3B,Tsar Zaar,Contact,Right,7,17,16,6,1,0,0,2,1,1,1,0,0.375,0.412,0.438,0.373,,,,,,,,,,,ARI
+SS,Rico Veringhipster,Contact,Left,7,19,19,9,3,1,2,5,3,0,0,0,0.474,0.474,1.053,0.623,,,,,,,,,,,ARI
+LF,Cook Froster,Contact,Right,7,19,16,6,1,1,0,3,1,1,3,0,0.375,0.474,0.563,0.445,,,,,,,,,,,ARI
+LF,Assassin Panda,Power,Left,7,19,18,7,2,0,4,5,8,3,1,0,0.389,0.421,1.167,0.631,,,,,,,,,,,ARI
+LF,A.Z. Chapman,Power,Right,1,2,1,0,0,0,0,0,0,0,1,0,0,0.5,0,0.36,,,,,,,,,,,ARI
+CF,S.K. Brettbug,Contact,Left,7,16,16,3,0,0,0,0,1,2,0,0,0.188,0.188,0.188,0.164,,,,,,,,,,,ARI
+RF,Garrett Ipnov,Contact,Right,4,12,12,5,1,0,1,2,3,2,0,0,0.417,0.417,0.75,0.487,,,,,,,,,,,ARI
+P (2-1),Junks Tandem,Strikeout/Neutral,Right,3,6,5,1,0,0,0,1,0,3,1,0,0.2,0.333,0.2,0.266,13,11,9,17,2,4,9,4.15,1.62,4.15,ATL
+P (3-0),Cal Tiberius Jr.,Finesse/Neutral,Left,6,10,6,2,0,0,0,2,1,1,4,0,0.333,0.6,0.333,0.463,25,7,7,24,1,5,12,1.68,1.16,2.88,ATL
+P (0-1),Matt Carver,Strikeout/Contact,Left,1,0,0,0,0,0,0,0,0,0,0,0,,,,,6,4,4,8,1,0,5,4,1.33,5,ATL
+C,Y.E. Wally,Power,Right,7,19,17,3,1,0,0,3,0,6,2,0,0.176,0.263,0.235,0.233,,,,,,,,,,,ATL
+1B,Len Monz,Neutral,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,ATL
+1B,Jay Lupp,Contact,Left,6,13,11,5,1,1,0,4,2,0,1,0,0.455,0.462,0.727,0.472,,,,,,,,,,,ATL
+2B,Trey Rangers,Neutral,Right,7,17,17,2,1,0,0,0,1,0,0,0,0.118,0.118,0.176,0.124,,,,,,,,,,,ATL
+3B,Charles Lindberg,Power,Left,7,22,19,6,3,0,1,2,2,3,2,0,0.316,0.364,0.632,0.403,,,,,,,,,,,ATL
+3B,Phil Coulson,Contact,Left,7,22,14,5,2,1,0,1,4,2,8,0,0.357,0.591,0.643,0.524,,,,,,,,,,,ATL
+SS,H.B. Boink,Contact,Right,7,23,21,7,1,0,0,1,1,4,2,0,0.333,0.391,0.381,0.345,,,,,,,,,,,ATL
+LF,Matt Verdin,Neutral,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,ATL
+CF,Sadler Oriole,Contact,Right,5,14,14,7,0,0,0,1,5,2,0,0,0.5,0.5,0.5,0.439,,,,,,,,,,,ATL
+CF,C.J. Bastian,Power,Left,6,17,17,7,1,0,2,4,4,6,0,0,0.412,0.412,0.824,0.512,,,,,,,,,,,ATL
+RF,Jake Blee,Power,Right,7,22,21,6,3,0,2,4,5,2,0,0,0.286,0.273,0.714,0.388,,,,,,,,,,,ATL
+P (1-6),Rob Pancakes,Strikeout/Contact,Left,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,41.33,29,29,55,6,26,41,4.21,1.96,5.95,BAL
+P,Chipper Dipper,Neutral,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,BAL
+C,Indy Sayne,Contact,Right,7,17,17,3,2,0,0,1,0,2,0,0,0.176,0.176,0.294,0.197,,,,,,,,,,,BAL
+1B,Johnny Dickshot,Power,Right,7,17,15,3,1,0,1,2,3,2,2,0,0.2,0.294,0.467,0.325,,,,,,,,,,,BAL
+2B,Clipper Charge,Contact,Right,7,21,18,4,0,1,1,2,1,4,3,0,0.222,0.333,0.5,0.355,,,,,,,,,,,BAL
+2B,Ludd van Shark,Neutral,Right,5,10,9,3,2,0,0,2,1,2,1,0,0.333,0.4,0.556,0.406,,,,,,,,,,,BAL
+3B,Sam Smith,Power,Right,7,19,19,2,1,0,0,0,0,5,0,0,0.105,0.105,0.158,0.111,,,,,,,,,,,BAL
+3B,Eric Sluver,Contact,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,BAL
+SS,Bernie Petrol,Neutral,Right,7,19,16,4,0,0,1,3,2,3,3,0,0.25,0.368,0.438,0.356,,,,,,,,,,,BAL
+LF,Randy Nummer,Neutral,Left,7,20,19,7,0,0,3,3,5,3,1,0,0.368,0.4,0.842,0.508,,,,,,,,,,,BAL
+LF,Clark Web,Neutral,Left,3,2,2,0,0,0,0,0,0,1,0,0,0,0,0,0,,,,,,,,,,,BAL
+CF,Meerkat Timmons,Contact,Right,2,4,4,2,0,0,0,0,0,1,0,0,0.5,0.5,0.5,0.439,,,,,,,,,,,BAL
+RF,Whit Merto,Contact,Right,7,21,19,5,1,0,0,0,0,1,2,0,0.263,0.333,0.316,0.294,,,,,,,,,,,BAL
+P (3-3),Big Tuna,Neutral/Balanced,Right,6,8,8,3,1,0,0,0,1,2,0,0,0.375,0.375,0.5,0.373,36,21,21,34,8,10,19,3.5,1.22,3.17,DET
+P (1-0),Bartholemew Masters,Neutral/Strikeout,Left,1,0,0,0,0,0,0,0,0,0,0,0,,,,,6,3,3,4,0,3,8,3,1.17,8,DET
+C,BB Bambino Jr.,Contact,Right,7,22,20,8,1,0,0,4,2,0,2,0,0.4,0.455,0.45,0.401,,,,,,,,,,,DET
+1B,Valentino Rollin,Power,Left,4,12,10,2,0,1,0,1,1,2,1,0,0.2,0.25,0.4,0.262,,,,,,,,,,,DET
+1B,King Fielder,Power,Right,6,17,14,3,0,0,1,1,1,8,3,0,0.214,0.353,0.429,0.347,,,,,,,,,,,DET
+2B,Merodach Baladan,Contact,Right,5,14,14,3,0,1,0,1,2,5,0,0,0.214,0.214,0.357,0.236,,,,,,,,,,,DET
+3B,Casey Nine,Contact,Left,6,17,15,3,1,0,1,2,3,2,2,0,0.2,0.294,0.467,0.325,,,,,,,,,,,DET
+3B,Martin Barnar,Power,Right,5,9,9,1,1,0,0,1,0,3,0,0,0.111,0.111,0.222,0.137,,,,,,,,,,,DET
+SS,Mason Spurs,Contact,Left,7,19,18,6,0,0,2,3,7,1,1,0,0.333,0.368,0.667,0.431,,,,,,,,,,,DET
+LF,Morris Deratt,Neutral,Left,7,18,15,4,0,0,2,5,2,4,3,0,0.267,0.389,0.667,0.437,,,,,,,,,,,DET
+CF,Sevag Vapor,Contact,Right,6,15,14,4,0,0,0,0,0,3,1,0,0.286,0.333,0.286,0.282,,,,,,,,,,,DET
+RF,Otis Nixon Sr.,Power,Left,6,18,17,4,0,1,2,3,4,5,1,0,0.235,0.278,0.706,0.395,,,,,,,,,,,DET
+RF,Lightning Balls,Contact,Right,4,11,10,5,1,0,0,2,0,1,1,0,0.5,0.545,0.6,0.496,,,,,,,,,,,DET
+P (1-2),Willoughby Hoose,Strikeout/Power,Left,5,6,6,1,1,0,0,0,1,3,0,0,0.167,0.167,0.333,0.205,24,23,23,31,4,8,23,5.75,1.63,5.75,HOU
+P (1-2),Whitt Bass,Finesse/Contact,Right,3,3,2,0,0,0,0,0,0,1,1,0,0,0.333,0,0.24,18,7,7,18,4,4,11,2.33,1.22,3.67,HOU
+C,Lemmy Fraser,Neutral,Right,6,15,13,2,1,0,1,3,4,4,2,0,0.154,0.267,0.462,0.31,,,,,,,,,,,HOU
+1B,Jay Money,Contact,Right,7,21,18,7,1,0,0,1,1,2,3,0,0.389,0.476,0.444,0.412,,,,,,,,,,,HOU
+2B,Jasper Orbit,Contact,Left,5,13,10,3,1,0,0,1,0,3,3,0,0.3,0.462,0.4,0.396,,,,,,,,,,,HOU
+2B,Derek Bongiovanni,Contact,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,HOU
+3B,Jimbo Fishy,Contact,Right,7,23,20,4,2,0,1,2,2,2,2,0,0.2,0.261,0.45,0.294,,,,,,,,,,,HOU
+SS,Chester Facto,Contact,Right,4,11,11,2,0,0,0,1,0,4,0,0,0.182,0.182,0.182,0.159,,,,,,,,,,,HOU
+SS,Autumn Halladay,Contact,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,HOU
+LF,Jacques Blaque,Neutral,Right,4,9,9,3,1,0,0,0,0,5,0,0,0.333,0.333,0.444,0.332,,,,,,,,,,,HOU
+LF,Riles McGiles,Contact,Right,1,4,4,2,0,1,0,1,0,1,0,0,0.5,0.5,1,0.607,,,,,,,,,,,HOU
+CF,Buck Cheeks,Power,Left,7,21,21,8,3,0,3,6,6,3,0,0,0.381,0.381,0.952,0.542,,,,,,,,,,,HOU
+CF,Quint Kimbrel,Contact,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,HOU
+RF,Triston Uzumaki,Contact,Right,7,20,18,5,2,0,2,1,3,1,1,0,0.278,0.3,0.722,0.401,,,,,,,,,,,HOU
+RF,Chris Keebler,Neutral,Right,4,12,10,4,0,0,1,3,5,2,2,0,0.4,0.5,0.7,0.504,,,,,,,,,,,HOU
+"P (0-4), 1 SV",Hudson Quin,Strikeout/Power,Left,7,9,8,1,0,0,0,0,0,0,1,0,0.125,0.222,0.125,0.177,28.67,21,19,37,1,12,34,3.98,1.71,7.12,MIN
+"P (0-0), 1 SV",Pablo Sanchez,Balanced/Neutral,Right,4,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,5.33,4,4,2,1,2,5,4.5,0.75,5.63,MIN
+P (3-0),Tim Burr,Finesse/Contact,Right,3,0,0,0,0,0,0,0,0,0,0,0,,,,,10.67,1,1,5,1,2,10,0.56,0.66,5.62,MIN
+C,Twinkie Power,Neutral,Left,7,20,18,6,1,0,1,1,2,6,2,0,0.333,0.4,0.556,0.408,,,,,,,,,,,MIN
+C,Holden Ryder,Power,Right,1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,MIN
+1B,Travis Hanky,Neutral,Left,3,7,7,3,1,0,1,1,2,1,0,0,0.429,0.429,1,0.584,,,,,,,,,,,MIN
+2B,Dark Bobman,Contact,Right,6,17,16,5,1,0,2,3,2,2,1,0,0.313,0.353,0.75,0.451,,,,,,,,,,,MIN
+3B,Ron Eagle,Contact,Right,4,9,9,2,0,0,0,1,0,1,0,0,0.222,0.222,0.222,0.195,1,0,0,0,0,0,0,0,0,0,MIN
+3B,Shiny Tenson,Neutral,Right,5,11,10,5,2,0,1,3,4,2,0,0,0.5,0.455,1,0.563,,,,,,,,,,,MIN
+SS,Mike Cal,Contact,Right,5,13,13,6,1,0,0,1,1,1,0,0,0.462,0.462,0.538,0.432,,,,,,,,,,,MIN
+SS,"Jake ""JP"" Panik",Power,Left,6,14,14,2,0,0,0,0,1,4,0,0,0.143,0.143,0.143,0.125,,,,,,,,,,,MIN
+LF,Jack Marnette,Contact,Right,7,12,11,2,0,0,0,1,0,1,1,0,0.182,0.25,0.182,0.206,,,,,,,,,,,MIN
+LF,Daz Reference,Neutral,Right,7,18,16,5,0,0,0,0,3,6,2,0,0.313,0.389,0.313,0.324,,,,,,,,,,,MIN
+CF,Pete Wheeler,Power,Right,5,11,10,2,2,0,0,2,0,4,1,0,0.2,0.273,0.4,0.289,,,,,,,,,,,MIN
+RF,C.W. Mitzel,Contact,Left,7,17,16,4,0,0,0,0,0,2,1,0,0.25,0.294,0.25,0.249,,,,,,,,,,,MIN
+P (2-5),Sonny Streaker,Finesse/Contact,Right,7,5,5,0,0,0,0,0,0,3,0,0,0,0,0,0,37,24,24,42,6,16,14,3.89,1.57,2.27,NYM
+C,Bo-Horse Jackman,Neutral,Right,4,11,9,2,0,1,1,2,1,1,2,0,0.222,0.364,0.778,0.452,,,,,,,,,,,NYM
+C,Kevin Arianna,Power,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,NYM
+1B,Red Trapper,Power,Left,2,4,4,0,0,0,0,0,0,2,0,0,0,0,0,0,,,,,,,,,,,NYM
+1B,Art Inova,Power,Left,2,4,4,0,0,0,0,0,0,1,0,0,0,0,0,0,,,,,,,,,,,NYM
+1B,James Maso,Contact,Right,4,11,10,4,0,0,1,1,3,1,0,0,0.4,0.364,0.7,0.419,,,,,,,,,,,NYM
+2B,Xavier Crowbar,Neutral,Right,7,19,16,5,0,0,1,3,3,4,3,0,0.313,0.421,0.5,0.403,,,,,,,,,,,NYM
+3B,Mongster Mash,Neutral,Right,7,20,20,6,1,0,0,0,0,3,0,0,0.3,0.3,0.35,0.281,,,,,,,,,,,NYM
+3B,Cold Honkey,Power,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,NYM
+SS,Trey Paste,Contact,Right,7,17,16,2,1,0,0,1,3,3,1,0,0.125,0.176,0.188,0.166,,,,,,,,,,,NYM
+LF,Bix Kayne,Contact,Right,6,16,14,4,0,0,0,2,1,1,1,0,0.286,0.313,0.286,0.264,,,,,,,,,,,NYM
+LF,Chocolate Smegma,Contact,Left,7,22,22,5,0,0,1,4,2,1,0,0,0.227,0.227,0.364,0.249,,,,,,,,,,,NYM
+CF,Pip Squires,Contact,Right,7,17,15,6,2,1,1,2,4,3,2,0,0.4,0.471,0.867,0.541,,,,,,,,,,,NYM
+CF,Scotty Smalls,Contact,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,NYM
+RF,James Earl Pwns,Power,Right,5,14,14,1,0,0,1,1,1,6,0,0,0.071,0.071,0.286,0.141,,,,,,,,,,,NYM
+P (4-3),Sal Shark,Balanced/Neutral,Right,7,11,10,3,0,0,1,1,3,2,1,0,0.3,0.364,0.6,0.405,41,16,16,39,5,16,26,2.34,1.34,3.8,OAK
+P (0-0),Jay Schwizzle,Finesse/Contact,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,OAK
+C,Art Zyz,Contact,Left,7,20,17,6,0,0,0,1,0,2,3,2,0.353,0.45,0.353,0.371,,,,,,,,,,,OAK
+C,Bobson Dugnutt,Contact,Right,7,18,18,3,0,1,0,2,2,2,0,0,0.167,0.167,0.278,0.184,,,,,,,,,,,OAK
+C,Justin Virga,Contact,Right,1,2,2,1,0,0,0,0,1,0,0,0,0.5,0.5,0.5,0.439,,,,,,,,,,,OAK
+1B,Caleb VanVacter,Power,Right,7,19,17,9,3,0,2,6,3,2,2,0,0.529,0.579,1.059,0.663,,,,,,,,,,,OAK
+2B,Kid Notcher,Contact,Right,7,13,13,4,0,0,0,0,1,3,0,0,0.308,0.308,0.308,0.27,,,,,,,,,,,OAK
+2B,I.M. Robbot,Neutral,Right,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,,,,,,,,,,,OAK
+2B,Max Wasson,Contact,Right,3,7,7,1,0,0,0,0,1,0,0,0,0.143,0.143,0.143,0.125,,,,,,,,,,,OAK
+3B,Sonny Scheim,Power,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,OAK
+SS,Graham Othrie,Power,Right,7,19,16,4,2,0,1,4,4,5,3,0,0.25,0.368,0.563,0.394,,,,,,,,,,,OAK
+LF,Blue Moon Barthelemy,Neutral,Right,7,19,18,2,0,0,1,1,1,2,1,0,0.111,0.158,0.278,0.188,,,,,,,,,,,OAK
+CF,Grey Goose McGillicuddy,Contact,Right,2,5,5,1,0,0,0,0,0,0,0,0,0.2,0.2,0.2,0.175,,,,,,,,,,,OAK
+RF,Boaty McBoatface,Neutral,Right,7,16,15,3,1,0,0,1,1,2,1,0,0.2,0.25,0.267,0.232,,,,,,,,,,,OAK
+RF,Brian Southwell,Neutral,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,OAK
+P (3-0),Cy Hadd,Strikeout/Power,Right,7,12,10,4,0,0,3,3,6,2,2,0,0.4,0.5,1.3,0.688,23.33,16,16,23,9,5,26,4.11,1.2,6.69,PHI
+"P (2-2), 1 SV",Oliver Yu,Balanced/Neutral,Right,6,5,5,1,0,0,0,1,1,1,0,1,0.2,0.2,0.2,0.175,17.67,12,12,24,1,6,14,4.07,1.7,4.75,PHI
+C,KC Bats,Neutral,Right,5,15,13,5,2,1,2,6,6,1,2,0,0.385,0.467,1.154,0.628,,,,,,,,,,,PHI
+1B,Lefty Schweez,Contact,Left,3,8,8,1,0,0,0,0,0,0,0,0,0.125,0.125,0.125,0.11,,,,,,,,,,,PHI
+2B,Gil Metz,Power,Right,7,19,17,4,0,0,0,2,2,7,2,0,0.235,0.316,0.235,0.26,,,,,,,,,,,PHI
+2B,Kyle Mack,Contact,Right,7,22,19,5,1,1,0,3,2,2,3,1,0.263,0.364,0.421,0.344,,,,,,,,,,,PHI
+3B,Miguel Snow,Power,Right,5,10,9,0,0,0,0,1,0,5,1,0,0,0.1,0,0.072,,,,,,,,,,,PHI
+3B,Wei-Chen Rodriguez,Power,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,PHI
+SS,Brandon Aconi,Contact,Right,4,7,7,3,0,0,0,1,1,1,0,0,0.429,0.429,0.429,0.376,,,,,,,,,,,PHI
+SS,Ross Fire,Contact,Right,7,19,17,8,2,0,2,7,7,1,2,0,0.471,0.526,0.941,0.599,,,,,,,,,,,PHI
+LF,Hunter Tuzero,Power,Right,7,18,15,5,0,0,3,7,7,1,3,0,0.333,0.444,0.933,0.547,,,,,,,,,,,PHI
+CF,Conrad Love,Neutral,Left,7,21,21,9,3,0,0,4,3,7,0,1,0.429,0.429,0.571,0.427,,,,,,,,,,,PHI
+CF,Cambo Dia,Contact,Left,3,8,8,3,0,0,2,2,4,0,0,0,0.375,0.375,1.125,0.605,,,,,,,,,,,PHI
+RF,Obi-Wan Canoli,Neutral,Right,5,8,8,3,1,0,0,0,1,4,0,0,0.375,0.375,0.5,0.373,,,,,,,,,,,PHI
+RF,Conor McRedgor,Contact,Right,4,9,8,2,0,0,0,0,1,1,1,0,0.25,0.333,0.25,0.275,,,,,,,,,,,PHI
+P (5-2),Darth Vader,Strikeout/Neutral,Right,7,11,11,3,2,0,0,1,0,2,0,1,0.273,0.273,0.455,0.304,39,21,21,39,6,10,35,3.23,1.26,5.38,PIT
+P,Bartholomew Crumblepuff,Balanced/Power,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,PIT
+C,Gare Doctor,Neutral,Right,3,7,4,0,0,0,0,0,0,1,3,0,0,0.429,0,0.309,,,,,,,,,,,PIT
+C,Mike Anderson,Contact,Right,5,13,12,3,1,0,0,2,2,2,1,0,0.25,0.308,0.333,0.285,,,,,,,,,,,PIT
+1B,Jameson Poe,Power,Right,7,20,17,5,3,0,1,4,2,2,3,0,0.294,0.4,0.647,0.436,,,,,,,,,,,PIT
+1B,Jethro Jammer,Contact,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,PIT
+2B,Splash Nelson,Contact,Right,7,18,17,4,2,0,0,1,2,3,1,1,0.235,0.278,0.353,0.274,,,,,,,,,,,PIT
+3B,Johnny Hopkins,Neutral,Left,7,22,18,8,2,0,1,3,8,1,4,1,0.444,0.545,0.722,0.532,,,,,,,,,,,PIT
+SS,Lance Lummox,Neutral,Right,7,19,18,6,1,0,1,3,4,4,1,0,0.333,0.368,0.556,0.392,,,,,,,,,,,PIT
+LF,Albie Smith,Contact,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,PIT
+CF,Jimmy Johns,Contact,Left,4,10,10,2,0,0,1,2,3,3,0,0,0.2,0.2,0.5,0.286,,,,,,,,,,,PIT
+RF,Baxter Payne,Neutral,Right,7,20,19,4,0,0,0,1,1,5,1,0,0.211,0.25,0.211,0.211,,,,,,,,,,,PIT
+RF,Rory Nipponsteer,Power,Right,5,13,11,0,0,0,0,0,0,2,2,0,0,0.154,0,0.111,,,,,,,,,,,PIT
+P (2-3),S. A. R. Dinka,Finesse/Contact,Right,7,13,11,4,0,0,1,3,2,3,2,0,0.364,0.462,0.636,0.465,31,14,14,33,6,10,15,2.71,1.39,2.9,TOR
+P (0-1),Levi Pyram,Balanced/Contact,Right,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,3,6,6,5,2,2,2,12,2.33,4,TOR
+P,Ryan Gasting,Strikeout/Contact,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,TOR
+C,Quentin Adams,Power,Right,7,21,19,1,1,0,0,1,1,10,1,0,0.053,0.095,0.105,0.093,,,,,,,,,,,TOR
+C,Michael Voorhees,Neutral,Left,1,2,2,0,0,0,0,0,0,1,0,0,0,0,0,0,,,,,,,,,,,TOR
+1B,Vinny Frumdibronks,Power,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,TOR
+2B,Graham Grams,Contact,Left,7,23,21,10,0,1,1,3,4,4,2,1,0.476,0.522,0.714,0.521,,,,,,,,,,,TOR
+3B,Mike Honcho,Neutral,Right,7,20,19,7,2,1,1,6,5,7,1,0,0.368,0.4,0.737,0.467,,,,,,,,,,,TOR
+SS,Lane Drew,Contact,Left,7,22,19,7,1,0,2,6,3,2,2,0,0.368,0.409,0.737,0.461,,,,,,,,,,,TOR
+LF,Forrest Gleeson,Neutral,Right,5,14,14,3,3,0,0,1,2,1,0,0,0.214,0.214,0.429,0.264,,,,,,,,,,,TOR
+CF,Thomas Berry,Contact,Right,7,21,21,9,0,0,0,2,3,2,0,0,0.429,0.429,0.429,0.376,,,,,,,,,,,TOR
+CF,Victor Justice,Neutral,Left,6,12,10,0,0,0,0,0,0,4,1,0,0,0.083,0,0.06,,,,,,,,,,,TOR
+CF,Augie Neintinowan,Contact,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,TOR
+RF,Ziggy Ceder,Contact,Right,7,19,18,3,0,0,1,2,2,3,1,0,0.167,0.211,0.333,0.234,,,,,,,,,,,TOR
+"P (2-1), 1 SV",Jay Bedia,Strikeout/Power,Left,5,2,2,0,0,0,0,0,0,1,0,0,0,0,0,0,18.66,10,10,21,4,8,19,3.22,1.55,6.11,WSH
+P (2-1),Hudson Hildebrandt,Finesse/Power,Right,4,3,3,0,0,0,0,0,0,1,0,0,0,0,0,0,18.33,9,8,17,4,6,12,2.62,1.25,3.93,WSH
+C,Mylo Grams,Contact,Right,7,22,18,10,1,2,2,8,7,1,4,2,0.556,0.636,1.167,0.707,,,,,,,,,,,WSH
+1B,Bo Kinsella,Neutral,Right,6,17,15,7,2,1,0,4,2,2,2,1,0.467,0.529,0.733,0.527,,,,,,,,,,,WSH
+2B,Osmosis Jones,Contact,Left,7,21,19,2,1,0,0,1,2,2,1,0,0.105,0.143,0.158,0.135,,,,,,,,,,,WSH
+2B,Gene Hennig,Contact,Right,7,22,21,9,0,0,0,5,2,6,1,1,0.429,0.455,0.429,0.392,,,,,,,,,,,WSH
+3B,Humphrey Carter,Neutral,Left,3,9,8,2,0,2,0,2,3,3,1,0,0.25,0.333,0.75,0.425,,,,,,,,,,,WSH
+3B,Nathaniel Booth,Power,Left,1,3,2,1,0,0,1,1,3,0,0,0,0.5,0.333,2,0.66,,,,,,,,,,,WSH
+SS,Larry Wayne,Power,Right,5,14,14,4,2,0,2,4,9,3,0,0,0.286,0.286,0.857,0.459,,,,,,,,,,,WSH
+SS,Durgesh O'Leary,Power,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,WSH
+LF,Jason Girth,Power,Right,4,11,11,2,0,0,2,2,2,6,0,0,0.182,0.182,0.727,0.36,,,,,,,,,,,WSH
+LF,Donnie Lindsanity,Power,Right,2,5,4,1,0,0,0,1,1,3,1,1,0.25,0.4,0.25,0.319,,,,,,,,,,,WSH
+LF,Rusty LaRue,Neutral,Left,4,12,11,4,2,0,0,3,1,5,1,1,0.364,0.417,0.545,0.412,,,,,,,,,,,WSH
+CF,Herrera O'Doubles,Contact,Left,6,19,18,4,1,0,0,2,3,3,1,1,0.222,0.263,0.278,0.241,,,,,,,,,,,WSH
+RF,Chad Barrett,Neutral,Right,7,20,17,8,4,0,1,2,2,3,3,0,0.471,0.55,0.882,0.585,,,,,,,,,,,WSH
+P (0-1),Ramicus,Strikeout/Contact,Right,2,5,5,2,1,0,0,0,0,2,0,0,0.4,0.4,0.6,0.428,8,4,3,7,,1,8,2.25,1,6,RETIRED
+CF,falcs51,Contact,Right,2,7,7,4,1,0,0,2,0,0,0,0,0.571,0.571,0.714,0.563,,,,,,,,,,,RETIRED
+C,Master Cashier,Power,Left,3,8,7,0,0,0,0,0,0,3,1,0,0,0.125,0,0.09,,,,,,,,,,,RETIRED
+CF,Aaron Range,Contact,Left,5,8,8,1,0,0,1,1,4,3,0,0,0.125,0.125,0.5,0.244,,,,,,,,,,,RETIRED
+3B,Rupert Apple,Neutral,Right,4,11,10,2,1,0,0,1,0,1,1,0,0.2,0.273,0.3,0.26,,,,,,,,,,,RETIRED
+CF,Rick Gymnast,Contact,Right,5,14,14,6,2,1,0,2,2,0,0,1,0.429,0.429,0.714,0.481,,,,,,,,,,,RETIRED
+1B,Hashcoin Shitstorm,Power,Right,3,4,4,1,1,0,0,0,0,1,0,0,0.25,0.25,0.5,0.31,,,,,,,,,,,RETIRED
+P (1-0),Timothy Moyer,Balanced/Neutral,Left,2,6,5,2,0,0,1,2,1,0,1,0,0.4,0.5,1,0.596,12,9,9,18,,3,2,4.5,1.75,1,RETIRED
+"CF, 1 SV",Ricky Steele,Neutral,Right,3,10,6,4,0,1,2,4,4,1,3,2,0.667,0.7,2,0.855,2,0,0,2,,0,3,0,1,9,RETIRED
+C,Hyper Scoops,???,???,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,,,,,,,,,,,NYM
+LF,John C. Johnson,???,???,1,2,2,0,0,0,0,0,0,1,0,0,0,0,0,0,,,,,,,,,,,NYM
+C,Khalil Underscore,???,???,4,9,7,1,1,0,0,1,0,3,2,0,0.143,0.333,0.286,0.298,,,,,,,,,,,HOU
+2B,William Constantine,???,???,2,4,4,0,0,0,0,0,0,3,0,0,0,0,0,0,,,,,,,,,,,HOU
+1B,Villar Porn,???,???,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,,,,,,,,,,,ARI
