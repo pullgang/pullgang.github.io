@@ -40,7 +40,7 @@ var s1stats = {};
 $(function() {
 	var current_progress = 0;
 	var interval = setInterval(function() {
-		current_progress += 10 * (121/1000);
+		current_progress += 25 * (121/1000);
 	  var fake = Math.round(current_progress,3);
 		$("#dynamic")
 		.css("width", current_progress + "%")
@@ -261,7 +261,7 @@ function mlr_pa_loader() {
 			myWorker.postMessage([pids,mlr_data,players]);
 			myWorker.onmessage = function(e) {
 				stats = e.data;
-				console.log('Message received from worker');
+				console.log('Finished loading');
 				$(".inner").html(`
 <h3>MLR Career Hitting Stats Leaderboards</h3>
 <hr />
@@ -477,6 +477,9 @@ function mlr_pa_loader() {
 		<option value="6th">6th Inning</option>
 		<option value="extras">Extras</option>
 		<option value="team">Specific Team</option>
+	</select> 
+	<select name="team" id="team">
+		<option value=""></option>
 	</select> and show <input class="numbox" id="number_of_results" type="number" value="10"></input> results
 	<button class="btn btn-success mt-2" id="calc-submit">Go!</button>
 </div>
@@ -569,6 +572,21 @@ function mlr_pa_loader() {
 </div>
 				`);
 
+				//Add teams to team selector
+				var all_teams = ["TOR","ATL","S1MIN","MIN","PHI","HOU","ARI","PIT","OAK","NYM","BAL","DET","SDP","SEA","BOS","CLE","MTL","SFG","LAD","MIL","COL","TEX","WSH","STL","NYY","KCR","LAA","MIA","CHC","CWS","CIN","TBR"]
+				for(team in all_teams) {
+					$('#team').append($('<option>', {
+						value: all_teams[team],
+						text: all_teams[team]
+					}));
+				}
+				$('#split').on('change', function() {
+					if($('#split').val() == 'team') {
+						$('#team').css("cssText", "display: inline !important; width: auto;");
+					} else {
+						$('#team').css('display','none')
+					}
+				  });
 				//CSS Stuff
 				$('#wrapper').css('padding','0');
 				$('.logo').css('display','none');
@@ -589,13 +607,14 @@ function mlr_pa_loader() {
 				var seasonCheck = 0;
 				var otherplayerscount = -1;
 
-				console.log('starting leaderboard_functions.js...');
-
 				function getResults(o, season, split, n, stat, math, stat2, result_qualifier, result_qualifier2, min_result, max_result, min_result2, max_result2, highorlow) {
 					if (seasonCheck == 0) { // on each stat request
 						errorcheck = 0;
 						errorcheck2 = 0;
 						error_seasons = [];
+					}
+					if(split == 'team') {
+						split = document.getElementById("team").value;
 					}
 					n = parseInt(n);
 					var keys2 = [];
@@ -761,6 +780,9 @@ function mlr_pa_loader() {
 				}
 
 				function addRows(listy, split, seasony, table_id, stat, math, stat2, season, results) {
+					if(split == 'team') {
+						split = document.getElementById("team").value;
+					}
 					otherplayerscount = otherplayerscount + 1;
 					var table = document.getElementById(table_id);
 					var row_count = 0;

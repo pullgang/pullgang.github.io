@@ -49,3 +49,7 @@ hr {
 #header > *:before {
     display: none;
 }
+
+#team {
+    display:none!important;
+}

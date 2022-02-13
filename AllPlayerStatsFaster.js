@@ -106,6 +106,47 @@ onmessage = function(e) {
         //Then, go over each line in the PA logs. Then add splits to each category when applicable. Perhaps this is faster.
         //Finally do the player stats lol. 
 
+        var all_teams = ["TOR","ATL","S1MIN","MIN","PHI","HOU","ARI","PIT","OAK","NYM","BAL","DET","SDP","SEA","BOS","CLE","MTL","SFG","LAD","MIL","COL","TEX","WSH","STL","NYY","KCR","LAA","MIA","CHC","CWS","CIN","TBR"]
+        
+        var current_teams = {
+            1: {
+                'MIN': 'S1MIN',
+                'BAL': 'TEX',
+                'NYM': 'MIL',
+                'KCR': 'OAK',
+                'WAS': 'WSH'
+            },
+            2: {
+                'BAL': 'TEX',
+                'MIN': 'S1MIN',
+                'MTL': 'ATL',
+                'TB': 'TBR',
+                'CLE': 'CIN',
+                'TEX': 'CLE',
+                'SEA': 'NYY'
+            },
+            3: {
+                'LAA': 'TEX',
+                'MTL': 'ATL',
+                'TBD': 'TBR',
+                'CLE': 'CIN',
+                'TEX': 'CLE'
+            },
+            4: {
+                'LAA': 'TEX',
+                'TEX': 'CLE',
+                'CLE': 'LAA',
+                'TBD': 'TBR'
+            },
+            5: {
+                'LAA': 'TEX',
+                'TEX': 'CLE',
+                'CLE': 'LAA'
+            },
+            6: {},
+            7: {}
+        }
+
         for (var playa in pids){
             var requested_pid = playa
             hitter_teams = "hitter_teams";
@@ -150,8 +191,12 @@ onmessage = function(e) {
             stats[requested_pid]['playerDataWinning'] = [];
             stats[requested_pid]['playerDataLosing'] = [];
             stats[requested_pid]['playerDataTied'] = [];
+            for(team in all_teams) {
+                stats[requested_pid]["playerData"+all_teams[team]] = [];
+                stats[requested_pid][all_teams[team]] = [];
+            }
         }
-
+        
         for(line in mlr_data) {
             var pid = players[mlr_data[line]['Hitter']];
             var ppid = players[mlr_data[line]['Pitcher']];
@@ -169,6 +214,12 @@ onmessage = function(e) {
             if(l['Hitter'] == '') {
                 continue;
             }
+            var team = l['Batter Team'];
+            var season = l['Season'];
+            if(team in current_teams[season]) {
+                team = current_teams[season][team];
+            }
+            sth["playerData"+team].push(mlr_data[line]);
             if(l['Inning'].substr(0,1) == 'B') {
                 sth['playerDataHome'].push(mlr_data[line]);
             }
@@ -227,9 +278,16 @@ onmessage = function(e) {
         }
 
         function askStat(statname1, statname2, pid) {
+            try {
             if(stats[pid][statname1].length > 0) {
                 doStats(stats[pid][statname2], stats[pid][statname1]);
             }
+        } 
+        catch(err) {
+            console.log('o')
+            console.log('o')
+            console.log('o')
+        }
         }
 
         function doStats(the_stats, dict) {
@@ -302,6 +360,9 @@ onmessage = function(e) {
             askStat('playerDataWinning','winning',playa)
             askStat('playerDataLosing','losing',playa)
             askStat('playerDataTied','tied',playa)
+            for(team in all_teams) {
+                askStat('playerData'+all_teams[team],all_teams[team],playa)
+            }
 
         } // Every player stats end hehe
     } //slowAF end lol
