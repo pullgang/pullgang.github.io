@@ -717,22 +717,37 @@ function mlr_pa_loader() {
 						if (math == '' || stat2 == '') {
 							while (o[keys2[n - 1]][split][season][stat] == o[keys2[n + counter]][split][season][stat]) {
 								counter = counter + 1;
+								if(counter > 1000000) {
+									continue;
+								}
 							}
 						} else if (math == 'plus') {
 							while (o[keys2[n - 1]][split][season][stat] + o[keys2[n - 1]][split][season][stat2] == o[keys2[n + counter]][split][season][stat] + o[keys2[n + counter]][split][season][stat2]) {
 								counter = counter + 1;
+								if(counter > 1000000) {
+									continue;
+								}
 							}
 						} else if (math == 'minus') {
 							while (o[keys2[n - 1]][split][season][stat] - o[keys2[n - 1]][split][season][stat2] == o[keys2[n + counter]][split][season][stat] - o[keys2[n + counter]][split][season][stat2]) {
 								counter = counter + 1;
+								if(counter > 1000000) {
+									continue;
+								}
 							}
 						} else if (math == 'multiply') {
 							while (o[keys2[n - 1]][split][season][stat] * o[keys2[n - 1]][split][season][stat2] == o[keys2[n + counter]][split][season][stat] * o[keys2[n + counter]][split][season][stat2]) {
 								counter = counter + 1;
+								if(counter > 1000000) {
+									continue;
+								}
 							}
 						} else if (math == 'divide') {
 							while (o[keys2[n - 1]][split][season][stat] / o[keys2[n - 1]][split][season][stat2] == o[keys2[n + counter]][split][season][stat] / o[keys2[n + counter]][stat2]) {
 								counter = counter + 1;
+								if(counter > 1000000) {
+									continue;
+								}
 							}
 						}
 					}
