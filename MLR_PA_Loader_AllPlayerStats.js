@@ -573,7 +573,7 @@ function mlr_pa_loader() {
 				`);
 
 				//Add teams to team selector
-				var all_teams = ["TOR","ATL","S1MIN","MIN","PHI","HOU","ARI","PIT","OAK","NYM","BAL","DET","SDP","SEA","BOS","CLE","MTL","SFG","LAD","MIL","COL","TEX","WSH","STL","NYY","KCR","LAA","MIA","CHC","CWS","CIN","TBR"]
+				var all_teams = ["ARI","ATL","BAL","BOS","CHC","CIN","CLE","COL","CWS","DET","HOU","KCR","LAA","LAD","MIA","MIL","MIN","MTL","NYM","NYY","OAK","PHI","PIT","S1MIN","SDP","SEA","SFG","STL","TBR","TEX","TOR","WSH"]
 				for(team in all_teams) {
 					$('#team').append($('<option>', {
 						value: all_teams[team],
