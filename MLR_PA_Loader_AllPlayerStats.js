@@ -6,6 +6,7 @@ var previousSeasonData = ''
 var season1RosterData = '';
 var currentSeasonData = '';
 var currentSeasonPlayers = '';
+var oldSeasonPlayers = '';
 var playersCSV;
 var mlr_data;
 var h_list = {};
@@ -39,7 +40,7 @@ var s1stats = {};
 $(function() {
 	var current_progress = 0;
 	var interval = setInterval(function() {
-		current_progress += 2.5 * (121/1000);
+		current_progress += 10 * (121/1000);
 	  var fake = Math.round(current_progress,3);
 		$("#dynamic")
 		.css("width", current_progress + "%")
@@ -71,6 +72,12 @@ $.ajax({
 	url: "https://pullgang.github.io/AllSeasonsExceptCurrent.csv",
 	dataType: "text",
 	success: function (data) { previousSeasonData = data; }
+});
+$.ajax({
+	type: "GET",
+	url: "https://pullgang.github.io/OldNames.csv",
+	dataType: "text",
+	success: function (data) { oldSeasonPlayers = data; }
 });
 $.ajax({
 	type: "GET",
@@ -108,6 +115,7 @@ function loadcurrentSeasonPlayers() {
 
 }
 loadcurrentSeasonPlayers();
+
 
 function statsDoer(statsdict) {
 
@@ -207,7 +215,8 @@ function statsDoer(statsdict) {
 function mlr_pa_loader() {
 	var flag = currentSeasonData.length;
 	var flag2 = currentSeasonPlayers.length;
-	if (!(flag > 200 && flag2 > 200)) {
+	var flag3 = oldSeasonPlayers.length;
+	if (!(flag > 200 && flag2 > 200 && flag3 > 200)) {
 		window.setTimeout(mlr_pa_loader, 100);
 	} else {
 		currentSeasonData = currentSeasonData.split("\n").slice(1);
@@ -217,7 +226,9 @@ function mlr_pa_loader() {
 		currentSeasonData = currentSeasonData.join("\n");
 		previousSeasonData = previousSeasonData + "\n" + currentSeasonData;
 		currentSeasonData = '';
-		currentSeasonPlayers = currentSeasonPlayers + "\n" + playerListData;
+		oldSeasonPlayers = oldSeasonPlayers.split("\n").slice(1);
+		oldSeasonPlayers = oldSeasonPlayers.join("\n");
+		currentSeasonPlayers = currentSeasonPlayers + "\n" + oldSeasonPlayers + "\n" + playerListData;
 		playerListData = '';
 
 		playersCSV = d3.csvParse(currentSeasonPlayers);
@@ -245,7 +256,8 @@ function mlr_pa_loader() {
 		}
 
 		if (window.Worker) {
-			var myWorker = new Worker('AllPlayerStats.js');
+			//var myWorker = new Worker('AllPlayerStats.js');
+			var myWorker = new Worker('AllPlayerStatsFaster.js');
 			myWorker.postMessage([pids,mlr_data,players]);
 			myWorker.onmessage = function(e) {
 				stats = e.data;
@@ -451,6 +463,20 @@ function mlr_pa_loader() {
 		<option value="standard">Standard</option>
 		<option value="home">Home</option>
 		<option value="away">Away</option>
+		<option value="0out">0 Outs</option>
+		<option value="1out">1 Out</option>
+		<option value="2out">2 Outs</option>
+		<option value="winning">Winning</option>
+		<option value="losing">Losing</option>
+		<option value="tied">Tied</option>
+		<option value="1st">1st Inning</option>
+		<option value="2nd">2nd Inning</option>
+		<option value="3rd">3rd Inning</option>
+		<option value="4th">4th Inning</option>
+		<option value="5th">5th Inning</option>
+		<option value="6th">6th Inning</option>
+		<option value="extras">Extras</option>
+		<option value="team">Specific Team</option>
 	</select> and show <input class="numbox" id="number_of_results" type="number" value="10"></input> results
 	<button class="btn btn-success mt-2" id="calc-submit">Go!</button>
 </div>

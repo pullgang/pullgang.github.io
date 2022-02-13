@@ -131,6 +131,96 @@ onmessage = function(e) {
                 }
             })
 
+            stats[requested_pid]['playerData0out'] = mlr_data.filter(function(d) { 
+                if( players[d["Hitter"]] == requested_pid && d["Outs"].substr(0,1) == '0') { 
+                        return d;
+                }
+            })
+
+            stats[requested_pid]['playerData1out'] = mlr_data.filter(function(d) { 
+                if( players[d["Hitter"]] == requested_pid && d["Outs"].substr(0,1) == '1') { 
+                        return d;
+                }
+            })
+
+            stats[requested_pid]['playerData2out'] = mlr_data.filter(function(d) { 
+                if( players[d["Hitter"]] == requested_pid && d["Outs"].substr(0,1) == '2') { 
+                        return d;
+                }
+            })
+
+            stats[requested_pid]['playerDataWinning'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(0,1) == 'B') {
+                    if(d["Home Score"] > d["Away Score"]) {
+                        return d;
+                    }
+                } else if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(0,1) == 'T') {
+                    if(d["Home Score"] < d["Away Score"]) {
+                        return d;
+                    }
+                }
+            });
+
+            stats[requested_pid]['playerDataLosing'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(0,1) == 'B') {
+                    if(d["Home Score"] < d["Away Score"]) {
+                        return d;
+                    }
+                } else if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(0,1) == 'T') {
+                    if(d["Home Score"] > d["Away Score"]) {
+                        return d;
+                    }
+                }
+            });
+
+            stats[requested_pid]['playerDataTied'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Home Score"] == d["Away Score"]) {
+                    return d;
+                }
+            });
+
+            stats[requested_pid]['playerData1st'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(1,2) == "1") {
+                    return d;
+                }
+            });
+            
+            stats[requested_pid]['playerData2nd'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(1,2) == "2") {
+                    return d;
+                }
+            });
+
+            stats[requested_pid]['playerData3rd'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(1,2) == "3") {
+                    return d;
+                }
+            });
+
+            stats[requested_pid]['playerData4th'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(1,2) == "4") {
+                    return d;
+                }
+            });
+
+            stats[requested_pid]['playerData5th'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(1,2) == "5") {
+                    return d;
+                }
+            });
+
+            stats[requested_pid]['playerData6th'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(1,2) == "6") {
+                    return d;
+                }
+            });
+
+            stats[requested_pid]['playerDataExtras'] = mlr_data.filter(function(d) { 
+                if(players[d["Hitter"]] == requested_pid && d["Inning"].substring(1,2) > 6) {
+                    return d;
+                }
+            });
+
             stats[requested_pid][playerDataH].filter(function(d) { 
                 if(!(stats[requested_pid][hitter_teams].includes(d["Batter Team"]))) { 
                     stats[requested_pid][hitter_teams].push(d["Batter Team"])
@@ -160,6 +250,19 @@ onmessage = function(e) {
             stats[requested_pid]['home'] = {};
             stats[requested_pid]['away'] = {};
             stats[requested_pid]['team'] = {};
+            stats[requested_pid]['0out'] = {};
+            stats[requested_pid]['1out'] = {};
+            stats[requested_pid]['2out'] = {};
+            stats[requested_pid]['winning'] = {};
+            stats[requested_pid]['losing'] = {};
+            stats[requested_pid]['tied'] = {};
+            stats[requested_pid]['1st'] = {};
+            stats[requested_pid]['2nd'] = {};
+            stats[requested_pid]['3rd'] = {};
+            stats[requested_pid]['4th'] = {};
+            stats[requested_pid]['5th'] = {};
+            stats[requested_pid]['6th'] = {};
+            stats[requested_pid]['extras'] = {};
 
 
             function doStats(the_stats, dict) {
@@ -213,6 +316,45 @@ onmessage = function(e) {
             }
             if(stats[requested_pid][playerDataHAway].length > 0) {
                 doStats(stats[requested_pid]['away'], stats[requested_pid][playerDataHAway]);
+            }
+            if(stats[requested_pid]['playerData0out'].length > 0) {
+                doStats(stats[requested_pid]['0out'], stats[requested_pid]['playerData0out']);
+            }
+            if(stats[requested_pid]['playerData1out'].length > 0) {
+                doStats(stats[requested_pid]['1out'], stats[requested_pid]['playerData1out']);
+            }
+            if(stats[requested_pid]['playerData2out'].length > 0) {
+                doStats(stats[requested_pid]['2out'], stats[requested_pid]['playerData2out']);
+            }
+            if(stats[requested_pid]['playerDataWinning'].length > 0) {
+                doStats(stats[requested_pid]['winning'], stats[requested_pid]['playerDataWinning']);
+            }
+            if(stats[requested_pid]['playerDataLosing'].length > 0) {
+                doStats(stats[requested_pid]['losing'], stats[requested_pid]['playerDataLosing']);
+            }
+            if(stats[requested_pid]['playerDataTied'].length > 0) {
+                doStats(stats[requested_pid]['tied'], stats[requested_pid]['playerDataTied']);
+            }
+            if(stats[requested_pid]['playerData1st'].length > 0) {
+                doStats(stats[requested_pid]['1st'], stats[requested_pid]['playerData1st']);
+            }
+            if(stats[requested_pid]['playerData2nd'].length > 0) {
+                doStats(stats[requested_pid]['2nd'], stats[requested_pid]['playerData2nd']);
+            }
+            if(stats[requested_pid]['playerData3rd'].length > 0) {
+                doStats(stats[requested_pid]['3rd'], stats[requested_pid]['playerData3rd']);
+            }
+            if(stats[requested_pid]['playerData4th'].length > 0) {
+                doStats(stats[requested_pid]['4th'], stats[requested_pid]['playerData4th']);
+            }
+            if(stats[requested_pid]['playerData5th'].length > 0) {
+                doStats(stats[requested_pid]['5th'], stats[requested_pid]['playerData5th']);
+            }
+            if(stats[requested_pid]['playerData6th'].length > 0) {
+                doStats(stats[requested_pid]['6th'], stats[requested_pid]['playerData6th']);
+            }
+            if(stats[requested_pid]['playerDataExtras'].length > 0) {
+                doStats(stats[requested_pid]['extras'], stats[requested_pid]['playerDataExtras']);
             }
             for(var team in stats[requested_pid][hitter_teams]) {
                 if(stats[requested_pid][stats[requested_pid][hitter_teams[team]]].length > 0) {
