@@ -50,7 +50,7 @@ $(function() {
 			current_progress = 100;
 			clearInterval(interval);
 		}
-	}, 250);
+	}, 167);
   });
 
 window.onerror = function(error,url,line) {
