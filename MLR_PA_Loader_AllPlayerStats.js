@@ -39,7 +39,7 @@ var s1stats = {};
 $(function() {
 	var current_progress = 0;
 	var interval = setInterval(function() {
-		current_progress += 5 * (121/1000);
+		current_progress += 2.5 * (121/1000);
 	  var fake = Math.round(current_progress,3);
 		$("#dynamic")
 		.css("width", current_progress + "%")
