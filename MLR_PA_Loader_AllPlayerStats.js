@@ -121,6 +121,8 @@ function loadcurrentSeasonPlayers() {
 }
 loadcurrentSeasonPlayers();
 
+alert(window.performance.memory.jsHeapSizeLimit);
+
 function mlr_pa_loader() {
 	var flag = currentSeasonData.length;
 	var flag2 = currentSeasonPlayers.length;
