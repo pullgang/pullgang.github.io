@@ -121,7 +121,7 @@ function loadcurrentSeasonPlayers() {
 }
 loadcurrentSeasonPlayers();
 
-alert(window.performance.memory.jsHeapSizeLimit);
+
 
 function mlr_pa_loader() {
 	var flag = currentSeasonData.length;
@@ -168,6 +168,8 @@ function mlr_pa_loader() {
 		// 	document.getElementById('players').appendChild(opt);
 		// }
 
+		$('#bruh').text(window.performance.memory.jsHeapSizeLimit);
+		
 		if (window.Worker) {
 			//var myWorker = new Worker('AllPlayerStats.js');
 			var myWorker = new Worker('AllPlayerStatsFaster.js');
