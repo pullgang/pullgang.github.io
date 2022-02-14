@@ -11,11 +11,25 @@ onmessage = function(e) {
     
         for (var key in statsdict) {
             try {
-                var avg_diff = parseFloat(statsdict[key]['Diffs'].reduce((a, b) => parseInt(a) + parseInt(b)) / statsdict[key]['Diffs'].length).toFixed(3);
-            }
-            catch (err) {
-                avg_diff = Infinity;
-            }
+				var avg_diff = parseFloat(statsdict[key]['Diffs'].reduce((a, b) => parseInt(a) + parseInt(b)) / statsdict[key]['Diffs'].length).toFixed(3);
+				var diffmin = Math.min.apply(null,statsdict[key]['Diffs']);
+				var diffmax = Math.max.apply(null,statsdict[key]['Diffs']);
+			}
+			catch (err) {
+				avg_diff = Infinity;
+				diffmin = Infinity;
+				diffmax = Infinity;
+			}
+			try {
+				var wpa = Math.round(parseFloat(statsdict[key]['WPA'].reduce((partial_sum, a) => partial_sum + a,0)).toFixed(3) * 100 * 100)/100 + '%';
+				var wpamin = Math.round(Math.min.apply(null,statsdict[key]['WPA']).toFixed(3) * 100 * 100)/100 + '%';
+				var wpamax = Math.round(Math.max.apply(null,statsdict[key]['WPA']).toFixed(3) * 100 * 100)/100 + '%';
+			}
+			catch (err) {
+				var wpa = -Infinity;
+				var wpamin = -Infinity;
+				var wpamax = -Infinity;
+			}
             var games = statsdict[key]['Games'].length;
             var hits = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'];
             var tb = 4 * statsdict[key]['HR'] + 3 * statsdict[key]['3B'] + 2 * statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'];
@@ -83,11 +97,15 @@ onmessage = function(e) {
                 newStats[key]['OPS_2'] = 0;
             }
             try {
-                newStats[key]['DPA'] = avg_diff;
-            }
-            catch (err) {
-                newStats[key]['DPA'] = "N/A";
-            }
+				newStats[key]['DPA'] = avg_diff;
+				newStats[key]['DiffMin'] = diffmin;
+				newStats[key]['DiffMax'] = diffmax;
+			}
+			catch (err) {
+				newStats[key]['DPA'] = "N/A";
+				newStats[key]['DiffMin'] = "N/A";
+				newStats[key]['DiffMax'] = "N/A";
+			}
             newStats[key]['PA'] = pas;
             newStats[key]['AB'] = abs;
             newStats[key]['PA_2'] = pas_2;
@@ -95,6 +113,9 @@ onmessage = function(e) {
             newStats[key]['H'] = hits;
             newStats[key]['G'] = games;
             newStats[key]['TB_BB_SB'] = tb_bb_sb;
+            newStats[key]['WPATotal'] = wpa;
+			newStats[key]['WPAMin'] = wpamin;
+			newStats[key]['WPAMax'] = wpamax;
         }
         return newStats;
     
@@ -117,11 +138,25 @@ onmessage = function(e) {
             var bf_2 = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['BB'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'] + pstatsdict[key]['Auto BB'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['IBB'];
             var outs = pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + 2 * pstatsdict[key]['DP'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['Bunt K'] + 3 * pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'] + pstatsdict[key]['CS'];
             try {
-                var avg_diff = parseFloat(pstatsdict[key]['Diffs'].reduce((a, b) => parseInt(a) + parseInt(b)) / pstatsdict[key]['Diffs'].length).toFixed(3);
-            }
-            catch (err) {
-                avg_diff = -Infinity;
-            }
+				var avg_diff = parseFloat(pstatsdict[key]['Diffs'].reduce((a, b) => parseInt(a) + parseInt(b)) / pstatsdict[key]['Diffs'].length).toFixed(3);
+				var diffmin = Math.min.apply(null,pstatsdict[key]['Diffs']);
+				var diffmax = Math.max.apply(null,pstatsdict[key]['Diffs']);
+			}
+			catch (err) {
+				avg_diff = Infinity;
+				diffmin = Infinity;
+				diffmax = Infinity;
+			}
+			try {
+				var wpa = Math.round(parseFloat(pstatsdict[key]['WPA'].reduce((partial_sum, a) => partial_sum + a,0)).toFixed(3) * 100 * 100)/100 + '%';
+				var wpamin = Math.round(Math.min.apply(null,pstatsdict[key]['WPA']) * 100*100)/100 + '%';
+				var wpamax = Math.round(Math.max.apply(null,pstatsdict[key]['WPA']) * 100*100)/100 + '%';
+			}
+			catch (err) {
+				var wpa = -Infinity;
+				var wpamin = -Infinity;
+				var wpamax = -Infinity;
+			}
             try {
                 pstatsdict[key]['AVG'] = parseFloat((hits / abs).toFixed(3)).toFixed(3);
                 if (isNaN(pstatsdict[key]['AVG'])) { pstatsdict[key]['AVG'] = 0; }
@@ -179,11 +214,18 @@ onmessage = function(e) {
                 pstatsdict[key]['OPS_2'] = 0;
             }
             try {
-                pstatsdict[key]['DBF'] = avg_diff;
-            }
-            catch (err) {
-                pstatsdict[key]['DBF'] = "N/A";
-            }
+				pstatsdict[key]['DBF'] = avg_diff;
+				pstatsdict[key]['DiffMin'] = diffmin;
+				pstatsdict[key]['DiffMax'] = diffmax;
+			}
+			catch (err) {
+				pstatsdict[key]['DBF'] = "N/A";
+				pstatsdict[key]['DiffMin'] = "N/A";
+				pstatsdict[key]['DiffMax'] = "N/A";
+			}
+            pstatsdict[key]['WPATotal'] = wpa;
+			pstatsdict[key]['WPAMin'] = wpamin;
+			pstatsdict[key]['WPAMax'] = wpamax;
             pstatsdict[key]['PA'] = pas;
             pstatsdict[key]['AB'] = abs;
             pstatsdict[key]['PA_2'] = pas_2;
@@ -455,34 +497,20 @@ onmessage = function(e) {
         }
 
         function askStat(statname1, statname2, pid) {
-            try {
             if(stats[pid][statname1].length > 0) {
                 doStats(stats[pid][statname2], stats[pid][statname1]);
             }
-        } 
-        catch(err) {
-            console.log('o')
-            console.log('o')
-            console.log('o')
-        }
         }
 
         function askpStat(statname1, statname2, pid) {
-            try {
             if(stats[pid][statname1].length > 0) {
                 doPStats(stats[pid][statname2], stats[pid][statname1]);
             }
-        } 
-        catch(err) {
-            console.log('po')
-            console.log('o')
-            console.log('p')
-        }
         }
 
         function doStats(the_stats, dict) {
             for(var i=0;i<8;i++) {
-                the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'RBI': 0, 'R': 0 }
+                the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'RBI': 0, 'R': 0, 'WPA': [] }
             }
             for(var pa in dict) {
                 if(dict[pa][0] == 'Hitter') {
@@ -528,13 +556,24 @@ onmessage = function(e) {
                 if (diff.length > 0) {
                     the_stats[season]['Diffs'].push(diff);
                 }
+                var batter_wpa = dict[pa]["Batter WPA"];
+                if(batter_wpa.includes('%')) {
+                    batter_wpa = batter_wpa.replace('%','');
+                    batter_wpa = parseFloat(batter_wpa) / 100; // since non-percents are like 0.5 = 50% in game logs 
+                } else {
+                    batter_wpa = parseFloat(batter_wpa); // need to parsefloat it 
+                }
+                 if (batter_wpa > -2) {
+                    the_stats[0]['WPA'].push(batter_wpa)
+                    the_stats[season]['WPA'].push(batter_wpa);
+                }
             }
             the_stats = statsDoer(the_stats);
         }
 
         function doPStats(the_stats, dict) {
             for(var i=0;i<8;i++) {
-                the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'R': 0 };
+                the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'R': 0, 'WPA': [] };
             }
             for(var pa in dict) {
                 if(dict[pa][0] == 'Hitter') {
@@ -570,6 +609,17 @@ onmessage = function(e) {
                 }
                 if (diff.length > 0) {
                     the_stats[season]['Diffs'].push(diff);
+                }
+                var batter_wpa = dict[pa]["Pitcher WPA"];
+                if(batter_wpa.includes('%')) {
+                    batter_wpa = batter_wpa.replace('%','');
+                    batter_wpa = parseFloat(batter_wpa) / 100; // since non-percents are like 0.5 = 50% in game logs 
+                } else {
+                    batter_wpa = parseFloat(batter_wpa); // need to parsefloat it 
+                }
+                 if (batter_wpa > -2) {
+                    the_stats[season]['WPA'].push(batter_wpa);
+                    the_stats[0]['WPA'].push(batter_wpa)
                 }
             }
             the_stats = pstatsDoer(the_stats);

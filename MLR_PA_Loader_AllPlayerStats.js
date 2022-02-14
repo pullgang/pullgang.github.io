@@ -121,103 +121,6 @@ function loadcurrentSeasonPlayers() {
 }
 loadcurrentSeasonPlayers();
 
-/*
-function statsDoer(statsdict) {
-
-	var newStats = statsdict;
-
-	for (var key in statsdict) {
-		try {
-			var avg_diff = parseFloat(statsdict[key]['Diffs'].reduce((a, b) => parseInt(a) + parseInt(b)) / statsdict[key]['Diffs'].length).toFixed(3);
-		}
-		catch (err) {
-			avg_diff = Infinity;
-		}
-		var games = statsdict[key]['Games'].length;
-		var hits = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'];
-		var tb = 4 * statsdict[key]['HR'] + 3 * statsdict[key]['3B'] + 2 * statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'];
-		var tb_bb_sb = 4 * statsdict[key]['HR'] + 3 * statsdict[key]['3B'] + 2 * statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['BB'] + statsdict[key]['SB'];
-		var abs = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'];
-		var abs_2 = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Auto K'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'];
-		var ob = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['BB'];
-		var ob_2 = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['BB'] + statsdict[key]['IBB'] + statsdict[key]['Auto BB'];
-		var pas = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'] + statsdict[key]['BB'] + statsdict[key]['Sac'] + statsdict[key]['Bunt Sac'] + statsdict[key]['Bunt'];
-		var pas_2 = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Auto K'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'] + statsdict[key]['BB'] + statsdict[key]['IBB'] + statsdict[key]['Auto BB'] + statsdict[key]['Sac'] + statsdict[key]['Bunt Sac'] + statsdict[key]['Bunt'];
-		try {
-			newStats[key]['AVG'] = parseFloat((hits / abs).toFixed(3)).toFixed(3);
-			if (isNaN(newStats[key]['AVG'])) { newStats[key]['AVG'] = 0; }
-		}
-		catch (err) {
-			newStats[key]['AVG'] = 0;
-		}
-		try {
-			newStats[key]['OBP'] = parseFloat((ob / pas).toFixed(3)).toFixed(3);
-			if (isNaN(newStats[key]['OBP'])) { newStats[key]['OBP'] = 0; }
-		}
-		catch (err) {
-			newStats[key]['OBP'] = 0;
-		}
-		try {
-			newStats[key]['SLG'] = parseFloat((tb / abs).toFixed(3)).toFixed(3);
-			if (isNaN(newStats[key]['SLG'])) { newStats[key]['SLG'] = 0; }
-		}
-		catch (err) {
-			newStats[key]['SLG'] = 0;
-		}
-		try {
-			newStats[key]['OPS'] = parseFloat((parseFloat(newStats[key]['OBP']) + parseFloat(newStats[key]['SLG'])).toFixed(3)).toFixed(3);
-			if (isNaN(newStats[key]['OPS'])) { newStats[key]['OPS'] = 0; }
-		}
-		catch (err) {
-			newStats[key]['OPS'] = 0;
-		}
-		try {
-			newStats[key]['AVG_2'] = parseFloat((hits / abs_2).toFixed(3)).toFixed(3);
-			if (isNaN(newStats[key]['AVG_2'])) { newStats[key]['AVG_2'] = 0; }
-		}
-		catch (err) {
-			newStats[key]['AVG_2'] = 0;
-		}
-		try {
-			newStats[key]['OBP_2'] = parseFloat((ob_2 / pas_2).toFixed(3)).toFixed(3);
-			if (isNaN(newStats[key]['OBP_2'])) { newStats[key]['OBP_2'] = 0; }
-		}
-		catch (err) {
-			newStats[key]['OBP_2'] = 0;
-		}
-		try {
-			newStats[key]['SLG_2'] = parseFloat((tb / abs_2).toFixed(3)).toFixed(3);
-			if (isNaN(newStats[key]['SLG_2'])) { newStats[key]['SLG_2'] = 0; }
-		}
-		catch (err) {
-			newStats[key]['SLG_2'] = 0;
-		}
-		try {
-			newStats[key]['OPS_2'] = parseFloat((parseFloat(newStats[key]['OBP_2']) + parseFloat(newStats[key]['SLG_2'])).toFixed(3)).toFixed(3);
-			if (isNaN(newStats[key]['OPS_2'])) { newStats[key]['OPS_2'] = 0; }
-		}
-		catch (err) {
-			newStats[key]['OPS_2'] = 0;
-		}
-		try {
-			newStats[key]['DPA'] = avg_diff;
-		}
-		catch (err) {
-			newStats[key]['DPA'] = "N/A";
-		}
-		newStats[key]['PA'] = pas;
-		newStats[key]['AB'] = abs;
-		newStats[key]['PA_2'] = pas_2;
-		newStats[key]['AB_2'] = abs_2;
-		newStats[key]['H'] = hits;
-		newStats[key]['G'] = games;
-		newStats[key]['TB_BB_SB'] = tb_bb_sb;
-	}
-	return newStats;
-
-} //statsDoer end
-*/
-
 function mlr_pa_loader() {
 	var flag = currentSeasonData.length;
 	var flag2 = currentSeasonPlayers.length;
@@ -476,6 +379,8 @@ function mlr_pa_loader() {
 		<option value="Bunt K">Bunt K</option>
 		<option value="Bunt Sac">Bunt Sac</option>
 		<option value="CS">CS</option>
+		<option value="DiffMax">DiffMax</option>
+		<option value="DiffMin">DiffMin</option>
 		<option value="DP">DP</option>
 		<option value="DPA">DPA</option>
 		<option value="FO">FO</option>
@@ -501,6 +406,9 @@ function mlr_pa_loader() {
 		<option value="Sac">Sac</option>
 		<option value="TP">TP</option>
 		<option value="TB_BB_SB">TB+BB+SB</option>
+		<option value="WPATotal">WPA</option>
+		<option value="WPAMax">WPAMax</option>
+		<option value="WPAMin">WPAMin</option>
 	</select>
 	<select name="math" id="math">
 		<option value=""></option>
@@ -526,6 +434,8 @@ function mlr_pa_loader() {
 		<option value="Bunt K">Bunt K</option>
 		<option value="Bunt Sac">Bunt Sac</option>
 		<option value="CS">CS</option>
+		<option value="DiffMax">DiffMax</option>
+		<option value="DiffMin">DiffMin</option>
 		<option value="DP">DP</option>
 		<option value="DPA">DPA</option>
 		<option value="FO">FO</option>
@@ -551,6 +461,9 @@ function mlr_pa_loader() {
 		<option value="Sac">Sac</option>
 		<option value="TP">TP</option>
 		<option value="TB_BB_SB">TB+BB+SB</option>
+		<option value="WPATotal">WPA</option>
+		<option value="WPAMax">WPAMax</option>
+		<option value="WPAMin">WPAMin</option>
 	</select>
 	<br />
 	with minimum
@@ -558,46 +471,51 @@ function mlr_pa_loader() {
 	and maximum
 	<input class="numbox" id="maxresult" type="number" max="200"></input>
 	<select name="result" id="result">
-		<option value="1B">1B</option>
-		<option value="2B">2B</option>
-		<option value="3B">3B</option>
-		<option value="AB">AB</option>
-		<option value="AVG">AVG</option>
-		<option value="AVG_2">AVG_2</option>
-		<option value="Auto BB">Auto BB</option>
-		<option value="Auto K">Auto K</option>
-		<option value="BB">BB</option>
-		<option value="Bunt">Bunt</option>
-		<option value="Bunt 1B">Bunt 1B</option>
-		<option value="Bunt GO">Bunt GO
-		<option value="Bunt K">Bunt K</option>
-		<option value="Bunt Sac">Bunt Sac</option>
-		<option value="CS">CS</option>
-		<option value="DP">DP</option>
-		<option value="DPA">DPA</option>
-		<option value="FO">FO</option>
-		<option value="G">G</option>
-		<option value="H">H</option>
-		<option value="HR">HR</option>
-		<option value="IBB">IBB</option>
-		<option value="K">K</option>
-		<option value="LGO">LGO</option>
-		<option value="OBP">OBP</option>
-		<option value="OBP_2">OBP_2</option>
-		<option value="OPS">OPS</option>
-		<option value="OPS_2">OPS_2</option>
-		<option value="PA">PA</option>
-		<option value="PA_2">PA_2</option>
-		<option value="PO">PO</option>
-		<option value="R">R</option>
-		<option value="RBI">RBI</option>
-		<option value="RGO">RGO</option>
-		<option value="SB">SB</option>
-		<option value="SLG">SLG</option>
-		<option value="SLG_2">SLG_2</option>
-		<option value="Sac">Sac</option>
-		<option value="TP">TP</option>
-		<option value="TB_BB_SB">TB+BB+SB</option>
+	<option value="1B">1B</option>
+	<option value="2B">2B</option>
+	<option value="3B">3B</option>
+	<option value="AB">AB</option>
+	<option value="AVG">AVG</option>
+	<option value="AVG_2">AVG_2</option>
+	<option value="Auto BB">Auto BB</option>
+	<option value="Auto K">Auto K</option>
+	<option value="BB">BB</option>
+	<option value="Bunt">Bunt</option>
+	<option value="Bunt 1B">Bunt 1B</option>
+	<option value="Bunt GO">Bunt GO
+	<option value="Bunt K">Bunt K</option>
+	<option value="Bunt Sac">Bunt Sac</option>
+	<option value="CS">CS</option>
+	<option value="DiffMax">DiffMax</option>
+	<option value="DiffMin">DiffMin</option>
+	<option value="DP">DP</option>
+	<option value="DPA">DPA</option>
+	<option value="FO">FO</option>
+	<option value="G">G</option>
+	<option value="H">H</option>
+	<option value="HR">HR</option>
+	<option value="IBB">IBB</option>
+	<option value="K">K</option>
+	<option value="LGO">LGO</option>
+	<option value="OBP">OBP</option>
+	<option value="OBP_2">OBP_2</option>
+	<option value="OPS">OPS</option>
+	<option value="OPS_2">OPS_2</option>
+	<option value="PA">PA</option>
+	<option value="PA_2">PA_2</option>
+	<option value="PO">PO</option>
+	<option value="R">R</option>
+	<option value="RBI">RBI</option>
+	<option value="RGO">RGO</option>
+	<option value="SB">SB</option>
+	<option value="SLG">SLG</option>
+	<option value="SLG_2">SLG_2</option>
+	<option value="Sac">Sac</option>
+	<option value="TP">TP</option>
+	<option value="TB_BB_SB">TB+BB+SB</option>
+	<option value="WPATotal">WPA</option>
+	<option value="WPAMax">WPAMax</option>
+	<option value="WPAMin">WPAMin</option>
 	</select>
 	(leave blank for no min/max)
 	<br />
@@ -606,46 +524,51 @@ function mlr_pa_loader() {
 	and maximum
 	<input class="numbox" id="maxresult2" type="number" max="200"></input>
 	<select name="result2" id="result2">
-		<option value="1B">1B</option>
-		<option value="2B">2B</option>
-		<option value="3B">3B</option>
-		<option value="AB">AB</option>
-		<option value="AVG">AVG</option>
-		<option value="AVG_2">AVG_2</option>
-		<option value="Auto BB">Auto BB</option>
-		<option value="Auto K">Auto K</option>
-		<option value="BB">BB</option>
-		<option value="Bunt">Bunt</option>
-		<option value="Bunt 1B">Bunt 1B</option>
-		<option value="Bunt GO">Bunt GO
-		<option value="Bunt K">Bunt K</option>
-		<option value="Bunt Sac">Bunt Sac</option>
-		<option value="CS">CS</option>
-		<option value="DP">DP</option>
-		<option value="DPA">DPA</option>
-		<option value="FO">FO</option>
-		<option value="G">G</option>
-		<option value="H">H</option>
-		<option value="HR">HR</option>
-		<option value="IBB">IBB</option>
-		<option value="K">K</option>
-		<option value="LGO">LGO</option>
-		<option value="OBP">OBP</option>
-		<option value="OBP_2">OBP_2</option>
-		<option value="OPS">OPS</option>
-		<option value="OPS_2">OPS_2</option>
-		<option value="PA">PA</option>
-		<option value="PA_2">PA_2</option>
-		<option value="PO">PO</option>
-		<option value="R">R</option>
-		<option value="RBI">RBI</option>
-		<option value="RGO">RGO</option>
-		<option value="SB">SB</option>
-		<option value="SLG">SLG</option>
-		<option value="SLG_2">SLG_2</option>
-		<option value="Sac">Sac</option>
-		<option value="TP">TP</option>
-		<option value="TB_BB_SB">TB+BB+SB</option>
+	<option value="1B">1B</option>
+	<option value="2B">2B</option>
+	<option value="3B">3B</option>
+	<option value="AB">AB</option>
+	<option value="AVG">AVG</option>
+	<option value="AVG_2">AVG_2</option>
+	<option value="Auto BB">Auto BB</option>
+	<option value="Auto K">Auto K</option>
+	<option value="BB">BB</option>
+	<option value="Bunt">Bunt</option>
+	<option value="Bunt 1B">Bunt 1B</option>
+	<option value="Bunt GO">Bunt GO
+	<option value="Bunt K">Bunt K</option>
+	<option value="Bunt Sac">Bunt Sac</option>
+	<option value="CS">CS</option>
+	<option value="DiffMax">DiffMax</option>
+	<option value="DiffMin">DiffMin</option>
+	<option value="DP">DP</option>
+	<option value="DPA">DPA</option>
+	<option value="FO">FO</option>
+	<option value="G">G</option>
+	<option value="H">H</option>
+	<option value="HR">HR</option>
+	<option value="IBB">IBB</option>
+	<option value="K">K</option>
+	<option value="LGO">LGO</option>
+	<option value="OBP">OBP</option>
+	<option value="OBP_2">OBP_2</option>
+	<option value="OPS">OPS</option>
+	<option value="OPS_2">OPS_2</option>
+	<option value="PA">PA</option>
+	<option value="PA_2">PA_2</option>
+	<option value="PO">PO</option>
+	<option value="R">R</option>
+	<option value="RBI">RBI</option>
+	<option value="RGO">RGO</option>
+	<option value="SB">SB</option>
+	<option value="SLG">SLG</option>
+	<option value="SLG_2">SLG_2</option>
+	<option value="Sac">Sac</option>
+	<option value="TP">TP</option>
+	<option value="TB_BB_SB">TB+BB+SB</option>
+	<option value="WPATotal">WPA</option>
+	<option value="WPAMax">WPAMax</option>
+	<option value="WPAMin">WPAMin</option>
 	</select>
 	(leave blank for no min/max)
 	<br />
@@ -670,7 +593,6 @@ function mlr_pa_loader() {
 	</select> 
 	<select name="team" id="team">
 		<option value=""></option>
-		<option value="ANY">Any Team</option>
 	</select> and show <input class="numbox" id="number_of_results" type="number" value="10"></input> results
 	<button class="btn btn-success mt-2" id="calc-submit">Go!</button>
 </div>
@@ -790,6 +712,8 @@ function mlr_pa_loader() {
 <option value="Bunt Sac">Bunt Sac</option>
 <option value="CS">CS</option>
 <option value="DBF">DBF</option>
+<option value="DiffMax">DiffMax</option>
+<option value="DiffMin">DiffMin</option>
 <option value="DP">DP</option>
 <option value="ERA">ERA</option>
 <option value="FO">FO</option>
@@ -817,6 +741,9 @@ function mlr_pa_loader() {
 <option value="TP">TP</option>
 <option value="WHIP">WHIP</option>
 <option value="WHIP_2">WHIP_2</option>
+<option value="WPATotal">WPA</option>
+<option value="WPAMax">WPAMax</option>
+<option value="WPAMin">WPAMin</option>
 </select>
 <select name="math" id="Pmath">
 <option value=""></option>
@@ -826,6 +753,7 @@ function mlr_pa_loader() {
 <option value="divide">/</option>
 </select>
 <select name="stat2" id="Pstat2">
+<option value=""></option>
 <option value="1B">1B</option>
 <option value="2B">2B</option>
 <option value="3B">3B</option>
@@ -844,6 +772,8 @@ function mlr_pa_loader() {
 <option value="Bunt Sac">Bunt Sac</option>
 <option value="CS">CS</option>
 <option value="DBF">DBF</option>
+<option value="DiffMax">DiffMax</option>
+<option value="DiffMin">DiffMin</option>
 <option value="DP">DP</option>
 <option value="ERA">ERA</option>
 <option value="FO">FO</option>
@@ -871,6 +801,9 @@ function mlr_pa_loader() {
 <option value="TP">TP</option>
 <option value="WHIP">WHIP</option>
 <option value="WHIP_2">WHIP_2</option>
+<option value="WPATotal">WPA</option>
+<option value="WPAMax">WPAMax</option>
+<option value="WPAMin">WPAMin</option>
 </select>
 <br />
 with minimum
@@ -896,6 +829,8 @@ and maximum
 <option value="Bunt Sac">Bunt Sac</option>
 <option value="CS">CS</option>
 <option value="DBF">DBF</option>
+<option value="DiffMax">DiffMax</option>
+<option value="DiffMin">DiffMin</option>
 <option value="DP">DP</option>
 <option value="ERA">ERA</option>
 <option value="FO">FO</option>
@@ -923,6 +858,9 @@ and maximum
 <option value="TP">TP</option>
 <option value="WHIP">WHIP</option>
 <option value="WHIP_2">WHIP_2</option>
+<option value="WPATotal">WPA</option>
+<option value="WPAMax">WPAMax</option>
+<option value="WPAMin">WPAMin</option>
 </select>
 (leave blank for no min/max)
 <br />
@@ -949,6 +887,8 @@ and maximum
 <option value="Bunt Sac">Bunt Sac</option>
 <option value="CS">CS</option>
 <option value="DBF">DBF</option>
+<option value="DiffMax">DiffMax</option>
+<option value="DiffMin">DiffMin</option>
 <option value="DP">DP</option>
 <option value="ERA">ERA</option>
 <option value="FO">FO</option>
@@ -976,6 +916,9 @@ and maximum
 <option value="TP">TP</option>
 <option value="WHIP">WHIP</option>
 <option value="WHIP_2">WHIP_2</option>
+<option value="WPATotal">WPA</option>
+<option value="WPAMax">WPAMax</option>
+<option value="WPAMin">WPAMin</option>
 </select>
 (leave blank for no min/max)
 <br />
@@ -1000,7 +943,6 @@ Split: <select name="split" id="Psplit">
 	</select> 
 	<select name="team" id="Pteam">
 		<option value=""></option>
-		<option value="ANY">Any Team</option>
 	</select> and show <input class="numbox" id="Pnumber_of_results" type="number" value="10"></input> results
 <button class="btn btn-success mt-2" id="calc-submit-p">Go!</button>
 </div>
