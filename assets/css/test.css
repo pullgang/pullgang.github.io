@@ -146,7 +146,7 @@ h5 {
     cursor: inherit;
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 100px) {
     .accordion-tabs {
       display: flex;
       background: rgba(68, 127, 255, 0.1);
