@@ -157,12 +157,12 @@ function mlr_pa_loader() {
 			}
 		}
 
-		for (var playa in pids){
-			var opt = document.createElement('option');
-			opt.value = pids[playa][0];
-			opt.innerHTML = pids[playa][0];
-			document.getElementById('players').appendChild(opt);
-		}
+		// for (var playa in pids){
+		// 	var opt = document.createElement('option');
+		// 	opt.value = pids[playa][0];
+		// 	opt.innerHTML = pids[playa][0];
+		// 	document.getElementById('players').appendChild(opt);
+		// }
 
 		if (window.Worker) {
 			//var myWorker = new Worker('AllPlayerStats.js');
