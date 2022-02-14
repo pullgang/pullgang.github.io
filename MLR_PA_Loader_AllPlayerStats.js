@@ -1613,12 +1613,24 @@ Split: <select name="split" id="Psplit">
 						value: all_teams[team],
 						text: all_teams[team]
 					}));
+					$('#Pteam').append($('<option>', {
+						value: all_teams[team],
+						text: all_teams[team]
+					}));
 				}
 				$('#split').on('change', function() {
 					if($('#split').val() == 'team') {
 						$('#team').css("cssText", "display: inline !important; width: auto;");
 					} else {
 						$('#team').css('display','none')
+					}
+				  });
+
+				  $('#Psplit').on('change', function() {
+					if($('#Psplit').val() == 'P_team') {
+						$('#Pteam').css("cssText", "display: inline !important; width: auto;");
+					} else {
+						$('#Pteam').css('display','none')
 					}
 				  });
 				//CSS Stuff
@@ -1655,6 +1667,9 @@ Split: <select name="split" id="Psplit">
 						.reduce( (res, key) => (res[key] = obj[key], res), {} );
 					if(split == 'team') {
 						split = document.getElementById("team").value;
+					} 
+					if(split == 'P_team') {
+						split = "P_"+document.getElementById("Pteam").value;
 					} 
 					o = Object.filter(o, key => !($.isEmptyObject(key[split]))); 
 					var keys = Object.keys(o);
@@ -1758,6 +1773,15 @@ Split: <select name="split" id="Psplit">
 						$("h3").css("background", "transparent");
 					}
 					var counter = 0;
+					var key_kill_list = []
+					for (var key in keys2) {
+						if (o[keys2[key]][split][season]["Games"].length == 0) {
+							key_kill_list.push(keys2[key])
+						}
+					}
+					for(key in key_kill_list) {
+						keys2 = keys2.filter(item => item !== key_kill_list[key])
+					}
 					try {
 						if(keys2.length == 0) {
 							return;
@@ -1826,6 +1850,9 @@ Split: <select name="split" id="Psplit">
 				function addRows(listy, split, seasony, table_id, stat, math, stat2, season, results) {
 					if(split == 'team') {
 						split = document.getElementById("team").value;
+					}
+					if(split == 'P_team') {
+						split = "P_"+document.getElementById("Pteam").value;
 					}
 					otherplayerscount = otherplayerscount + 1;
 					var table = document.getElementById(table_id);

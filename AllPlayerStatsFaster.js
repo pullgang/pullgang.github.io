@@ -398,6 +398,10 @@ onmessage = function(e) {
             if(pid === undefined) {
                 console.log(mlr_data[line]['Hitter'])
             }
+            if(ppid === undefined) {
+                console.log('ok')
+                console.log(mlr_data[line]['Pitcher'])
+            }
             var sth = stats[pid]
             var stp = stats[ppid]
             sth['playerDataH'].push(mlr_data[line]);
