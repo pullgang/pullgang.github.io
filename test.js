@@ -38,27 +38,6 @@ var pids = {};
 var s1stats = {};
 
 
-$(function() {
-	var current_progress = 0;
-	var interval = setInterval(function() {
-		current_progress += 15 * (121/1000);
-	  var fake = Math.round(current_progress,3);
-		$("#dynamic")
-		.css("width", current_progress + "%")
-		.attr("aria-valuenow", current_progress)
-	  
-		.text(fake + "% Complete");
-		if (current_progress >= 100) {
-			current_progress = 100;
-			fake = Math.round(current_progress,3);
-			$("#dynamic")
-		.css("width", current_progress + "%")
-		.attr("aria-valuenow", current_progress)
-		.text(fake + "% Complete");
-			clearInterval(interval);
-		}
-	}, 121);
-  });
 
 window.onerror = function(error,url,line) {
 	$("h4").text("[" + error + '\n\n' + url + '\n\nLine: ' + line + '\n\n' + "] An error has occured somewhere... If you see this please ping me pull#0053 and if possible, screenshot this");
@@ -131,9 +110,6 @@ function mlr_pa_loader() {
 	if (!(flag > 200 && flag2 > 200 && flag3 > 200)) {
 		window.setTimeout(mlr_pa_loader, 100);
 	} else {
-		if($(window).width() < 800) {
-			$('#bruh').text('Page may not work on mobile devices due to memory issues. Loading...')
-		}
 		currentSeasonData = currentSeasonData.split("\n").slice(1);
 		for (line in currentSeasonData) {
 			currentSeasonData[line] = currentSeasonData[line] + ',7,';
