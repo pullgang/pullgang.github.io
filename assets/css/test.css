@@ -45,7 +45,7 @@ thead .added:nth-child(odd) {
 
 input {
     color: #333333;
-    width: 15%;
+    width: 200px;
 }
 
 toggle:hover {
