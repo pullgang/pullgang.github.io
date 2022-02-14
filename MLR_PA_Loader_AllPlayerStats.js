@@ -37,16 +37,11 @@ var pids = {};
 
 var s1stats = {};
 
-var ok = 1
-
-if($(window).width() < 800) {
-	ok = 1/2.5
-}
 
 $(function() {
 	var current_progress = 0;
 	var interval = setInterval(function() {
-		current_progress += ok * 15 * (121/1000);
+		current_progress += 15 * (121/1000);
 	  var fake = Math.round(current_progress,3);
 		$("#dynamic")
 		.css("width", current_progress + "%")
