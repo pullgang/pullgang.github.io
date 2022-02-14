@@ -396,11 +396,14 @@ onmessage = function(e) {
             var pid = players[mlr_data[line]['Hitter']];
             var ppid = players[mlr_data[line]['Pitcher']];
             if(pid === undefined) {
-                console.log(mlr_data[line]['Hitter'])
+                // console.log('dang')
+                // console.log(mlr_data[line]['Hitter'])
+                // console.log(mlr_data[line])
             }
             if(ppid === undefined) {
-                console.log('ok')
-                console.log(mlr_data[line]['Pitcher'])
+                // console.log('ok')
+                // console.log(mlr_data[line]['Pitcher'])
+                // console.log(mlr_data[line])
             }
             var sth = stats[pid]
             var stp = stats[ppid]
