@@ -130,6 +130,9 @@ function mlr_pa_loader() {
 	if (!(flag > 200 && flag2 > 200 && flag3 > 200)) {
 		window.setTimeout(mlr_pa_loader, 100);
 	} else {
+		if($(window).width() < 800) {
+			$('#bruh').text('Page may not work on mobile devices due to memory issues. Loading...')
+		}
 		currentSeasonData = currentSeasonData.split("\n").slice(1);
 		for (line in currentSeasonData) {
 			currentSeasonData[line] = currentSeasonData[line] + ',7,';
