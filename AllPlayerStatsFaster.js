@@ -677,7 +677,7 @@ onmessage = function(e) {
 
     slowAF();
     mlr_data = '';
-    postMessage(stats);
+    postMessage(stats, stats);
     stats = {};
     
 }

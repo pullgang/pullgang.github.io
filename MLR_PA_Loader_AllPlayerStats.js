@@ -37,10 +37,16 @@ var pids = {};
 
 var s1stats = {};
 
+var ok = 1
+
+if($(window).width() < 800) {
+	ok = 1/2.5
+}
+
 $(function() {
 	var current_progress = 0;
 	var interval = setInterval(function() {
-		current_progress += 15 * (121/1000);
+		current_progress += ok * 15 * (121/1000);
 	  var fake = Math.round(current_progress,3);
 		$("#dynamic")
 		.css("width", current_progress + "%")
@@ -176,6 +182,19 @@ function mlr_pa_loader() {
 			var myWorker = new Worker('AllPlayerStatsFaster.js');
 			myWorker.postMessage([pids,mlr_data,players]);
 			myWorker.onmessage = function(e) {
+				//On mobile pray for garbage clearing lol in 20 seconds
+				if($(window).width() < 800) {
+					console.log('waiting...');
+					function wait(ms){
+						var start = new Date().getTime();
+						var end = start;
+						while(end < start + ms) {
+						  end = new Date().getTime();
+					   }
+					}
+					wait(15000);
+					console.log('Ok');
+				}
 				mlr_data = ''
 				stats = e.data;
 				console.log('Finished loading');
