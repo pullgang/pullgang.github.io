@@ -190,13 +190,6 @@ function mlr_pa_loader() {
 									</datalist>
 									<a id="do_stats" class="button">Submit</a>
 
-									<span id="stats-name">Show: </span>
-
-                    <select name="stat_type" id="stat_type">
-                        <option value="Hitting">Hitting</option>
-                        <option value="Pitching">Pitching</option>
-                    </select>
-
                     <div id="hitting_div">
 					<div id="infos"><span id="player-name"></span> <span id="player-id"></span></div>
                         <h5 id="overview">Overview</h5>
