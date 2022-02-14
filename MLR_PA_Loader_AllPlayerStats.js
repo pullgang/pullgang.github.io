@@ -143,6 +143,8 @@ function mlr_pa_loader() {
 		playersCSV = d3.csvParse(currentSeasonPlayers);
 		mlr_data = d3.csvParse(previousSeasonData);
 
+		previousSeasonData = '';
+
 		// Create variable pids and players
 		for (var key in playersCSV) {
 			var player_name = playersCSV[key]["Name"];
@@ -169,6 +171,7 @@ function mlr_pa_loader() {
 			var myWorker = new Worker('AllPlayerStatsFaster.js');
 			myWorker.postMessage([pids,mlr_data,players]);
 			myWorker.onmessage = function(e) {
+				mlr_data = ''
 				stats = e.data;
 				console.log('Finished loading');
 				

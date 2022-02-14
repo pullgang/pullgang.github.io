@@ -676,5 +676,7 @@ onmessage = function(e) {
     } //slowAF end lol
 
     slowAF();
+    mlr_data = '';
     postMessage(stats);
+    
 }
