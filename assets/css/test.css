@@ -91,7 +91,7 @@ toggle:hover {
   cursor:pointer;
 }
 
-#mySelectOptions2 {
+#PmySelectOptions {
   display: none;
   border: 0.5px #7c7c7c solid;
   background-color: #8d2f2f20;
@@ -100,7 +100,7 @@ toggle:hover {
   display: inline-block;
 }
 
-#mySelectOptions2 label {
+#PmySelectOptions label {
   display: inline-grid;
   font-weight: normal;
   white-space: nowrap;
@@ -109,10 +109,12 @@ toggle:hover {
   padding: 0px 6px;
 }
 
-#mySelectOptions2 label:hover {
+#PmySelectOptions label:hover {
   background-color: #1e90ff;
   cursor:pointer;
 }
+
+
 
 hr {
     margin: 1rem;
