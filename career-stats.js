@@ -3515,7 +3515,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 								found_splits.push('tied');
 							}
 							var requested_team = document.getElementById('team').value;
-							if(l['Batter Team'] == requested_team) {
+							if(team == requested_team) {
 								found_splits.push('team');
 							}
 
@@ -3821,7 +3821,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 								found_splits.push('tied');
 							}
 							var requested_team = document.getElementById('Pteam').value;
-							if(l['Pitcher Team'] == requested_team) {
+							if(team == requested_team) {
 								found_splits.push('team');
 							}
 
