@@ -9,35 +9,11 @@ var currentSeasonPlayers = '';
 var oldSeasonPlayers = '';
 var playersCSV;
 var mlr_data;
-var h_list = {};
-
-var playerDataH;
-var playerDataP;
 
 var stats = {};
-var stats1 = {};
-var stats2 = {};
-var stats3 = {};
-var stats4 = {};
-var stats5 = {};
-var stats6 = {};
-var stats7 = {};
-
-var pstats = {};
-var pstats1 = {};
-var pstats2 = {};
-var pstats3 = {};
-var pstats4 = {};
-var pstats5 = {};
-var pstats6 = {};
-var pstats7 = {};
-
+var stats_all = {};
 var players = {};
 var pids = {};
-
-var s1stats = {};
-
-
 
 window.onerror = function(error,url,line) {
 	$("h4").text("[" + error + '\n\n' + url + '\n\nLine: ' + line + '\n\n' + "] An error has occured somewhere... If you see this please ping me pull#0053 and if possible, screenshot this");
@@ -141,17 +117,8 @@ function mlr_pa_loader() {
 			}
 		}
 
-		// for (var playa in pids){
-		// 	var opt = document.createElement('option');
-		// 	opt.value = pids[playa][0];
-		// 	opt.innerHTML = pids[playa][0];
-		// 	document.getElementById('players').appendChild(opt);
-		// }
-
 		function statsDoer(statsdict) {
-
 			var newStats = statsdict;
-		
 			for (var key in statsdict) {
 				try {
 					var avg_diff = parseFloat(statsdict[key]['Diffs'].reduce((a, b) => parseInt(a) + parseInt(b)) / statsdict[key]['Diffs'].length).toFixed(3);
@@ -449,112 +416,41 @@ function mlr_pa_loader() {
 				7: {}
 			}
 	
-			for (var playa in pids){
-				var requested_pid = playa
-				hitter_teams = "hitter_teams";
-				playerDataH = "playerDataH"
-				playerDataHHome = "playerDataHHome"
-				playerDataHAway = "playerDataHAway"
-				playerDataP = "playerDataP"
-				playerDataHTeam = "playerDataHTeam"
-				stats[requested_pid] = {}
-				stats[requested_pid][hitter_teams] = [];
-				stats[requested_pid]['standard'] = [];
-				stats[requested_pid]['home'] = [];
-				stats[requested_pid]['away'] = [];
-				stats[requested_pid]['team'] = [];
-				stats[requested_pid]['0out'] = [];
-				stats[requested_pid]['1out'] = [];
-				stats[requested_pid]['2out'] = [];
-				stats[requested_pid]['winning'] = [];
-				stats[requested_pid]['losing'] = [];
-				stats[requested_pid]['tied'] = [];
-				stats[requested_pid]['1st'] = [];
-				stats[requested_pid]['2nd'] = [];
-				stats[requested_pid]['3rd'] = [];
-				stats[requested_pid]['4th'] = [];
-				stats[requested_pid]['5th'] = [];
-				stats[requested_pid]['6th'] = [];
-				stats[requested_pid]['extras'] = [];
-				stats[requested_pid]['playerDataH'] = [];
-				stats[requested_pid]['playerDataHome'] = [];
-				stats[requested_pid]['playerDataAway'] = [];
-				stats[requested_pid]['playerData0out'] = [];
-				stats[requested_pid]['playerData1out'] = [];
-				stats[requested_pid]['playerData2out'] = [];
-				stats[requested_pid]['playerData1st'] = [];
-				stats[requested_pid]['playerData2nd'] = [];
-				stats[requested_pid]['playerData3rd'] = [];
-				stats[requested_pid]['playerData4th'] = [];
-				stats[requested_pid]['playerData5th'] = [];
-				stats[requested_pid]['playerData6th'] = [];
-				stats[requested_pid]['playerDataExtras'] = [];
-				stats[requested_pid]['playerDataWinning'] = [];
-				stats[requested_pid]['playerDataLosing'] = [];
-				stats[requested_pid]['playerDataTied'] = [];
-				stats[requested_pid]['P_standard'] = [];
-				stats[requested_pid]['P_home'] = [];
-				stats[requested_pid]['P_away'] = [];
-				stats[requested_pid]['P_team'] = [];
-				stats[requested_pid]['P_0out'] = [];
-				stats[requested_pid]['P_1out'] = [];
-				stats[requested_pid]['P_2out'] = [];
-				stats[requested_pid]['P_winning'] = [];
-				stats[requested_pid]['P_losing'] = [];
-				stats[requested_pid]['P_tied'] = [];
-				stats[requested_pid]['P_1st'] = [];
-				stats[requested_pid]['P_2nd'] = [];
-				stats[requested_pid]['P_3rd'] = [];
-				stats[requested_pid]['P_4th'] = [];
-				stats[requested_pid]['P_5th'] = [];
-				stats[requested_pid]['P_6th'] = [];
-				stats[requested_pid]['P_extras'] = [];
-				stats[requested_pid]['playerDataP'] = [];
-				stats[requested_pid]['playerDataPHome'] = [];
-				stats[requested_pid]['playerDataPAway'] = [];
-				stats[requested_pid]['playerDataP0out'] = [];
-				stats[requested_pid]['playerDataP1out'] = [];
-				stats[requested_pid]['playerDataP2out'] = [];
-				stats[requested_pid]['playerDataP1st'] = [];
-				stats[requested_pid]['playerDataP2nd'] = [];
-				stats[requested_pid]['playerDataP3rd'] = [];
-				stats[requested_pid]['playerDataP4th'] = [];
-				stats[requested_pid]['playerDataP5th'] = [];
-				stats[requested_pid]['playerDataP6th'] = [];
-				stats[requested_pid]['playerDataPExtras'] = [];
-				stats[requested_pid]['playerDataPWinning'] = [];
-				stats[requested_pid]['playerDataPLosing'] = [];
-				stats[requested_pid]['playerDataPTied'] = [];
-				for(team in all_teams) {
-					stats[requested_pid]["playerData"+all_teams[team]] = [];
-					stats[requested_pid][all_teams[team]] = [];
-					stats[requested_pid]["playerDataP"+all_teams[team]] = [];
-					stats[requested_pid]["P_"+all_teams[team]] = [];
-				}
-			}
+			// for (var playa in pids){
+			// 	var requested_pid = playa
+			// 	stats_all[requested_pid] = {}
+			// 	stats_all[requested_pid]['standard'] = [];
+			// 	stats_all[requested_pid]['playerData'] = [];
+			// }
 
 			var special = {'fourhit':{'0':{},'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{}}}
+			var special2 = {'fourhit':{'0':[],'1':[],'2':[],'3':[],'4':[],'5':[],'6':[],'7':[]}}
 			var fourhitgames = {'game':'0'}
-			
+
+			//So here's a few things.
+			//The goal is to, sadly, have two separate things here:
+			//One, if the individual player stats is requested.
+			//Two, if leaguewide leaderboards are requested.
+			//These COULD be done at the same time.
+			//However, with the addition of splits, this becomes...
+			//...a memory issue! That sucks! 
+			//So we can't gather all the data at once. 
+			//Well, we could, but it quickly becomes an issue for browsers
+			//with memory limits. Mobile browsers seem to encounter this problem 
+			//(surprisingly). But we also want to go through each line at least once
+			//for checking stuff like 4 hit games. 
+
+			//This would theoretically allow us to use webworkers again!
+			//But this also requires implementation. 
+			//And just make sure it's working first fr. 
+
+			//First, go through each line. Initialize some stuff if need be. 
+			//Most importantl check for special accolades.
 			for(line in mlr_data) {
 
 				//Define Variables
 				var pid = players[mlr_data[line]['Hitter']];
 				var ppid = players[mlr_data[line]['Pitcher']];
-				if(pid === undefined) {
-					// console.log('dang')
-					// console.log(mlr_data[line]['Hitter'])
-					// console.log(mlr_data[line])
-				}
-				if(ppid === undefined) {
-					// console.log('ok')
-					// console.log(mlr_data[line]['Pitcher'])
-					// console.log(mlr_data[line])
-				}
-				var sth = stats[pid]
-				var stp = stats[ppid]
-				sth['playerDataH'].push(mlr_data[line]);
-				stp['playerDataP'].push(mlr_data[line]);
 				var l = mlr_data[line];
 				if(l[0] == 'Hitter') {
 					continue;
@@ -576,126 +472,351 @@ function mlr_pa_loader() {
 				var game_id = mlr_data[line]['Game ID'];
 				var avg_stuff = ['HR','3B','2B','1B','Bunt 1B'];
 
-
-				//Splits
-				sth["playerData"+team].push(mlr_data[line]);
-				if(pteam.length > 0) {
-					stp["playerDataP"+pteam].push(mlr_data[line]);
-				}
-				if(l['Inning'].substr(0,1) == 'B') {
-					sth['playerDataHome'].push(mlr_data[line]);
-					stp['playerDataPAway'].push(mlr_data[line]);
-				}
-				if(l['Inning'].substr(0,1) == 'T') {
-					sth['playerDataAway'].push(mlr_data[line]);
-					stp['playerDataPHome'].push(mlr_data[line]);
-				}
-				if(l['Outs'] == '0') {
-					sth['playerData0out'].push(mlr_data[line]);
-					stp['playerDataP0out'].push(mlr_data[line]);
-				}
-				if(l['Outs'] == '1') {
-					sth['playerData1out'].push(mlr_data[line]);
-					stp['playerDataP1out'].push(mlr_data[line]);
-				}
-				if(l['Outs'] == '2') {
-					sth['playerData2out'].push(mlr_data[line]);
-					stp['playerDataP2out'].push(mlr_data[line]);
-				}
-				if(l['Inning'].substr(1,2) == '1') {
-					sth['playerData1st'].push(mlr_data[line]);
-					stp['playerDataP1st'].push(mlr_data[line]);
-				}
-				if(l['Inning'].substr(1,2) == '2') {
-					sth['playerData2nd'].push(mlr_data[line]);
-					stp['playerDataP2nd'].push(mlr_data[line]);
-				}
-				if(l['Inning'].substr(1,2) == '3') {
-					sth['playerData3rd'].push(mlr_data[line]);
-					stp['playerDataP3rd'].push(mlr_data[line]);
-				}
-				if(l['Inning'].substr(1,2) == '4') {
-					sth['playerData4th'].push(mlr_data[line]);
-					stp['playerDataP4th'].push(mlr_data[line]);
-				}
-				if(l['Inning'].substr(1,2) == '5') {
-					sth['playerData5th'].push(mlr_data[line]);
-					stp['playerDataP5th'].push(mlr_data[line]);
-				}
-				if(l['Inning'].substr(1,2) == '6') {
-					sth['playerData6th'].push(mlr_data[line]);
-					stp['playerDataP6th'].push(mlr_data[line]);
-				}
-				if(l['Inning'].substr(1,2) > 6) {
-					sth['playerDataExtras'].push(mlr_data[line]);
-					stp['playerDataPExtras'].push(mlr_data[line]);
-				}
-				if(l['Home Score'] > l['Away Score']) {
-					if(l['Inning'].substr(0,1) == 'B') {
-						sth['playerDataWinning'].push(mlr_data[line]);
-						stp['playerDataPLosing'].push(mlr_data[line]);
-					}
-					if(l['Inning'].substr(0,1) == 'T') {
-						sth['playerDataLosing'].push(mlr_data[line]);
-						stp['playerDataPWinning'].push(mlr_data[line]);
-					}
-				}
-				if(l['Home Score'] < l['Away Score']) {
-					if(l['Inning'].substr(0,1) == 'B') {
-						sth['playerDataLosing'].push(mlr_data[line]);
-						stp['playerDataPWinning'].push(mlr_data[line]);
-					}
-					if(l['Inning'].substr(0,1) == 'T') {
-						sth['playerDataWinning'].push(mlr_data[line]);
-						stp['playerDataPLosing'].push(mlr_data[line]);
-					}
-				}
-				if(l['Home Score'] == l['Away Score']) {
-					sth['playerDataTied'].push(mlr_data[line]);
-					stp['playerDataPTied'].push(mlr_data[line]);
-				}
-
 				//Special Accolades
-				//if(!(mlr_data[parseInt(line)+1] === undefined)) {
-					//if(fourhitgames['game'] != mlr_data[parseInt(line)+1]['Game ID']) {
-					if(fourhitgames['game'] != game_id) {
-						for(mf in fourhitgames) {
-							if(mf != 'game' && fourhitgames[mf] > 3) {
-								if(!(mf in special['fourhit'][season])) {
-									special['fourhit'][season][mf] = {}
-								}
-								if(!(mf in special['fourhit']['0'])) {
-									special['fourhit']['0'][mf] = {}
-								}
-								special['fourhit'][season][mf][session] = 1;
-								special['fourhit']['0'][mf][session] = 1;
+				if(fourhitgames['game'] != game_id) {
+					for(mf in fourhitgames) {
+						if(mf != 'game' && fourhitgames[mf] > 3) {
+							if(!(mf in special['fourhit'][season])) {
+								special['fourhit'][season][mf] = {}
 							}
-						}
-						fourhitgames = {'game':game_id}
-					} else {
-						if(!(pid in fourhitgames)) {
-							fourhitgames[pid] = 0
-						}
-						if(avg_stuff.includes(result)) {
-							fourhitgames[pid] += 1
+							if(!(mf in special['fourhit']['0'])) {
+								special['fourhit']['0'][mf] = {}
+							}
+							special['fourhit'][season][mf][session] = season;
+							special['fourhit']['0'][mf][session] = season;
+							special2['fourhit'][season].push([mf,season,session]);
 						}
 					}
-				//}
-
-
+					fourhitgames = {'game':game_id}
+				} else {
+					if(!(pid in fourhitgames)) {
+						fourhitgames[pid] = 0
+					}
+					if(avg_stuff.includes(result)) {
+						fourhitgames[pid] += 1
+					}
+				}
 			}
 
-			console.log(special);
+
+
+		//Finally... we do leaderboard stat names
+		//I forgot the id of the button link
+		//And no internet lol
+		//So fix it fr
+		//Method:
+		//Instead of dicts for each split,
+		//just have the standard stats dict
+		//and replace that every time. 
+		//This means fewer issues
+		//if someone loads multiple splits
+		//without refreshing. :D 
+
+		//One problem:
+		//Some splits can be different for hitter and pitcher
+		//i.e. home and away. 
+		//But... 
+		//We can name splits using hitter perspective
+		//And label the pitcher ones internally from the hitter's perspective
+		//E.G. 
+		//If we called a split "away"
+		//We could check for uh
+		//Am i stupid? Maybe
+		//One sec lemme think
+		
+	// 	$('#calc-submit').click(function() {
+	// 		var requested_split = document.getElementById("split").value;
+	// 	for(line in mlr_data) {
+
+	// 		//Define Variables
+	// 		//We're gonna do hitters and pitchers separately hehe. 
+	// 		//Hitter
+	// 		var pid = players[mlr_data[line]['Hitter']];
+	// 		var sth = stats_all[pid]
+	// 		var l = mlr_data[line];
+	// 		if(l[0] == 'Hitter') {
+	// 			continue;
+	// 		}
+	// 		if(l['Hitter'] == '') {
+	// 			continue;
+	// 		}
+	// 		var team = l['Batter Team'];
+	// 		var season = l['Season'];
+	// 		if(team in current_teams[season]) {
+	// 			team = current_teams[season][team];
+	// 		}
+	// 		//Splits
+	// 		if(requested_split == 'None') {
+	// 			sth["playerData"].push(mlr_data[line]);
+	// 		}
+	// 		else if(requested_split == 'Home') {
+	// 			if(l['Inning'].substr(0,1) == 'B') {
+	// 				sth["playerData"].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'Away') {
+	// 			if(l['Inning'].substr(0,1) == 'T') {
+	// 				sth["playerData"].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == '0out') {
+	// 			if(l['Outs'] == '0') {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == '1out') {
+	// 			if(l['Outs'] == '1') {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == '2out') {
+	// 			if(l['Outs'] == '2') {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'inning1') {
+	// 			if(l['Inning'].substr(1,2) == '1') {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'inning2') {
+	// 			if(l['Inning'].substr(1,2) == '2') {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'inning3') {
+	// 			if(l['Inning'].substr(1,2) == '3') {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'inning4') {
+	// 			if(l['Inning'].substr(1,2) == '4') {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'inning5') {
+	// 			if(l['Inning'].substr(1,2) == '5') {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'inning6') {
+	// 			if(l['Inning'].substr(1,2) == '6') {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'extras') {
+	// 			if(l['Inning'].substr(1,2) > 6) {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'winning') {
+	// 			if(l['Home Score'] > l['Away Score']) {
+	// 				if(l['Inning'].substr(0,1) == 'B') {
+	// 					sth['playerData'].push(mlr_data[line]);
+	// 				}
+	// 			}
+	// 			if(l['Home Score'] < l['Away Score']) {
+	// 				if(l['Inning'].substr(0,1) == 'T') {
+	// 					sth['playerData'].push(mlr_data[line]);
+	// 				}
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'losing') {
+	// 			if(l['Home Score'] < l['Away Score']) {
+	// 				if(l['Inning'].substr(0,1) == 'B') {
+	// 					sth['playerData'].push(mlr_data[line]);
+	// 				}
+	// 			}
+	// 			if(l['Home Score'] > l['Away Score']) {
+	// 				if(l['Inning'].substr(0,1) == 'T') {
+	// 					sth['playerData'].push(mlr_data[line]);
+	// 				}
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'tied') {
+	// 			if(l['Home Score'] == l['Away Score']) {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+	// 		else if(requested_split == 'team') { // just do one team at a time for leaderboards. it has a custom input
+	// 			var requested_team = document.getElementById('team').value;
+	// 			if(l['Batter Team'] == requested_team) {
+	// 				sth['playerData'].push(mlr_data[line]);
+	// 			}
+	// 		}
+
+
+	// 		//Old
+	// 		// var pid = players[mlr_data[line]['Hitter']];
+	// 		// var ppid = players[mlr_data[line]['Pitcher']];
+	// 		// var sth = stats_all[pid]
+	// 		// var stp = stats_all[ppid]
+	// 		// var l = mlr_data[line];
+	// 		// if(l[0] == 'Hitter') {
+	// 		// 	continue;
+	// 		// }
+	// 		// if(l['Hitter'] == '') {
+	// 		// 	continue;
+	// 		// }
+	// 		// var team = l['Batter Team'];
+	// 		// var pteam = l['Pitcher Team'];
+	// 		// var season = l['Season'];
+	// 		// if(team in current_teams[season]) {
+	// 		// 	team = current_teams[season][team];
+	// 		// }
+	// 		// if(pteam in current_teams[season]) {
+	// 		// 	pteam = current_teams[season][pteam];
+	// 		// }
+	// 		// var result = mlr_data[line]['Result'];
+	// 		// var session = mlr_data[line]['Session'];
+	// 		// var game_id = mlr_data[line]['Game ID'];
+	// 		// var avg_stuff = ['HR','3B','2B','1B','Bunt 1B'];
+
+
+	// 		// //Splits
+	// 		// if(requested_split == 'None') {
+	// 		// 	sth["playerData"].push(mlr_data[line]);
+	// 		// 	stp["playerDataP"].push(mlr_data[line]);
+	// 		// }
+	// 		// if(requested_split == 'Home') {
+	// 		// 	if(l['Inning'].substr(0,1) == 'B') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// 	if(l['Inning'].substr(0,1) == 'T') {
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'Away') {
+	// 		// 	if(l['Inning'].substr(0,1) == 'B') {
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// 	if(l['Inning'].substr(0,1) == 'T') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == '0out') {
+	// 		// 	if(l['Outs'] == '0') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == '1out') {
+	// 		// 	if(l['Outs'] == '1') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == '2out') {
+	// 		// 	if(l['Outs'] == '2') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'inning1') {
+	// 		// 	if(l['Inning'].substr(1,2) == '1') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'inning2') {
+	// 		// 	if(l['Inning'].substr(1,2) == '2') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'inning3') {
+	// 		// 	if(l['Inning'].substr(1,2) == '3') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'inning4') {
+	// 		// 	if(l['Inning'].substr(1,2) == '4') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'inning5') {
+	// 		// 	if(l['Inning'].substr(1,2) == '5') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'inning6') {
+	// 		// 	if(l['Inning'].substr(1,2) == '6') {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'extras') {
+	// 		// 	if(l['Inning'].substr(1,2) > 6) {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'winning') {
+	// 		// 	if(l['Home Score'] > l['Away Score']) {
+	// 		// 		if(l['Inning'].substr(0,1) == 'B') {
+	// 		// 			sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		}
+	// 		// 		if(l['Inning'].substr(0,1) == 'T') {
+	// 		// 			stp['playerDataP'].push(mlr_data[line]);
+	// 		// 		}
+	// 		// 	}
+	// 		// 	if(l['Home Score'] < l['Away Score']) {
+	// 		// 		if(l['Inning'].substr(0,1) == 'B') {
+	// 		// 			stp['playerDataP'].push(mlr_data[line]);
+	// 		// 		}
+	// 		// 		if(l['Inning'].substr(0,1) == 'T') {
+	// 		// 			sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		}
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'losing') {
+	// 		// 	if(l['Home Score'] < l['Away Score']) {
+	// 		// 		if(l['Inning'].substr(0,1) == 'B') {
+	// 		// 			sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		}
+	// 		// 		if(l['Inning'].substr(0,1) == 'T') {
+	// 		// 			stp['playerDataP'].push(mlr_data[line]);
+	// 		// 		}
+	// 		// 	}
+	// 		// 	if(l['Home Score'] > l['Away Score']) {
+	// 		// 		if(l['Inning'].substr(0,1) == 'B') {
+	// 		// 			stp['playerDataP'].push(mlr_data[line]);
+	// 		// 		}
+	// 		// 		if(l['Inning'].substr(0,1) == 'T') {
+	// 		// 			sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		}
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'tied') {
+	// 		// 	if(l['Home Score'] == l['Away Score']) {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 		// if(requested_split == 'team') { // just do one team at a time for leaderboards. it has a custom input
+	// 		// 	var requested_team = document.getElementById('team').value;
+	// 		// 	if(l['Batter Team'] == requested_team) {
+	// 		// 		sth['playerDataH'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// 	if(l['Pitcher Team'] == requested_team) {
+	// 		// 		stp['playerDataP'].push(mlr_data[line]);
+	// 		// 	}
+	// 		// }
+	// 	}
+	// });
 	
-			function askStat(statname1, statname2, pid) {
-				if(stats[pid][statname1].length > 0) {
-					doStats(stats[pid][statname2], stats[pid][statname1]);
+			function askStat(statname1, statname2, pid, stname=stats) {
+				if(stname[pid][statname1].length > 0) {
+					doStats(stname[pid][statname2], stname[pid][statname1]);
 				}
 			}
 	
-			function askpStat(statname1, statname2, pid) {
-				if(stats[pid][statname1].length > 0) {
-					doPStats(stats[pid][statname2], stats[pid][statname1]);
+			function askpStat(statname1, statname2, pid, stname=stats) {
+				if(stname[pid][statname1].length > 0) {
+					doPStats(stname[pid][statname2], stname[pid][statname1]);
 				}
 			}
 	
@@ -816,48 +937,55 @@ function mlr_pa_loader() {
 				the_stats = pstatsDoer(the_stats);
 			}
 	
-			for (var playa in pids){
+
+			//The following MIGHT be necessary. I forgot.
+			//It does the stats for every player.
+			//But we currently don't have these stats for every player!
+			//We could shift ths to one of the button presses. 
+			//Honestly it's probably necessary sadly. 
+
+
+			// for (var playa in pids){
 	
-				askStat('playerDataH','standard',playa)
-				askStat('playerDataHome','home',playa)
-				askStat('playerDataAway','away',playa)
-				askStat('playerData0out','0out',playa)
-				askStat('playerData1out','1out',playa)
-				askStat('playerData2out','2out',playa)
-				askStat('playerData1st','1st',playa)
-				askStat('playerData2nd','2nd',playa)
-				askStat('playerData3rd','3rd',playa)
-				askStat('playerData4th','4th',playa)
-				askStat('playerData5th','5th',playa)
-				askStat('playerData6th','6th',playa)
-				askStat('playerDataExtras','extras',playa)
-				askStat('playerDataWinning','winning',playa)
-				askStat('playerDataLosing','losing',playa)
-				askStat('playerDataTied','tied',playa)
-				for(team in all_teams) {
-					askStat('playerData'+all_teams[team],all_teams[team],playa)
-					askpStat('playerDataP'+all_teams[team],"P_"+all_teams[team],playa)
+			// 	askStat('playerDataH','standard',playa)
+			// 	// askStat('playerDataHome','home',playa)
+			// 	// askStat('playerDataAway','away',playa)
+			// 	// askStat('playerData0out','0out',playa)
+			// 	// askStat('playerData1out','1out',playa)
+			// 	// askStat('playerData2out','2out',playa)
+			// 	// askStat('playerData1st','1st',playa)
+			// 	// askStat('playerData2nd','2nd',playa)
+			// 	// askStat('playerData3rd','3rd',playa)
+			// 	// askStat('playerData4th','4th',playa)
+			// 	// askStat('playerData5th','5th',playa)
+			// 	// askStat('playerData6th','6th',playa)
+			// 	// askStat('playerDataExtras','extras',playa)
+			// 	// askStat('playerDataWinning','winning',playa)
+			// 	// askStat('playerDataLosing','losing',playa)
+			// 	// askStat('playerDataTied','tied',playa)
+			// 	// for(team in all_teams) {
+			// 	// 	askStat('playerData'+all_teams[team],all_teams[team],playa)
+			// 	// 	askpStat('playerDataP'+all_teams[team],"P_"+all_teams[team],playa)
 					
-				}
-				askpStat('playerDataP','P_standard',playa)
-				askpStat('playerDataPHome','P_home',playa)
-				askpStat('playerDataPAway','P_away',playa)
-				askpStat('playerDataP0out','P_0out',playa)
-				askpStat('playerDataP1out','P_1out',playa)
-				askpStat('playerDataP2out','P_2out',playa)
-				askpStat('playerDataP1st','P_1st',playa)
-				askpStat('playerDataP2nd','P_2nd',playa)
-				askpStat('playerDataP3rd','P_3rd',playa)
-				askpStat('playerDataP4th','P_4th',playa)
-				askpStat('playerDataP5th','P_5th',playa)
-				askpStat('playerDataP6th','P_6th',playa)
-				askpStat('playerDataPExtras','P_extras',playa)
-				askpStat('playerDataPWinning','P_winning',playa)
-				askpStat('playerDataPLosing','P_losing',playa)
-				askpStat('playerDataPTied','P_tied',playa)
-			}
+			// 	// }
+			// 	askpStat('playerDataP','P_standard',playa)
+			// 	// askpStat('playerDataPHome','P_home',playa)
+			// 	// askpStat('playerDataPAway','P_away',playa)
+			// 	// askpStat('playerDataP0out','P_0out',playa)
+			// 	// askpStat('playerDataP1out','P_1out',playa)
+			// 	// askpStat('playerDataP2out','P_2out',playa)
+			// 	// askpStat('playerDataP1st','P_1st',playa)
+			// 	// askpStat('playerDataP2nd','P_2nd',playa)
+			// 	// askpStat('playerDataP3rd','P_3rd',playa)
+			// 	// askpStat('playerDataP4th','P_4th',playa)
+			// 	// askpStat('playerDataP5th','P_5th',playa)
+			// 	// askpStat('playerDataP6th','P_6th',playa)
+			// 	// askpStat('playerDataPExtras','P_extras',playa)
+			// 	// askpStat('playerDataPWinning','P_winning',playa)
+			// 	// askpStat('playerDataPLosing','P_losing',playa)
+			// 	// askpStat('playerDataPTied','P_tied',playa)
+			// }
 	
-				mlr_data = ''
 				console.log('Finished loading');
 				
 
@@ -1721,81 +1849,71 @@ Split: <select name="split" id="Psplit">
 4 hit games. Ok
 <div class="table-responsive">
 	<div class="div-batting">
-		<table id="s1-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<table id="s1-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
 					<th scope="row">Season 1</th>
-					<th scope="col" id="statt1"></th>
+					<th scope="col" id="statt1">Session</th>
 				</tr>
 			</thead>
 			<tbody>
 			</tbody>
 		</table>
-		<table id="s2-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<table id="s2-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
 					<th scope="row">Season 2</th>
-					<th scope="col" id="statt2"></th>
+					<th scope="col" id="statt2">Session</th>
 				</tr>
 			</thead>
 			<tbody>
 			</tbody>
 		</table>
-		<table id="s3-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<table id="s3-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
 					<th scope="row">Season 3</th>
-					<th scope="col" id="statt3"></th>
+					<th scope="col" id="statt3">Session</th>
 				</tr>
 			</thead>
 			<tbody>
 			</tbody>
 		</table>
-		<table id="s4-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<table id="s4-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
 					<th scope="row">Season 4</th>
-					<th scope="col" id="statt4"></th>
+					<th scope="col" id="statt4">Session</th>
 				</tr>
 			</thead>
 			<tbody>
 			</tbody>
 		</table>
-		<table id="s5-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<table id="s5-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
 					<th scope="row">Season 5</th>
-					<th scope="col" id="statt5"></th>
+					<th scope="col" id="statt5">Session</th>
 				</tr>
 			</thead>
 			<tbody>
 			</tbody>
 		</table>
-		<table id="s6-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<table id="s6-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
 					<th scope="row">Season 6</th>
-					<th scope="col" id="statt6"></th>
+					<th scope="col" id="statt6">Session</th>
 				</tr>
 			</thead>
 			<tbody>
 			</tbody>
 		</table>
-		<table id="s7-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<table id="s7-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
 					<th scope="row">Season 7</th>
-					<th scope="col" id="statt7"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<table id="s0-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Career</th>
-					<th scope="col" id="statt0"></th>
+					<th scope="col" id="statt7">Session</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -2355,37 +2473,331 @@ Split: <select name="split" id="Psplit">
 
 
 
-				$('#do_stats').click(function() {
-					var requested_player_name = document.getElementById('player_select').value;
-					var requested_pid = players[requested_player_name];
-					$("#calc-pitcher-info").text("Player ID: "+requested_pid);
-					for(season in seasons) {
-						statsPut(seasons[season], stats[requested_pid]['standard'][season], requested_player_name, 'overview');
-						statsPut(seasons[season], stats[requested_pid]['0out'][season], requested_player_name, '0out');
-						statsPut(seasons[season], stats[requested_pid]['1out'][season], requested_player_name, '1out');
-						statsPut(seasons[season], stats[requested_pid]['2out'][season], requested_player_name, '2out');
-						statsPut(seasons[season], stats[requested_pid]['home'][season], requested_player_name, 'home');
-						statsPut(seasons[season], stats[requested_pid]['away'][season], requested_player_name, 'away');
-						statsPut(seasons[season], stats[requested_pid]['winning'][season], requested_player_name, 'winning');
-						statsPut(seasons[season], stats[requested_pid]['losing'][season], requested_player_name, 'losing');
-						statsPut(seasons[season], stats[requested_pid]['tied'][season], requested_player_name, 'tied');
-				
-						pstatsPut(seasons[season], stats[requested_pid]['P_standard'][season], requested_player_name, 'overview');
-						pstatsPut(seasons[season], stats[requested_pid]['P_0out'][season], requested_player_name, '0out');
-						pstatsPut(seasons[season], stats[requested_pid]['P_1out'][season], requested_player_name, '1out');
-						pstatsPut(seasons[season], stats[requested_pid]['P_2out'][season], requested_player_name, '2out');
-						pstatsPut(seasons[season], stats[requested_pid]['P_home'][season], requested_player_name, 'home');
-						pstatsPut(seasons[season], stats[requested_pid]['P_away'][season], requested_player_name, 'away');
-						pstatsPut(seasons[season], stats[requested_pid]['P_winning'][season], requested_player_name, 'winning');
-						pstatsPut(seasons[season], stats[requested_pid]['P_losing'][season], requested_player_name, 'losing');
-						pstatsPut(seasons[season], stats[requested_pid]['P_tied'][season], requested_player_name, 'tied');
+//Next, we're going to do individual player stats.
+			//Makes the most sense to do all splits at once for individuals. 
+			//Memory shouldn't be an issue for one player... 
+			//Well, we may as well do it for both hitter and pitcher.
+			//This shouldn't be a problem, right? :WeDoALittleTrolling:
+			$('#do_stats').click(function() {
+				var requested_player_name = document.getElementById('player_select').value;
+				var requested_pid = players[requested_player_name]
+				// To save on memory, we're going to do this for individual players
+				// rather than the entire playerbase. 
+
+				hitter_teams = "hitter_teams";
+				playerDataH = "playerDataH"
+				playerDataHHome = "playerDataHHome"
+				playerDataHAway = "playerDataHAway"
+				playerDataP = "playerDataP"
+				playerDataHTeam = "playerDataHTeam"
+				stats[requested_pid] = {}
+				stats[requested_pid]['standard'] = [];
+				stats[requested_pid]['home'] = [];
+				stats[requested_pid]['away'] = [];
+				stats[requested_pid]['team'] = [];
+				stats[requested_pid]['0out'] = [];
+				stats[requested_pid]['1out'] = [];
+				stats[requested_pid]['2out'] = [];
+				stats[requested_pid]['winning'] = [];
+				stats[requested_pid]['losing'] = [];
+				stats[requested_pid]['tied'] = [];
+				stats[requested_pid]['1st'] = [];
+				stats[requested_pid]['2nd'] = [];
+				stats[requested_pid]['3rd'] = [];
+				stats[requested_pid]['4th'] = [];
+				stats[requested_pid]['5th'] = [];
+				stats[requested_pid]['6th'] = [];
+				stats[requested_pid]['extras'] = [];
+				stats[requested_pid]['playerDataH'] = [];
+				stats[requested_pid]['playerDataHome'] = [];
+				stats[requested_pid]['playerDataAway'] = [];
+				stats[requested_pid]['playerData0out'] = [];
+				stats[requested_pid]['playerData1out'] = [];
+				stats[requested_pid]['playerData2out'] = [];
+				stats[requested_pid]['playerData1st'] = [];
+				stats[requested_pid]['playerData2nd'] = [];
+				stats[requested_pid]['playerData3rd'] = [];
+				stats[requested_pid]['playerData4th'] = [];
+				stats[requested_pid]['playerData5th'] = [];
+				stats[requested_pid]['playerData6th'] = [];
+				stats[requested_pid]['playerDataExtras'] = [];
+				stats[requested_pid]['playerDataWinning'] = [];
+				stats[requested_pid]['playerDataLosing'] = [];
+				stats[requested_pid]['playerDataTied'] = [];
+				stats[requested_pid]['P_standard'] = [];
+				stats[requested_pid]['P_home'] = [];
+				stats[requested_pid]['P_away'] = [];
+				stats[requested_pid]['P_team'] = [];
+				stats[requested_pid]['P_0out'] = [];
+				stats[requested_pid]['P_1out'] = [];
+				stats[requested_pid]['P_2out'] = [];
+				stats[requested_pid]['P_winning'] = [];
+				stats[requested_pid]['P_losing'] = [];
+				stats[requested_pid]['P_tied'] = [];
+				stats[requested_pid]['P_1st'] = [];
+				stats[requested_pid]['P_2nd'] = [];
+				stats[requested_pid]['P_3rd'] = [];
+				stats[requested_pid]['P_4th'] = [];
+				stats[requested_pid]['P_5th'] = [];
+				stats[requested_pid]['P_6th'] = [];
+				stats[requested_pid]['P_extras'] = [];
+				stats[requested_pid]['playerDataP'] = [];
+				stats[requested_pid]['playerDataPHome'] = [];
+				stats[requested_pid]['playerDataPAway'] = [];
+				stats[requested_pid]['playerDataP0out'] = [];
+				stats[requested_pid]['playerDataP1out'] = [];
+				stats[requested_pid]['playerDataP2out'] = [];
+				stats[requested_pid]['playerDataP1st'] = [];
+				stats[requested_pid]['playerDataP2nd'] = [];
+				stats[requested_pid]['playerDataP3rd'] = [];
+				stats[requested_pid]['playerDataP4th'] = [];
+				stats[requested_pid]['playerDataP5th'] = [];
+				stats[requested_pid]['playerDataP6th'] = [];
+				stats[requested_pid]['playerDataPExtras'] = [];
+				stats[requested_pid]['playerDataPWinning'] = [];
+				stats[requested_pid]['playerDataPLosing'] = [];
+				stats[requested_pid]['playerDataPTied'] = [];
+				for(team in all_teams) {
+					stats[requested_pid]["playerData"+all_teams[team]] = [];
+					stats[requested_pid][all_teams[team]] = [];
+					stats[requested_pid]["playerDataP"+all_teams[team]] = [];
+					stats[requested_pid]["P_"+all_teams[team]] = [];
+				}
+
+			for(line in mlr_data) {
+
+				//Define Variables
+				var pid = players[mlr_data[line]['Hitter']];
+				var ppid = players[mlr_data[line]['Pitcher']];
+				//Check if player we are getting stats for is the hitter or pitcher. 
+				//Actually separate hitting and pitching
+
+				if(pid != requested_pid && ppid != requested_pid) {
+					continue;
+				} else if (pid == requested_pid) { // Hitter
+					var sth = stats[pid]
+					sth['playerDataH'].push(mlr_data[line]);
+					var l = mlr_data[line];
+					if(l[0] == 'Hitter') {
+						continue;
 					}
+					if(l['Hitter'] == '') {
+						continue;
+					}
+					var team = l['Batter Team'];
+					var season = l['Season'];
+					if(team in current_teams[season]) {
+						team = current_teams[season][team];
+					}
+					var result = mlr_data[line]['Result'];
+					var session = mlr_data[line]['Session'];
+					var game_id = mlr_data[line]['Game ID'];
+					var avg_stuff = ['HR','3B','2B','1B','Bunt 1B'];
 
-					$("#player-name").text("Stats for "+requested_player_name);
-					$("#player-id").text(" ID: "+requested_pid).css('background-color', '#00000038').css('padding', '1px 10px');
-					
 
-				});
+					//Splits
+					sth["playerData"+team].push(mlr_data[line]);
+					if(l['Inning'].substr(0,1) == 'B') {
+						sth['playerDataHome'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(0,1) == 'T') {
+						sth['playerDataAway'].push(mlr_data[line]);
+					}
+					if(l['Outs'] == '0') {
+						sth['playerData0out'].push(mlr_data[line]);
+					}
+					if(l['Outs'] == '1') {
+						sth['playerData1out'].push(mlr_data[line]);
+					}
+					if(l['Outs'] == '2') {
+						sth['playerData2out'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '1') {
+						sth['playerData1st'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '2') {
+						sth['playerData2nd'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '3') {
+						sth['playerData3rd'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '4') {
+						sth['playerData4th'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '5') {
+						sth['playerData5th'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '6') {
+						sth['playerData6th'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) > 6) {
+						sth['playerDataExtras'].push(mlr_data[line]);
+					}
+					if(l['Home Score'] > l['Away Score']) {
+						if(l['Inning'].substr(0,1) == 'B') {
+							sth['playerDataWinning'].push(mlr_data[line]);
+						}
+						if(l['Inning'].substr(0,1) == 'T') {
+							sth['playerDataLosing'].push(mlr_data[line]);
+						}
+					}
+					if(l['Home Score'] < l['Away Score']) {
+						if(l['Inning'].substr(0,1) == 'B') {
+							sth['playerDataLosing'].push(mlr_data[line]);
+						}
+						if(l['Inning'].substr(0,1) == 'T') {
+							sth['playerDataWinning'].push(mlr_data[line]);
+						}
+					}
+					if(l['Home Score'] == l['Away Score']) {
+						sth['playerDataTied'].push(mlr_data[line]);
+					}
+				} else if (ppid == requested_pid) { // Pitching
+					var stp = stats[ppid]
+					stp['playerDataP'].push(mlr_data[line]);
+					var l = mlr_data[line];
+					if(l[0] == 'Hitter') {
+						continue;
+					}
+					if(l['Hitter'] == '') {
+						continue;
+					}
+					var pteam = l['Pitcher Team'];
+					var season = l['Season'];
+					if(pteam in current_teams[season]) {
+						pteam = current_teams[season][pteam];
+					}
+					var result = mlr_data[line]['Result'];
+					var session = mlr_data[line]['Session'];
+					var game_id = mlr_data[line]['Game ID'];
+					var avg_stuff = ['HR','3B','2B','1B','Bunt 1B'];
+
+
+					//Splits
+					if(pteam.length > 0) {
+						stp["playerDataP"+pteam].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(0,1) == 'B') {
+						stp['playerDataPAway'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(0,1) == 'T') {
+						stp['playerDataPHome'].push(mlr_data[line]);
+					}
+					if(l['Outs'] == '0') {
+						stp['playerDataP0out'].push(mlr_data[line]);
+					}
+					if(l['Outs'] == '1') {
+						stp['playerDataP1out'].push(mlr_data[line]);
+					}
+					if(l['Outs'] == '2') {
+						stp['playerDataP2out'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '1') {
+						stp['playerDataP1st'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '2') {
+						stp['playerDataP2nd'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '3') {
+						stp['playerDataP3rd'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '4') {
+						stp['playerDataP4th'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '5') {
+						stp['playerDataP5th'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) == '6') {
+						stp['playerDataP6th'].push(mlr_data[line]);
+					}
+					if(l['Inning'].substr(1,2) > 6) {
+						stp['playerDataPExtras'].push(mlr_data[line]);
+					}
+					if(l['Home Score'] > l['Away Score']) {
+						if(l['Inning'].substr(0,1) == 'B') {
+							stp['playerDataPLosing'].push(mlr_data[line]);
+						}
+						if(l['Inning'].substr(0,1) == 'T') {
+							stp['playerDataPWinning'].push(mlr_data[line]);
+						}
+					}
+					if(l['Home Score'] < l['Away Score']) {
+						if(l['Inning'].substr(0,1) == 'B') {
+							stp['playerDataPWinning'].push(mlr_data[line]);
+						}
+						if(l['Inning'].substr(0,1) == 'T') {
+							stp['playerDataPLosing'].push(mlr_data[line]);
+						}
+					}
+					if(l['Home Score'] == l['Away Score']) {
+						stp['playerDataPTied'].push(mlr_data[line]);
+					}
+				}
+			}
+
+				askStat('playerDataH','standard',requested_pid)
+				askStat('playerDataHome','home',requested_pid)
+				askStat('playerDataAway','away',requested_pid)
+				askStat('playerData0out','0out',requested_pid)
+				askStat('playerData1out','1out',requested_pid)
+				askStat('playerData2out','2out',requested_pid)
+				askStat('playerData1st','1st',requested_pid)
+				askStat('playerData2nd','2nd',requested_pid)
+				askStat('playerData3rd','3rd',requested_pid)
+				askStat('playerData4th','4th',requested_pid)
+				askStat('playerData5th','5th',requested_pid)
+				askStat('playerData6th','6th',requested_pid)
+				askStat('playerDataExtras','extras',requested_pid)
+				askStat('playerDataWinning','winning',requested_pid)
+				askStat('playerDataLosing','losing',requested_pid)
+				askStat('playerDataTied','tied',requested_pid)
+				for(team in all_teams) {
+					askStat('playerData'+all_teams[team],all_teams[team],requested_pid)
+					askpStat('playerDataP'+all_teams[team],"P_"+all_teams[team],requested_pid)
+				}
+				askpStat('playerDataP','P_standard',requested_pid)
+				askpStat('playerDataPHome','P_home',requested_pid)
+				askpStat('playerDataPAway','P_away',requested_pid)
+				askpStat('playerDataP0out','P_0out',requested_pid)
+				askpStat('playerDataP1out','P_1out',requested_pid)
+				askpStat('playerDataP2out','P_2out',requested_pid)
+				askpStat('playerDataP1st','P_1st',requested_pid)
+				askpStat('playerDataP2nd','P_2nd',requested_pid)
+				askpStat('playerDataP3rd','P_3rd',requested_pid)
+				askpStat('playerDataP4th','P_4th',requested_pid)
+				askpStat('playerDataP5th','P_5th',requested_pid)
+				askpStat('playerDataP6th','P_6th',requested_pid)
+				askpStat('playerDataPExtras','P_extras',requested_pid)
+				askpStat('playerDataPWinning','P_winning',requested_pid)
+				askpStat('playerDataPLosing','P_losing',requested_pid)
+				askpStat('playerDataPTied','P_tied',requested_pid)
+
+				$("#calc-pitcher-info").text("Player ID: "+requested_pid);
+				for(season in seasons) {
+					statsPut(seasons[season], stats[requested_pid]['standard'][season], requested_player_name, 'overview');
+					statsPut(seasons[season], stats[requested_pid]['0out'][season], requested_player_name, '0out');
+					statsPut(seasons[season], stats[requested_pid]['1out'][season], requested_player_name, '1out');
+					statsPut(seasons[season], stats[requested_pid]['2out'][season], requested_player_name, '2out');
+					statsPut(seasons[season], stats[requested_pid]['home'][season], requested_player_name, 'home');
+					statsPut(seasons[season], stats[requested_pid]['away'][season], requested_player_name, 'away');
+					statsPut(seasons[season], stats[requested_pid]['winning'][season], requested_player_name, 'winning');
+					statsPut(seasons[season], stats[requested_pid]['losing'][season], requested_player_name, 'losing');
+					statsPut(seasons[season], stats[requested_pid]['tied'][season], requested_player_name, 'tied');
+			
+					pstatsPut(seasons[season], stats[requested_pid]['P_standard'][season], requested_player_name, 'overview');
+					pstatsPut(seasons[season], stats[requested_pid]['P_0out'][season], requested_player_name, '0out');
+					pstatsPut(seasons[season], stats[requested_pid]['P_1out'][season], requested_player_name, '1out');
+					pstatsPut(seasons[season], stats[requested_pid]['P_2out'][season], requested_player_name, '2out');
+					pstatsPut(seasons[season], stats[requested_pid]['P_home'][season], requested_player_name, 'home');
+					pstatsPut(seasons[season], stats[requested_pid]['P_away'][season], requested_player_name, 'away');
+					pstatsPut(seasons[season], stats[requested_pid]['P_winning'][season], requested_player_name, 'winning');
+					pstatsPut(seasons[season], stats[requested_pid]['P_losing'][season], requested_player_name, 'losing');
+					pstatsPut(seasons[season], stats[requested_pid]['P_tied'][season], requested_player_name, 'tied');
+				}
+				$("#player-name").text("Stats for "+requested_player_name);
+				$("#player-id").text(" ID: "+requested_pid).css('background-color', '#00000038').css('padding', '1px 10px');
+				
+		});
 
 				//Add teams to team selector
 				var all_teams = ["ARI","ATL","BAL","BOS","CHC","CIN","CLE","COL","CWS","DET","HOU","KCR","LAA","LAD","MIA","MIL","MIN","MTL","NYM","NYY","OAK","PHI","PIT","S1MIN","SDP","SEA","SFG","STL","TBR","TEX","TOR","WSH"]
@@ -2435,6 +2847,7 @@ Split: <select name="split" id="Psplit">
 				var otherplayerscount = -1;
 
 				function getResults(o, season, split, n, stat, math, stat2, result_qualifier, result_qualifier2, min_result, max_result, min_result2, max_result2, highorlow) {
+					split = 'standard'; // used to have all splits on one, but testing here lol
 					if (seasonCheck == 0) { // on each stat request
 						errorcheck = 0;
 						errorcheck2 = 0;
@@ -2628,7 +3041,8 @@ Split: <select name="split" id="Psplit">
 					return hh;
 				}
 
-				function addRows(listy, split, seasony, table_id, stat, math, stat2, season, results) {
+				function addRows(listy, split, seasony, table_id, stat, math, stat2, season, results, style) {
+					split = 'standard'; // lol
 					if(split == 'team') {
 						split = document.getElementById("team").value;
 					}
@@ -2641,7 +3055,7 @@ Split: <select name="split" id="Psplit">
 					for (var id in listy) {
 						row_count = row_count + 1;
 						var row = table.insertRow(-1);
-						row.classList.add("added");
+						row.classList.add("added", "added-"+style);
 						if (row_count > results) {
 							row.classList.add(table_id[1] + stat.replace(/\s/g, '') + "collapsy");
 							row.classList.add("collapsed");
@@ -2671,7 +3085,7 @@ Split: <select name="split" id="Psplit">
 
 					if (otherplayerslist[otherplayerscount] == 1) {
 						var rowy = table.insertRow(-1);
-						rowy.classList.add("added");
+						rowy.classList.add("added", "added-"+style);
 						rowy.classList.add(table_id[1] + stat.replace(/\s/g, '') + "toggle");
 						rowy.classList.add("toggle");
 						$("." + table_id[1] + stat.replace(/\s/g, '') + "toggle").click(function () {
@@ -2679,21 +3093,23 @@ Split: <select name="split" id="Psplit">
 						});
 						var celly1 = rowy.insertCell(0);
 						var celly2 = rowy.insertCell(1);
-						celly1.innerHTML = "[show/hide] 1 other player";
-						if (math == '' || stat2 == '') {
-							celly2.innerHTML = season[listy[results - 1]][split][seasony][stat];
-						} else if (math == 'plus') {
-							celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) + parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
-						} else if (math == 'minus') {
-							celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) - parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
-						} else if (math == 'multiply') {
-							celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) * parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
-						} else if (math == 'divide') {
-							celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) / parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+						if(listy !== undefined) {
+							celly1.innerHTML = "[show/hide] 1 other player";
+							if (math == '' || stat2 == '') {
+								celly2.innerHTML = season[listy[results - 1]][split][seasony][stat];
+							} else if (math == 'plus') {
+								celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) + parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+							} else if (math == 'minus') {
+								celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) - parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+							} else if (math == 'multiply') {
+								celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) * parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+							} else if (math == 'divide') {
+								celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) / parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+							}
 						}
 					} else if (otherplayerslist[otherplayerscount] > 1) {
 						var rowy = table.insertRow(-1);
-						rowy.classList.add("added");
+						rowy.classList.add("added", "added-"+style);
 						rowy.classList.add(table_id[1] + stat.replace(/\s/g, '') + "toggle");
 						rowy.classList.add("toggle");
 						$("." + table_id[1] + stat.replace(/\s/g, '') + "toggle").click(function () {
@@ -2701,26 +3117,32 @@ Split: <select name="split" id="Psplit">
 						});
 						var celly1 = rowy.insertCell(0);
 						var celly2 = rowy.insertCell(1);
-						celly1.innerHTML = "[show/hide] " + otherplayerslist[otherplayerscount] + " other players";
-						if (math == '' || stat2 == '') {
-							celly2.innerHTML = season[listy[results - 1]][split][seasony][stat];
-						} else if (math == 'plus') {
-							celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) + parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
-						} else if (math == 'minus') {
-							celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) - parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
-						} else if (math == 'multiply') {
-							celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) * parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
-						} else if (math == 'divide') {
-							celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) / parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+						if(listy !== undefined) {
+							celly1.innerHTML = "[show/hide] " + otherplayerslist[otherplayerscount] + " other players";
+							if (math == '' || stat2 == '') {
+								try {
+									celly2.innerHTML = season[listy[results - 1]][split][seasony][stat];
+								}
+								catch(err) {
+									console.log('bruh')
+								}
+							} else if (math == 'plus') {
+								celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) + parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+							} else if (math == 'minus') {
+								celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) - parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+							} else if (math == 'multiply') {
+								celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) * parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+							} else if (math == 'divide') {
+								celly2.innerHTML = Math.round((parseFloat(season[listy[results - 1]][split][seasony][stat]) / parseFloat(season[listy[results - 1]][split][seasony][stat2])) * 1000) / 1000
+							}
 						}
 					}
-
 				}
 				//End leaderboard functions.js
 
 				//Add to HTML
 				$('#calc-submit').click(function () {
-					document.querySelectorAll('.added').forEach(e => e.remove());
+					document.querySelectorAll('.added-h').forEach(e => e.remove());
 					var highlow = document.getElementById("highlow").value;
 					var stat_request = document.getElementById("stat").value;
 					var mathed = document.getElementById("math").value;
@@ -2733,10 +3155,141 @@ Split: <select name="split" id="Psplit">
 					var minresult2 = document.getElementById("minresult2").value;
 					var maxresult2 = document.getElementById("maxresult2").value;
 					var split = document.getElementById("split").value;
+					var requested_split = split;
 					var number_of_results = document.getElementById("number_of_results").value;
 					if (number_of_results.length < 1) { number_of_results = 10000; }
 					var result_request = document.getElementById("result").value;
 					var result_request2 = document.getElementById("result2").value;
+
+					for (var playa in pids){
+						var requested_pid = playa
+						stats_all[requested_pid] = {}
+						stats_all[requested_pid]['standard'] = [];
+						stats_all[requested_pid]['playerData'] = [];
+					}
+
+					for(line in mlr_data) {
+						//We're gonna do hitters and pitchers separately hehe. 
+						//Hitter
+						var pid = players[mlr_data[line]['Hitter']];
+						var sth = stats_all[pid]
+						var l = mlr_data[line];
+						if(l[0] == 'Hitter') {
+							continue;
+						}
+						if(l['Hitter'] == '') {
+							continue;
+						}
+						var team = l['Batter Team'];
+						var season = l['Season'];
+						if(team in current_teams[season]) {
+							team = current_teams[season][team];
+						}
+						//Splits
+						if(requested_split == 'standard') {
+							sth["playerData"].push(mlr_data[line]);
+						}
+						else if(requested_split == 'home') {
+							if(l['Inning'].substr(0,1) == 'B') {
+								sth["playerData"].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'away') {
+							if(l['Inning'].substr(0,1) == 'T') {
+								sth["playerData"].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == '0out') {
+							if(l['Outs'] == '0') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == '1out') {
+							if(l['Outs'] == '1') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == '2out') {
+							if(l['Outs'] == '2') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == '1st') {
+							if(l['Inning'].substr(1,2) == '1') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == '2nd') {
+							if(l['Inning'].substr(1,2) == '2') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == '3rd') {
+							if(l['Inning'].substr(1,2) == '3') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == '4th') {
+							if(l['Inning'].substr(1,2) == '4') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == '5th') {
+							if(l['Inning'].substr(1,2) == '5') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == '6th') {
+							if(l['Inning'].substr(1,2) == '6') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'extras') {
+							if(l['Inning'].substr(1,2) > 6) {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'winning') {
+							if(l['Home Score'] > l['Away Score']) {
+								if(l['Inning'].substr(0,1) == 'B') {
+									sth['playerData'].push(mlr_data[line]);
+								}
+							}
+							if(l['Home Score'] < l['Away Score']) {
+								if(l['Inning'].substr(0,1) == 'T') {
+									sth['playerData'].push(mlr_data[line]);
+								}
+							}
+						}
+						else if(requested_split == 'losing') {
+							if(l['Home Score'] < l['Away Score']) {
+								if(l['Inning'].substr(0,1) == 'B') {
+									sth['playerData'].push(mlr_data[line]);
+								}
+							}
+							if(l['Home Score'] > l['Away Score']) {
+								if(l['Inning'].substr(0,1) == 'T') {
+									sth['playerData'].push(mlr_data[line]);
+								}
+							}
+						}
+						else if(requested_split == 'tied') {
+							if(l['Home Score'] == l['Away Score']) {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'team') { // just do one team at a time for leaderboards. it has a custom input
+							var requested_team = document.getElementById('team').value;
+							if(l['Batter Team'] == requested_team) {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+					}
+
+					for(id in pids) {
+						askStat('playerData','standard',id,stats_all)
+					}
+
 					$("#statt0").text(stat_request+mathed2+stat_request_2);
 					$("#statt1").text(stat_request+mathed2+stat_request_2);
 					$("#statt2").text(stat_request+mathed2+stat_request_2);
@@ -2758,28 +3311,27 @@ Split: <select name="split" id="Psplit">
 						maxresult2 = 5000;
 					}
 		
-					s0_h = getResults(stats, 0, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s1_h = getResults(stats, 1, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s2_h = getResults(stats, 2, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s3_h = getResults(stats, 3, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s4_h = getResults(stats, 4, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s5_h = getResults(stats, 5, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s6_h = getResults(stats, 6, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s7_h = getResults(stats, 7, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					addRows(s0_h, split, 0, "s0-hits-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s1_h, split, 1,"s1-hits-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s2_h, split, 2, "s2-hits-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s3_h, split, 3,"s3-hits-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s4_h, split, 4,"s4-hits-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s5_h, split, 5,"s5-hits-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s6_h, split, 6,"s6-hits-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s7_h, split, 7,"s7-hits-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-		
+					s0_h = getResults(stats_all, 0, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s1_h = getResults(stats_all, 1, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s2_h = getResults(stats_all, 2, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s3_h = getResults(stats_all, 3, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s4_h = getResults(stats_all, 4, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s5_h = getResults(stats_all, 5, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s6_h = getResults(stats_all, 6, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s7_h = getResults(stats_all, 7, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					addRows(s0_h, split, 0, "s0-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s1_h, split, 1,"s1-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s2_h, split, 2, "s2-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s3_h, split, 3,"s3-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s4_h, split, 4,"s4-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s5_h, split, 5,"s5-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s6_h, split, 6,"s6-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s7_h, split, 7,"s7-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 				});
 				//End adding to HTML hitting
 
 				$('#calc-submit-p').click(function () {
-					document.querySelectorAll('.added').forEach(e => e.remove());
+					document.querySelectorAll('.added-p').forEach(e => e.remove());
 					var highlow = document.getElementById("Phighlow").value;
 					var stat_request = document.getElementById("Pstat").value;
 					var mathed = document.getElementById("Pmath").value;
@@ -2792,10 +3344,141 @@ Split: <select name="split" id="Psplit">
 					var minresult2 = document.getElementById("Pminresult2").value;
 					var maxresult2 = document.getElementById("Pmaxresult2").value;
 					var split = document.getElementById("Psplit").value;
+					var requested_split = split;
 					var number_of_results = document.getElementById("Pnumber_of_results").value;
 					if (number_of_results.length < 1) { number_of_results = 10000; }
 					var result_request = document.getElementById("Presult").value;
 					var result_request2 = document.getElementById("Presult2").value;
+
+					for (var playa in pids){
+						var requested_pid = playa
+						stats_all[requested_pid] = {}
+						stats_all[requested_pid]['standard'] = [];
+						stats_all[requested_pid]['playerData'] = [];
+					}
+
+					for(line in mlr_data) {
+						//We're gonna do hitters and pitchers separately hehe. 
+						//Pitcher
+						var pid = players[mlr_data[line]['Pitcher']];
+						var sth = stats_all[pid]
+						var l = mlr_data[line];
+						if(l[0] == 'Hitter') {
+							continue;
+						}
+						if(l['Hitter'] == '') {
+							continue;
+						}
+						var team = l['Pitcher Team'];
+						var season = l['Season'];
+						if(team in current_teams[season]) {
+							team = current_teams[season][team];
+						}
+						//Splits
+						if(requested_split == 'P_standard') {
+							sth["playerData"].push(mlr_data[line]);
+						}
+						else if(requested_split == 'P_home') {
+							if(l['Inning'].substr(0,1) == 'T') {
+								sth["playerData"].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_away') {
+							if(l['Inning'].substr(0,1) == 'B') {
+								sth["playerData"].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_0out') {
+							if(l['Outs'] == '0') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_1out') {
+							if(l['Outs'] == '1') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_2out') {
+							if(l['Outs'] == '2') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_1st') {
+							if(l['Inning'].substr(1,2) == '1') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_2nd') {
+							if(l['Inning'].substr(1,2) == '2') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_3rd') {
+							if(l['Inning'].substr(1,2) == '3') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_4th') {
+							if(l['Inning'].substr(1,2) == '4') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_5th') {
+							if(l['Inning'].substr(1,2) == '5') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_6th') {
+							if(l['Inning'].substr(1,2) == '6') {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_extras') {
+							if(l['Inning'].substr(1,2) > 6) {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_winning') {
+							if(l['Home Score'] > l['Away Score']) {
+								if(l['Inning'].substr(0,1) == 'T') {
+									sth['playerData'].push(mlr_data[line]);
+								}
+							}
+							if(l['Home Score'] < l['Away Score']) {
+								if(l['Inning'].substr(0,1) == 'B') {
+									sth['playerData'].push(mlr_data[line]);
+								}
+							}
+						}
+						else if(requested_split == 'P_losing') {
+							if(l['Home Score'] < l['Away Score']) {
+								if(l['Inning'].substr(0,1) == 'T') {
+									sth['playerData'].push(mlr_data[line]);
+								}
+							}
+							if(l['Home Score'] > l['Away Score']) {
+								if(l['Inning'].substr(0,1) == 'B') {
+									sth['playerData'].push(mlr_data[line]);
+								}
+							}
+						}
+						else if(requested_split == 'P_tied') {
+							if(l['Home Score'] == l['Away Score']) {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+						else if(requested_split == 'P_team') { // just do one team at a time for leaderboards. it has a custom input
+							var requested_team = document.getElementById('team').value;
+							if(l['Batter Team'] == requested_team) {
+								sth['playerData'].push(mlr_data[line]);
+							}
+						}
+					}
+
+					for(id in pids) {
+						askpStat('playerData','standard',id,stats_all)
+					}
+
 					$("#Pstatt0").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt1").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt2").text(stat_request+mathed2+stat_request_2);
@@ -2817,25 +3500,52 @@ Split: <select name="split" id="Psplit">
 						maxresult2 = 5000;
 					}
 		
-					s0_h = getResults(stats, 0, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s1_h = getResults(stats, 1, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s2_h = getResults(stats, 2, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s3_h = getResults(stats, 3, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s4_h = getResults(stats, 4, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s5_h = getResults(stats, 5, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s6_h = getResults(stats, 6, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					s7_h = getResults(stats, 7, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
-					addRows(s0_h, split, 0, "s0-P-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s1_h, split, 1,"s1-P-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s2_h, split, 2, "s2-P-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s3_h, split, 3,"s3-P-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s4_h, split, 4,"s4-P-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s5_h, split, 5,"s5-P-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s6_h, split, 6,"s6-P-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
-					addRows(s7_h, split, 7,"s7-P-lb", stat_request, mathed, stat_request_2, stats, number_of_results);
+					s0_h = getResults(stats_all, 0, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s1_h = getResults(stats_all, 1, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s2_h = getResults(stats_all, 2, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s3_h = getResults(stats_all, 3, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s4_h = getResults(stats_all, 4, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s5_h = getResults(stats_all, 5, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s6_h = getResults(stats_all, 6, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s7_h = getResults(stats_all, 7, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					addRows(s0_h, split, 0,"s0-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s1_h, split, 1,"s1-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s2_h, split, 2,"s2-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s3_h, split, 3,"s3-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s4_h, split, 4,"s4-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s5_h, split, 5,"s5-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s6_h, split, 6,"s6-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s7_h, split, 7,"s7-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 		
 				});
 				//End adding to HTML pitching
+
+		
+
+				function addRowsSpecial(listy, seasony, table_id, style) {
+					var table = document.getElementById(table_id);
+					var row_count = 0;
+					for (var id in listy[seasony]) {
+						row_count = row_count + 1;
+						var row = table.insertRow(-1);
+						row.classList.add("added", "added-"+style);
+						var cell1 = row.insertCell(0);
+						var cell2 = row.insertCell(1);
+						cell1.innerHTML = pids[listy[seasony][id][0]][0];
+						try {
+							cell2.innerHTML = listy[seasony][id][1]+"."+listy[seasony][id][2];
+						}
+						catch (err) {
+							console.log(listy);
+							console.log(listy[id]);
+						}
+
+					}
+				}
+
+				for(var i=1;i<8;i++) {
+					addRowsSpecial(special2['fourhit'],i,"s"+i+"-4hits-lb", 's');
+				}
 		
 
 

@@ -532,13 +532,8 @@ function mlr_pa_loader() {
 					stats[requested_pid]["P_"+all_teams[team]] = [];
 				}
 			}
-
-			var special = {'fourhit':{'0':{},'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{}}}
-			var fourhitgames = {'game':'0'}
 			
 			for(line in mlr_data) {
-
-				//Define Variables
 				var pid = players[mlr_data[line]['Hitter']];
 				var ppid = players[mlr_data[line]['Pitcher']];
 				if(pid === undefined) {
@@ -571,13 +566,6 @@ function mlr_pa_loader() {
 				if(pteam in current_teams[season]) {
 					pteam = current_teams[season][pteam];
 				}
-				var result = mlr_data[line]['Result'];
-				var session = mlr_data[line]['Session'];
-				var game_id = mlr_data[line]['Game ID'];
-				var avg_stuff = ['HR','3B','2B','1B','Bunt 1B'];
-
-
-				//Splits
 				sth["playerData"+team].push(mlr_data[line]);
 				if(pteam.length > 0) {
 					stp["playerDataP"+pteam].push(mlr_data[line]);
@@ -654,38 +642,7 @@ function mlr_pa_loader() {
 					sth['playerDataTied'].push(mlr_data[line]);
 					stp['playerDataPTied'].push(mlr_data[line]);
 				}
-
-				//Special Accolades
-				//if(!(mlr_data[parseInt(line)+1] === undefined)) {
-					//if(fourhitgames['game'] != mlr_data[parseInt(line)+1]['Game ID']) {
-					if(fourhitgames['game'] != game_id) {
-						for(mf in fourhitgames) {
-							if(mf != 'game' && fourhitgames[mf] > 3) {
-								if(!(mf in special['fourhit'][season])) {
-									special['fourhit'][season][mf] = {}
-								}
-								if(!(mf in special['fourhit']['0'])) {
-									special['fourhit']['0'][mf] = {}
-								}
-								special['fourhit'][season][mf][session] = 1;
-								special['fourhit']['0'][mf][session] = 1;
-							}
-						}
-						fourhitgames = {'game':game_id}
-					} else {
-						if(!(pid in fourhitgames)) {
-							fourhitgames[pid] = 0
-						}
-						if(avg_stuff.includes(result)) {
-							fourhitgames[pid] += 1
-						}
-					}
-				//}
-
-
 			}
-
-			console.log(special);
 	
 			function askStat(statname1, statname2, pid) {
 				if(stats[pid][statname1].length > 0) {
@@ -865,9 +822,8 @@ function mlr_pa_loader() {
 				<section class="accordion">
 				<section class="accordion-tabs">
 				  <button class="accordion-tab accordion-active" data-actab-group="0" data-actab-id="0">Player Stats</button>
-				  <button class="accordion-tab" data-actab-group="0" data-actab-id="1">Hitting Leaderboards</button>
-				  <button class="accordion-tab" data-actab-group="0" data-actab-id="2">Pitching Leaderboards</button>
-				  <button class="accordion-tab" data-actab-group="0" data-actab-id="3">Special Accolades</button>
+				  <button class="accordion-tab" data-actab-group="0" data-actab-id="1">MLR Hitting Leaderboards</button>
+				  <button class="accordion-tab" data-actab-group="0" data-actab-id="2">MLR Pitching Leaderboards</button>
 				</section>
 				<section class="accordion-content">
 				<article id="player-stats" class="accordion-item accordion-active" data-actab-group="0" data-actab-id="0">
@@ -1713,98 +1669,6 @@ Split: <select name="split" id="Psplit">
 			</table>
 			</div>
 			</div>
-</article>
-<article id="special" class="accordion-item" data-actab-group="0" data-actab-id="3">
-<h3>Special Accolades</h3>
-<hr />
-
-4 hit games. Ok
-<div class="table-responsive">
-	<div class="div-batting">
-		<table id="s1-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Season 1</th>
-					<th scope="col" id="statt1"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<table id="s2-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Season 2</th>
-					<th scope="col" id="statt2"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<table id="s3-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Season 3</th>
-					<th scope="col" id="statt3"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<table id="s4-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Season 4</th>
-					<th scope="col" id="statt4"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<table id="s5-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Season 5</th>
-					<th scope="col" id="statt5"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<table id="s6-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Season 6</th>
-					<th scope="col" id="statt6"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<table id="s7-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Season 7</th>
-					<th scope="col" id="statt7"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<table id="s0-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Career</th>
-					<th scope="col" id="statt0"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
-</div>
-
-</div>
 </article>
 </section>
 </section>

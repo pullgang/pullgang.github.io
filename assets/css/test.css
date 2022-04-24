@@ -52,6 +52,68 @@ toggle:hover {
     cursor:pointer;
 }
 
+#wrapper {
+  display:block;
+}
+
+.multiselect {
+  width: 100%;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+}
+
+#mySelectOptions {
+  display: none;
+  border: 0.5px #7c7c7c solid;
+  background-color: #8d2f2f20;
+  max-height: 150px;
+  overflow-y: scroll;
+  display: inline-block;
+}
+
+#mySelectOptions label {
+  display: inline-grid;
+  font-weight: normal;
+  white-space: nowrap;
+  min-height: 1.2em;
+  background-color: #ffffff00;
+  padding: 0px 6px;
+}
+
+#mySelectOptions label:hover {
+  background-color: #1e90ff;
+  cursor:pointer;
+}
+
+#mySelectOptions2 {
+  display: none;
+  border: 0.5px #7c7c7c solid;
+  background-color: #8d2f2f20;
+  max-height: 150px;
+  overflow-y: scroll;
+  display: inline-block;
+}
+
+#mySelectOptions2 label {
+  display: inline-grid;
+  font-weight: normal;
+  white-space: nowrap;
+  min-height: 1.2em;
+  background-color: #ffffff00;
+  padding: 0px 6px;
+}
+
+#mySelectOptions2 label:hover {
+  background-color: #1e90ff;
+  cursor:pointer;
+}
+
 hr {
     margin: 1rem;
 }
