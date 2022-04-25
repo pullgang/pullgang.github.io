@@ -15,6 +15,8 @@ var stats_all = {};
 var players = {};
 var pids = {};
 
+let params = new URLSearchParams(location.search); // set params var early to let it change on button presses
+
 window.onerror = function(error,url,line) {
 	$("h4").text("[" + error + '\n\n' + url + '\n\nLine: ' + line + '\n\n' + "] An error has occured somewhere... If you see this please ping me pull#0053 and if possible, screenshot this");
 	$("h4").css("background", "red");
@@ -2427,6 +2429,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 			//This shouldn't be a problem, right? :WeDoALittleTrolling:
 			$('#do_stats').click(function() {
 
+
 				//First we're gonna delete the added things per player 
 				//(the team stats etc.)
 				$('.added-team-pls-delete').remove();
@@ -2436,6 +2439,11 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 				$('#opponent-toggler-p .expando').text('[+]');
 				var requested_player_name = document.getElementById('player_select').value;
 				var requested_pid = players[requested_player_name]
+
+				//set url params
+				var refresh = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tab=stats&id='+requested_pid;    
+				window.history.replaceState({ path: refresh }, '', refresh);
+
 				// To save on memory, we're going to do this for individual players
 				// rather than the entire playerbase. 
 
@@ -3185,6 +3193,17 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					var result_request = document.getElementById("result").value;
 					var result_request2 = document.getElementById("result2").value;
 
+					//set url params
+					
+					var urlStr = '?tab=hitting&hl='+highlow+'&stat='+stat_request;
+					urlStr += '&m='+mathed+'&stat2='+stat_request_2+'&min='+minresult+'&max='+maxresult+'&min2='+minresult2+'&max2='+maxresult2;
+					for(sp in split) {
+						urlStr += '&s='+split[sp]    
+					}
+					urlStr += '&type='+split_type+'&n='+number_of_results+'&r='+result_request+'&r2='+result_request2+'&tm='+document.getElementById('team').value+'&op='+document.getElementById('opponent').value;
+					var refresh = window.location.protocol + "//" + window.location.host + window.location.pathname + urlStr
+					window.history.replaceState({ path: refresh }, '', refresh);
+
 					for (var playa in pids){
 						var requested_pid = playa
 						stats_all[requested_pid] = {}
@@ -3499,6 +3518,17 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					var result_request = document.getElementById("Presult").value;
 					var result_request2 = document.getElementById("Presult2").value;
 
+					//set url params
+					
+					var urlStr = '?tab=pitching&hl='+highlow+'&stat='+stat_request;
+					urlStr += '&m='+mathed+'&stat2='+stat_request_2+'&min='+minresult+'&max='+maxresult+'&min2='+minresult2+'&max2='+maxresult2;
+					for(sp in split) {
+						urlStr += '&s='+split[sp]    
+					}
+					urlStr += '&type='+split_type+'&n='+number_of_results+'&r='+result_request+'&r2='+result_request2+'&tm='+document.getElementById('Pteam').value+'&op='+document.getElementById('Popponent').value;
+					var refresh = window.location.protocol + "//" + window.location.host + window.location.pathname + urlStr
+					window.history.replaceState({ path: refresh }, '', refresh);
+
 					for (var playa in pids){
 						var requested_pid = playa
 						stats_all[requested_pid] = {}
@@ -3722,6 +3752,74 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 
 		mlr_pa_finished = 1;
 		console.log('mlr_pa_loader done!');
+
+		// Now that everything has loaded, let's check for URL parameters
+		if(params.has('tab')) {
+			console.log('URL Parameters found');
+			var tab = params.get('tab')
+			if(tab == 'stats') {
+				if(params.has('id')) {
+					var id = params.get('id')
+					$('#player_select').val(pids[id][0])
+					console.log(`Searching for ${pids[id][0]}`)
+					$('#do_stats').click();
+				}
+			} else if(tab == 'hitting') {
+				$('.accordion-tab[data-actab-id="1"]').click();
+				//http://127.0.0.1:5500/career-stats.html?tab=hitting&hl=highest&stat=1B&m=&m2=&stat2=&min=&max=&min2=&max2=&s=1st&s=2nd&s=3rd&s=4th&s=5th&s=6th
+				//&s=extras&s=winning&s=losing&s=tied&s=team&s=opponent&type=or&n=10&r=K&r2=1B&tm=BAL&op=CIN
+				$('#highlow option[value="'+params.get('hl')+'"]').prop('selected', true)
+				$('#stat option[value="'+params.get('stat')+'"]').prop('selected', true)
+				$('#math option[value="'+params.get('m')+'"]').prop('selected', true)
+				$('#stat2 option[value="'+params.get('stat2')+'"]').prop('selected', true)
+				$('#minresult').val(params.get('min'));
+				$('#maxresult').val(params.get('max'));
+				$('#minresult2').val(params.get('min2'));
+				$('#maxresult2').val(params.get('max2'));
+				var splitty = params.getAll('s');
+				for(spli in splitty) {
+					$("#mySelectOptions input[value="+splitty[spli]+"]").prop( "checked", true );
+				}
+				$('#split_type option[value="'+params.get('type')+'"]').prop('selected', true)
+				$('#number_of_results').val(params.get('n'));
+				$('#result option[value="'+params.get('r')+'"]').prop('selected', true)
+				$('#result2 option[value="'+params.get('r2')+'"]').prop('selected', true)
+				$('#team option[value="'+params.get('tm')+'"]').prop('selected', true)
+				$('#opponent option[value="'+params.get('op')+'"]').prop('selected', true);
+
+				$("#one").click();
+				$("#one").click();
+
+				$('#calc-submit').click();
+			}
+
+			else if(tab == 'pitching') {
+				$('.accordion-tab[data-actab-id="2"]').click();
+				$('#Phighlow option[value="'+params.get('hl')+'"]').prop('selected', true)
+				$('#Pstat option[value="'+params.get('stat')+'"]').prop('selected', true)
+				$('#Pmath option[value="'+params.get('m')+'"]').prop('selected', true)
+				$('#Pstat2 option[value="'+params.get('stat2')+'"]').prop('selected', true)
+				$('#Pminresult').val(params.get('min'));
+				$('#Pmaxresult').val(params.get('max'));
+				$('#Pminresult2').val(params.get('min2'));
+				$('#Pmaxresult2').val(params.get('max2'));
+				var splitty = params.getAll('s');
+				for(spli in splitty) {
+					$("#PmySelectOptions input[value="+splitty[spli]+"]").prop( "checked", true );
+				}
+				$('#Psplit_type option[value="'+params.get('type')+'"]').prop('selected', true)
+				$('#Pnumber_of_results').val(params.get('n'));
+				$('#Presult option[value="'+params.get('r')+'"]').prop('selected', true)
+				$('#Presult2 option[value="'+params.get('r2')+'"]').prop('selected', true)
+				$('#Pteam option[value="'+params.get('tm')+'"]').prop('selected', true)
+				$('#Popponent option[value="'+params.get('op')+'"]').prop('selected', true);
+
+				$("#Pone").click();
+				$("#Pone").click();
+
+				$('#calc-submit-p').click();
+			}
+		}
 
 	} //Flag check else end
 } //mlr_pa_loader() end
