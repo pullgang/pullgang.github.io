@@ -499,326 +499,22 @@ function mlr_pa_loader() {
 					}
 				}
 			}
-
-
-
-		//Finally... we do leaderboard stat names
-		//I forgot the id of the button link
-		//And no internet lol
-		//So fix it fr
-		//Method:
-		//Instead of dicts for each split,
-		//just have the standard stats dict
-		//and replace that every time. 
-		//This means fewer issues
-		//if someone loads multiple splits
-		//without refreshing. :D 
-
-		//One problem:
-		//Some splits can be different for hitter and pitcher
-		//i.e. home and away. 
-		//But... 
-		//We can name splits using hitter perspective
-		//And label the pitcher ones internally from the hitter's perspective
-		//E.G. 
-		//If we called a split "away"
-		//We could check for uh
-		//Am i stupid? Maybe
-		//One sec lemme think
-		
-	// 	$('#calc-submit').click(function() {
-	// 		var requested_split = document.getElementById("split").value;
-	// 	for(line in mlr_data) {
-
-	// 		//Define Variables
-	// 		//We're gonna do hitters and pitchers separately hehe. 
-	// 		//Hitter
-	// 		var pid = players[mlr_data[line]['Hitter']];
-	// 		var sth = stats_all[pid]
-	// 		var l = mlr_data[line];
-	// 		if(l[0] == 'Hitter') {
-	// 			continue;
-	// 		}
-	// 		if(l['Hitter'] == '') {
-	// 			continue;
-	// 		}
-	// 		var team = l['Batter Team'];
-	// 		var season = l['Season'];
-	// 		if(team in current_teams[season]) {
-	// 			team = current_teams[season][team];
-	// 		}
-	// 		//Splits
-	// 		if(requested_split == 'None') {
-	// 			sth["playerData"].push(mlr_data[line]);
-	// 		}
-	// 		else if(requested_split == 'Home') {
-	// 			if(l['Inning'].substr(0,1) == 'B') {
-	// 				sth["playerData"].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'Away') {
-	// 			if(l['Inning'].substr(0,1) == 'T') {
-	// 				sth["playerData"].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == '0out') {
-	// 			if(l['Outs'] == '0') {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == '1out') {
-	// 			if(l['Outs'] == '1') {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == '2out') {
-	// 			if(l['Outs'] == '2') {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'inning1') {
-	// 			if(l['Inning'].substr(1,2) == '1') {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'inning2') {
-	// 			if(l['Inning'].substr(1,2) == '2') {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'inning3') {
-	// 			if(l['Inning'].substr(1,2) == '3') {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'inning4') {
-	// 			if(l['Inning'].substr(1,2) == '4') {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'inning5') {
-	// 			if(l['Inning'].substr(1,2) == '5') {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'inning6') {
-	// 			if(l['Inning'].substr(1,2) == '6') {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'extras') {
-	// 			if(l['Inning'].substr(1,2) > 6) {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'winning') {
-	// 			if(l['Home Score'] > l['Away Score']) {
-	// 				if(l['Inning'].substr(0,1) == 'B') {
-	// 					sth['playerData'].push(mlr_data[line]);
-	// 				}
-	// 			}
-	// 			if(l['Home Score'] < l['Away Score']) {
-	// 				if(l['Inning'].substr(0,1) == 'T') {
-	// 					sth['playerData'].push(mlr_data[line]);
-	// 				}
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'losing') {
-	// 			if(l['Home Score'] < l['Away Score']) {
-	// 				if(l['Inning'].substr(0,1) == 'B') {
-	// 					sth['playerData'].push(mlr_data[line]);
-	// 				}
-	// 			}
-	// 			if(l['Home Score'] > l['Away Score']) {
-	// 				if(l['Inning'].substr(0,1) == 'T') {
-	// 					sth['playerData'].push(mlr_data[line]);
-	// 				}
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'tied') {
-	// 			if(l['Home Score'] == l['Away Score']) {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-	// 		else if(requested_split == 'team') { // just do one team at a time for leaderboards. it has a custom input
-	// 			var requested_team = document.getElementById('team').value;
-	// 			if(l['Batter Team'] == requested_team) {
-	// 				sth['playerData'].push(mlr_data[line]);
-	// 			}
-	// 		}
-
-
-	// 		//Old
-	// 		// var pid = players[mlr_data[line]['Hitter']];
-	// 		// var ppid = players[mlr_data[line]['Pitcher']];
-	// 		// var sth = stats_all[pid]
-	// 		// var stp = stats_all[ppid]
-	// 		// var l = mlr_data[line];
-	// 		// if(l[0] == 'Hitter') {
-	// 		// 	continue;
-	// 		// }
-	// 		// if(l['Hitter'] == '') {
-	// 		// 	continue;
-	// 		// }
-	// 		// var team = l['Batter Team'];
-	// 		// var pteam = l['Pitcher Team'];
-	// 		// var season = l['Season'];
-	// 		// if(team in current_teams[season]) {
-	// 		// 	team = current_teams[season][team];
-	// 		// }
-	// 		// if(pteam in current_teams[season]) {
-	// 		// 	pteam = current_teams[season][pteam];
-	// 		// }
-	// 		// var result = mlr_data[line]['Result'];
-	// 		// var session = mlr_data[line]['Session'];
-	// 		// var game_id = mlr_data[line]['Game ID'];
-	// 		// var avg_stuff = ['HR','3B','2B','1B','Bunt 1B'];
-
-
-	// 		// //Splits
-	// 		// if(requested_split == 'None') {
-	// 		// 	sth["playerData"].push(mlr_data[line]);
-	// 		// 	stp["playerDataP"].push(mlr_data[line]);
-	// 		// }
-	// 		// if(requested_split == 'Home') {
-	// 		// 	if(l['Inning'].substr(0,1) == 'B') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// 	if(l['Inning'].substr(0,1) == 'T') {
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'Away') {
-	// 		// 	if(l['Inning'].substr(0,1) == 'B') {
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// 	if(l['Inning'].substr(0,1) == 'T') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == '0out') {
-	// 		// 	if(l['Outs'] == '0') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == '1out') {
-	// 		// 	if(l['Outs'] == '1') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == '2out') {
-	// 		// 	if(l['Outs'] == '2') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'inning1') {
-	// 		// 	if(l['Inning'].substr(1,2) == '1') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'inning2') {
-	// 		// 	if(l['Inning'].substr(1,2) == '2') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'inning3') {
-	// 		// 	if(l['Inning'].substr(1,2) == '3') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'inning4') {
-	// 		// 	if(l['Inning'].substr(1,2) == '4') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'inning5') {
-	// 		// 	if(l['Inning'].substr(1,2) == '5') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'inning6') {
-	// 		// 	if(l['Inning'].substr(1,2) == '6') {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'extras') {
-	// 		// 	if(l['Inning'].substr(1,2) > 6) {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'winning') {
-	// 		// 	if(l['Home Score'] > l['Away Score']) {
-	// 		// 		if(l['Inning'].substr(0,1) == 'B') {
-	// 		// 			sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		}
-	// 		// 		if(l['Inning'].substr(0,1) == 'T') {
-	// 		// 			stp['playerDataP'].push(mlr_data[line]);
-	// 		// 		}
-	// 		// 	}
-	// 		// 	if(l['Home Score'] < l['Away Score']) {
-	// 		// 		if(l['Inning'].substr(0,1) == 'B') {
-	// 		// 			stp['playerDataP'].push(mlr_data[line]);
-	// 		// 		}
-	// 		// 		if(l['Inning'].substr(0,1) == 'T') {
-	// 		// 			sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		}
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'losing') {
-	// 		// 	if(l['Home Score'] < l['Away Score']) {
-	// 		// 		if(l['Inning'].substr(0,1) == 'B') {
-	// 		// 			sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		}
-	// 		// 		if(l['Inning'].substr(0,1) == 'T') {
-	// 		// 			stp['playerDataP'].push(mlr_data[line]);
-	// 		// 		}
-	// 		// 	}
-	// 		// 	if(l['Home Score'] > l['Away Score']) {
-	// 		// 		if(l['Inning'].substr(0,1) == 'B') {
-	// 		// 			stp['playerDataP'].push(mlr_data[line]);
-	// 		// 		}
-	// 		// 		if(l['Inning'].substr(0,1) == 'T') {
-	// 		// 			sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		}
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'tied') {
-	// 		// 	if(l['Home Score'] == l['Away Score']) {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 		// if(requested_split == 'team') { // just do one team at a time for leaderboards. it has a custom input
-	// 		// 	var requested_team = document.getElementById('team').value;
-	// 		// 	if(l['Batter Team'] == requested_team) {
-	// 		// 		sth['playerDataH'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// 	if(l['Pitcher Team'] == requested_team) {
-	// 		// 		stp['playerDataP'].push(mlr_data[line]);
-	// 		// 	}
-	// 		// }
-	// 	}
-	// });
 	
 			function askStat(statname1, statname2, pid, stname=stats) {
 				if(stname[pid][statname1].length > 0) {
 					doStats(stname[pid][statname2], stname[pid][statname1]);
+					return true;
+				} else {
+					return false;
 				}
 			}
 	
 			function askpStat(statname1, statname2, pid, stname=stats) {
 				if(stname[pid][statname1].length > 0) {
 					doPStats(stname[pid][statname2], stname[pid][statname1]);
+					return true;
+				} else {
+					return false;
 				}
 			}
 	
@@ -938,58 +634,7 @@ function mlr_pa_loader() {
 				}
 				the_stats = pstatsDoer(the_stats);
 			}
-	
-
-			//The following MIGHT be necessary. I forgot.
-			//It does the stats for every player.
-			//But we currently don't have these stats for every player!
-			//We could shift ths to one of the button presses. 
-			//Honestly it's probably necessary sadly. 
-
-
-			// for (var playa in pids){
-	
-			// 	askStat('playerDataH','standard',playa)
-			// 	// askStat('playerDataHome','home',playa)
-			// 	// askStat('playerDataAway','away',playa)
-			// 	// askStat('playerData0out','0out',playa)
-			// 	// askStat('playerData1out','1out',playa)
-			// 	// askStat('playerData2out','2out',playa)
-			// 	// askStat('playerData1st','1st',playa)
-			// 	// askStat('playerData2nd','2nd',playa)
-			// 	// askStat('playerData3rd','3rd',playa)
-			// 	// askStat('playerData4th','4th',playa)
-			// 	// askStat('playerData5th','5th',playa)
-			// 	// askStat('playerData6th','6th',playa)
-			// 	// askStat('playerDataExtras','extras',playa)
-			// 	// askStat('playerDataWinning','winning',playa)
-			// 	// askStat('playerDataLosing','losing',playa)
-			// 	// askStat('playerDataTied','tied',playa)
-			// 	// for(team in all_teams) {
-			// 	// 	askStat('playerData'+all_teams[team],all_teams[team],playa)
-			// 	// 	askpStat('playerDataP'+all_teams[team],"P_"+all_teams[team],playa)
-					
-			// 	// }
-			// 	askpStat('playerDataP','P_standard',playa)
-			// 	// askpStat('playerDataPHome','P_home',playa)
-			// 	// askpStat('playerDataPAway','P_away',playa)
-			// 	// askpStat('playerDataP0out','P_0out',playa)
-			// 	// askpStat('playerDataP1out','P_1out',playa)
-			// 	// askpStat('playerDataP2out','P_2out',playa)
-			// 	// askpStat('playerDataP1st','P_1st',playa)
-			// 	// askpStat('playerDataP2nd','P_2nd',playa)
-			// 	// askpStat('playerDataP3rd','P_3rd',playa)
-			// 	// askpStat('playerDataP4th','P_4th',playa)
-			// 	// askpStat('playerDataP5th','P_5th',playa)
-			// 	// askpStat('playerDataP6th','P_6th',playa)
-			// 	// askpStat('playerDataPExtras','P_extras',playa)
-			// 	// askpStat('playerDataPWinning','P_winning',playa)
-			// 	// askpStat('playerDataPLosing','P_losing',playa)
-			// 	// askpStat('playerDataPTied','P_tied',playa)
-			// }
-	
 				console.log('Finished loading');
-				
 
 				$(".inner").html(`
 				<section class="accordion">
@@ -1038,23 +683,24 @@ function mlr_pa_loader() {
                             <h6 class="hidden">2 Outs</h6>
                             <div class="hidden div-batting-2out"></div>
                         </div>
-                        <!-- <div class="table-responsive toggler">
-                            <h5 class="expand-select">Inning <span class="expando">[+]</span></h5> 
+                        <div class="table-responsive table-splits">
+                            <h5 class="expand-select toggler">Inning <span class="expando">[+]</span></h5> 
                             <h6 class="hidden">1st Inning</h6>
-                            <div class="hidden div-batting-inning1"></div>
+                            <div class="hidden div-batting-1st"></div>
                             <h6 class="hidden">2nd Inning</h6>
-                            <div class="hidden div-batting-inning2"></div>
+                            <div class="hidden div-batting-2nd"></div>
                             <h6 class="hidden">3rd Inning</h6>
-                            <div class="hidden div-batting-inning3"></div>
+                            <div class="hidden div-batting-3rd"></div>
                             <h6 class="hidden">4th Inning</h6>
-                            <div class="hidden div-batting-inning4"></div>
+                            <div class="hidden div-batting-4th"></div>
                             <h6 class="hidden">5th Inning</h6>
-                            <div class="hidden div-batting-inning5"></div>
+                            <div class="hidden div-batting-5th"></div>
                             <h6 class="hidden">6th Inning</h6>
-                            <div class="hidden div-batting-inning7"></div>
+                            <div class="hidden div-batting-6th"></div>
                             <h6 class="hidden">Extra Innings</h6>
-                            <div class="hidden div-batting-inning7"></div>
+                            <div class="hidden div-batting-extras"></div>
                         </div>
+						<!-- 
                         <div class="table-responsive toggler">
                             <h5 class="expand-select">Vs. Starter or Reliever <span class="expando">[+]</span></h5> 
                             <h6 class="hidden">Starter</h6>
@@ -1086,6 +732,12 @@ function mlr_pa_loader() {
                             <h6 class="hidden">Tied</h6>
                             <div class="hidden div-batting-tied"></div>
                         </div>
+						<div class="table-responsive table-splits" id="div-batting-team">
+                            <h5 class="expand-select toggler" id="team-toggler">Team <span class="expando">[+]</span></h5> 
+                        </div>
+						<div class="table-responsive table-splits" id="div-batting-opponent">
+                            <h5 class="expand-select toggler" id="opponent-toggler">Opponent <span class="expando">[+]</span></h5> 
+                        </div>
                     </div>
                     <div id="pitching_div">
                         <h5 id="overview">Overview</h5>
@@ -1115,23 +767,24 @@ function mlr_pa_loader() {
                             <h6 class="hidden">2 Outs</h6>
                             <div class="hidden div-pitching-2out"></div>
                         </div>
-                        <!-- <div class="table-responsive toggler">
-                            <h5 class="expand-select">Inning <span class="expando">[+]</span></h5> 
+						<div class="table-responsive table-splits">
+                            <h5 class="expand-select toggler">Inning <span class="expando">[+]</span></h5> 
                             <h6 class="hidden">1st Inning</h6>
-                            <div class="hidden div-batting-inning1"></div>
+                            <div class="hidden div-pitching-1st"></div>
                             <h6 class="hidden">2nd Inning</h6>
-                            <div class="hidden div-batting-inning2"></div>
+                            <div class="hidden div-pitching-2nd"></div>
                             <h6 class="hidden">3rd Inning</h6>
-                            <div class="hidden div-batting-inning3"></div>
+                            <div class="hidden div-pitching-3rd"></div>
                             <h6 class="hidden">4th Inning</h6>
-                            <div class="hidden div-batting-inning4"></div>
+                            <div class="hidden div-pitching-4th"></div>
                             <h6 class="hidden">5th Inning</h6>
-                            <div class="hidden div-batting-inning5"></div>
+                            <div class="hidden div-pitching-5th"></div>
                             <h6 class="hidden">6th Inning</h6>
-                            <div class="hidden div-batting-inning7"></div>
+                            <div class="hidden div-pitching-6th"></div>
                             <h6 class="hidden">Extra Innings</h6>
-                            <div class="hidden div-batting-inning7"></div>
+                            <div class="hidden div-pitching-extras"></div>
                         </div>
+                        <!-- 
                         <div class="table-responsive toggler">
                             <h5 class="expand-select">Vs. Starter or Reliever <span class="expando">[+]</span></h5> 
                             <h6 class="hidden">Starter</h6>
@@ -1162,6 +815,12 @@ function mlr_pa_loader() {
                             <div class="hidden div-pitching-losing"></div>
                             <h6 class="hidden">Tied</h6>
                             <div class="hidden div-pitching-tied"></div>
+                        </div>
+						<div class="table-responsive table-splits" id="div-pitching-team">
+                            <h5 class="expand-select toggler" id="team-toggler-p">Team <span class="expando">[+]</span></h5> 
+                        </div>
+						<div class="table-responsive table-splits" id="div-pitching-opponent">
+                            <h5 class="expand-select toggler" id="opponent-toggler-p">Opponent <span class="expando">[+]</span></h5> 
                         </div>
                     </div>
                 </div>
@@ -1404,6 +1063,7 @@ function mlr_pa_loader() {
 		<label for="five2"><input type="checkbox" class="multiselect" id="five2" value="losing" />Losing</label>
 		<label for="five3"><input type="checkbox" class="multiselect" id="five3" value="tied" />Tied</label>
 		<label for="five4"><input type="checkbox" class="multiselect" id="five4" value="team" />Specific Team</label>
+		<label for="five5"><input type="checkbox" class="multiselect" id="five5" value="opponent" />VS. Opponent</label>
       </span>
         <select class="form-select">
           <option>somevalue</option>
@@ -1412,6 +1072,11 @@ function mlr_pa_loader() {
     </span>
   </span> 
 	<select name="team" id="team">
+	Team:
+		<option value=""></option>
+	</select> 
+	<select name="opponent" id="opponent">
+	Opponent:
 		<option value=""></option>
 	</select> 
 	of type <select name="split_type" id="split_type">
@@ -1769,6 +1434,7 @@ Split (can select multiple): <span class="form-group col-sm-8">
 		<label for="Pfive2"><input type="checkbox" class="multiselect" id="Pfive2" value="losing" />Losing</label>
 		<label for="Pfive3"><input type="checkbox" class="multiselect" id="Pfive3" value="tied" />Tied</label>
 		<label for="Pfive4"><input type="checkbox" class="multiselect" id="Pfive4" value="team" />Specific Team</label>
+		<label for="Pfive5"><input type="checkbox" class="multiselect" id="Pfive5" value="opponent" />VS. Opponent</label>
       </span>
         <select class="form-select">
           <option>somevalue</option>
@@ -1777,6 +1443,11 @@ Split (can select multiple): <span class="form-group col-sm-8">
     </span>
   </span> 
 	<select name="team" id="Pteam">
+		Team: 
+		<option value=""></option>
+	</select> 
+	<select name="opponent" id="Popponent">
+	<label for="Popponent">Opponent:</label>
 		<option value=""></option>
 	</select> 
 	of type <select name="Psplit_type" id="Psplit_type">
@@ -2014,6 +1685,14 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					} else {
 						$('#team').css('display','none')
 					}
+					if(values.includes('opponent')) {
+						$('#opponent').css("cssText", "display: inline !important; width: auto;");
+					} else {
+						$('#opponent').css('display','none')
+					}
+				} else {
+					$('#team').css('display','none');
+					$('#opponent').css('display','none');
 				}
 				
 				multiselectOption.innerText = dropdownValue;
@@ -2091,6 +1770,14 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					} else {
 						$('#Pteam').css('display','none')
 					}
+					if(pvalues.includes('opponent')) {
+						$('#Popponent').css("cssText", "display: inline !important; width: auto;");
+					} else {
+						$('#Popponent').css('display','none')
+					}
+				} else {
+					$('#Pteam').css('display','none');
+					$('#Popponent').css('display','none');
 				}
 				
 				pmultiselectOption.innerText = pdropdownValue;
@@ -2252,7 +1939,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					document.getElementById('players').appendChild(opt);
 				}
 
-				function statBuilder(seasons,stname) {
+				function statBuilder(seasons,stname,addedToggler='') {
 					var htmly = `<div class="div-${stname}-standard">
 					Standard Batting Stats
 					<table class="table table-splits-${stname}-standard table-sm table-striped mt-4">
@@ -2338,7 +2025,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 				</table>
 				</div>
 										<div class="div-${stname}-advanced">
-											<div class="advancedText toggler">Advanced Batting Stats <span class="expando">[+]</span></div>
+											<div class="advancedText toggler${addedToggler}">Advanced Batting Stats <span class="expando">[+]</span></div>
 											<table class="hidden table table-${stname}-advanced table-sm table-striped mt-4">
 												<thead>
 													<tr>
@@ -2415,7 +2102,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						return htmly;
 				}
 				
-				function pstatBuilder(seasons,stname) {
+				function pstatBuilder(seasons,stname,addedToggler='') {
 					var htmly = `<div class="div-${stname}-standard">
 					Standard Pitching Stats
 					<table class="table table-splits-${stname}-standard table-sm table-striped mt-4">
@@ -2498,7 +2185,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 				</table>
 				</div>
 										<div class="div-${stname}-advanced">
-											<div class="advancedText toggler">Advanced Pitching Stats <span class="expando">[+]</span></div>
+											<div class="advancedText toggler${addedToggler}">Advanced Pitching Stats <span class="expando">[+]</span></div>
 											<table class="hidden table table-${stname}-advanced table-sm table-striped mt-4">
 												<thead>
 													<tr>
@@ -2589,33 +2276,30 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 				
 				var seasons = [0,1,2,3,4,5,6,7];
 				
-				
-				$('.div-batting-overview').html($('.div-batting-overview').html() + statBuilder(seasons,'overview'));
-				$('.div-batting-home').html($('.div-batting-home').html() + statBuilder(seasons,'home'));
-				$('.div-batting-away').html($('.div-batting-away').html() + statBuilder(seasons,'away'));
-				$('.div-batting-0out').html($('.div-batting-0out').html() + statBuilder(seasons,'0out'));
-				$('.div-batting-1out').html($('.div-batting-1out').html() + statBuilder(seasons,'1out'));
-				$('.div-batting-2out').html($('.div-batting-2out').html() + statBuilder(seasons,'2out'));
-				$('.div-batting-winning').html($('.div-batting-winning').html() + statBuilder(seasons,'winning'));
-				$('.div-batting-losing').html($('.div-batting-losing').html() + statBuilder(seasons,'losing'));
-				$('.div-batting-tied').html($('.div-batting-tied').html() + statBuilder(seasons,'tied'));
-				
-				$('.div-pitching-overview').html($('.div-pitching-overview').html() + pstatBuilder(seasons,'overview'));
-				$('.div-pitching-home').html($('.div-pitching-home').html() + pstatBuilder(seasons,'home'));
-				$('.div-pitching-away').html($('.div-pitching-away').html() + pstatBuilder(seasons,'away'));
-				$('.div-pitching-0out').html($('.div-pitching-0out').html() + pstatBuilder(seasons,'0out'));
-				$('.div-pitching-1out').html($('.div-pitching-1out').html() + pstatBuilder(seasons,'1out'));
-				$('.div-pitching-2out').html($('.div-pitching-2out').html() + pstatBuilder(seasons,'2out'));
-				$('.div-pitching-winning').html($('.div-pitching-winning').html() + pstatBuilder(seasons,'winning'));
-				$('.div-pitching-losing').html($('.div-pitching-losing').html() + pstatBuilder(seasons,'losing'));
-				$('.div-pitching-tied').html($('.div-pitching-tied').html() + pstatBuilder(seasons,'tied'));
-				
+				function overviewBuild(split, a=true, b=true, c='') {
+					if(a) {$('.div-batting-'+split).html($('.div-batting-'+split).html() + statBuilder(seasons,split,c));}
+					if(b) {$('.div-pitching-'+split).html($('.div-pitching-'+split).html() + pstatBuilder(seasons,split,c));}	
+				}
+
+				var all_splits = ['overview','home','away','0out','1out','2out','winning','losing','tied','1st','2nd','3rd','4th','5th','6th','extras']
+				for(var spl in all_splits) {
+					overviewBuild(all_splits[spl]);
+				}
+				// for(team in all_teams) {
+					
+				// }
+
 				$.fn.extend({
 					toggleText: function(a, b){
 						return this.text(this.text() == b ? a : b);
 					}
 				});
 				$('.toggler').on('click', function () {
+					$(this).parent().children('.hidden').toggle("fast");
+					$(this).parent().children('h5').children('.expando').toggleText('[+]', '[-]');
+					$(this).parent().children('div').children('.expando').toggleText('[+]', '[-]');
+				});
+				$('body').on('click', '.toggler-added', function () {
 					$(this).parent().children('.hidden').toggle("fast");
 					$(this).parent().children('h5').children('.expando').toggleText('[+]', '[-]');
 					$(this).parent().children('div').children('.expando').toggleText('[+]', '[-]');
@@ -2742,6 +2426,14 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 			//Well, we may as well do it for both hitter and pitcher.
 			//This shouldn't be a problem, right? :WeDoALittleTrolling:
 			$('#do_stats').click(function() {
+
+				//First we're gonna delete the added things per player 
+				//(the team stats etc.)
+				$('.added-team-pls-delete').remove();
+				$('#team-toggler .expando').text('[+]');
+				$('#team-toggler-p .expando').text('[+]');
+				$('#opponent-toggler .expando').text('[+]');
+				$('#opponent-toggler-p .expando').text('[+]');
 				var requested_player_name = document.getElementById('player_select').value;
 				var requested_pid = players[requested_player_name]
 				// To save on memory, we're going to do this for individual players
@@ -2758,6 +2450,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 				stats[requested_pid]['home'] = [];
 				stats[requested_pid]['away'] = [];
 				stats[requested_pid]['team'] = [];
+				stats[requested_pid]['opponent'] = [];
 				stats[requested_pid]['0out'] = [];
 				stats[requested_pid]['1out'] = [];
 				stats[requested_pid]['2out'] = [];
@@ -2825,6 +2518,10 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					stats[requested_pid][all_teams[team]] = [];
 					stats[requested_pid]["playerDataP"+all_teams[team]] = [];
 					stats[requested_pid]["P_"+all_teams[team]] = [];
+					stats[requested_pid]["playerDataOpp"+all_teams[team]] = [];
+					stats[requested_pid]["Opp_"+all_teams[team]] = [];
+					stats[requested_pid]["playerDataPOpp"+all_teams[team]] = [];
+					stats[requested_pid]["P_Opp_"+all_teams[team]] = [];
 				}
 
 			for(line in mlr_data) {
@@ -2848,9 +2545,13 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						continue;
 					}
 					var team = l['Batter Team'];
+					var opp_team = l['Pitcher Team'];
 					var season = l['Season'];
 					if(team in current_teams[season]) {
 						team = current_teams[season][team];
+					}
+					if(opp_team in current_teams[season]) {
+						opp_team = current_teams[season][opp_team];
 					}
 					var result = mlr_data[line]['Result'];
 					var session = mlr_data[line]['Session'];
@@ -2860,6 +2561,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 
 					//Splits
 					sth["playerData"+team].push(mlr_data[line]);
+					sth["playerDataOpp"+opp_team].push(mlr_data[line]);
 					if(l['Inning'].substr(0,1) == 'B') {
 						sth['playerDataHome'].push(mlr_data[line]);
 					}
@@ -2930,6 +2632,10 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					if(pteam in current_teams[season]) {
 						pteam = current_teams[season][pteam];
 					}
+					var popp_team = l['Batter Team'];
+					if(popp_team in current_teams[season]) {
+						popp_team = current_teams[season][popp_team];
+					}
 					var result = mlr_data[line]['Result'];
 					var session = mlr_data[line]['Session'];
 					var game_id = mlr_data[line]['Game ID'];
@@ -2939,6 +2645,9 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					//Splits
 					if(pteam.length > 0) {
 						stp["playerDataP"+pteam].push(mlr_data[line]);
+					}
+					if(popp_team.length > 0) {
+						stp["playerDataPOpp"+popp_team].push(mlr_data[line]);
 					}
 					if(l['Inning'].substr(0,1) == 'B') {
 						stp['playerDataPAway'].push(mlr_data[line]);
@@ -3014,9 +2723,39 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 				askStat('playerDataWinning','winning',requested_pid)
 				askStat('playerDataLosing','losing',requested_pid)
 				askStat('playerDataTied','tied',requested_pid)
+				var valid_teams = [];
+				var valid_p_teams = [];
+				var valid_opp_teams = [];
+				var valid_popp_teams = [];
 				for(team in all_teams) {
-					askStat('playerData'+all_teams[team],all_teams[team],requested_pid)
-					askpStat('playerDataP'+all_teams[team],"P_"+all_teams[team],requested_pid)
+					var h_team_check = askStat('playerData'+all_teams[team],all_teams[team],requested_pid);
+					if(h_team_check) {
+						$('#div-batting-team').append('<h6 class="hidden added-team-pls-delete" id="'+all_teams[team]+'">'+all_teams[team]+'</h6>');
+						$('#div-batting-team').append('<div class="hidden added-team-pls-delete div-batting-'+all_teams[team]+'"></div>');
+						overviewBuild(all_teams[team],true,true,'-added');
+						valid_teams.push(all_teams[team]);
+					}
+					var p_team_check = askpStat('playerDataP'+all_teams[team],"P_"+all_teams[team],requested_pid);
+					if(p_team_check) {
+						$('#div-pitching-team').append('<h6 class="hidden added-team-pls-delete" id="P_'+all_teams[team]+'">'+all_teams[team]+'</h6>');
+						$('#div-pitching-team').append('<div class="hidden added-team-pls-delete div-pitching-'+all_teams[team]+'"></div>');
+						overviewBuild(all_teams[team],false,true,'-added');
+						valid_p_teams.push(all_teams[team]);
+					}
+					var h_opp_team_check = askStat('playerDataOpp'+all_teams[team],'Opp_'+all_teams[team],requested_pid);
+					if(h_opp_team_check) {
+						$('#div-batting-opponent').append('<h6 class="hidden added-team-pls-delete" id="Opp_'+all_teams[team]+'">'+all_teams[team]+'</h6>');
+						$('#div-batting-opponent').append('<div class="hidden added-team-pls-delete div-batting-opp-'+all_teams[team]+'"></div>');
+						overviewBuild('opp-'+all_teams[team],true,false,'-added');
+						valid_opp_teams.push(all_teams[team]);
+					}
+					var p_opp_team_check = askpStat('playerDataPOpp'+all_teams[team],"P_Opp_"+all_teams[team],requested_pid);
+					if(p_opp_team_check) {
+						$('#div-pitching-opponent').append('<h6 class="hidden added-team-pls-delete" id="P_Opp_'+all_teams[team]+'">'+all_teams[team]+'</h6>');
+						$('#div-pitching-opponent').append('<div class="hidden added-team-pls-delete div-pitching-opp-'+all_teams[team]+'"></div>');
+						overviewBuild('opp-'+all_teams[team],false,true,'-added');
+						valid_popp_teams.push(all_teams[team]);
+					}
 				}
 				askpStat('playerDataP','P_standard',requested_pid)
 				askpStat('playerDataPHome','P_home',requested_pid)
@@ -3037,6 +2776,18 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 
 				$("#calc-pitcher-info").text("Player ID: "+requested_pid);
 				for(season in seasons) {
+					for(team in valid_teams) {
+						statsPut(seasons[season], stats[requested_pid][valid_teams[team]][season], requested_player_name, valid_teams[team]);
+					}
+					for(team in valid_p_teams) {
+						pstatsPut(seasons[season], stats[requested_pid]["P_"+valid_p_teams[team]][season], requested_player_name, valid_p_teams[team]);
+					}
+					for(team in valid_opp_teams) {
+						statsPut(seasons[season], stats[requested_pid]["Opp_"+valid_opp_teams[team]][season], requested_player_name, "opp-"+valid_opp_teams[team]);
+					}
+					for(team in valid_popp_teams) {
+						pstatsPut(seasons[season], stats[requested_pid]["P_Opp_"+valid_popp_teams[team]][season], requested_player_name, "opp-"+valid_popp_teams[team]);
+					}
 					statsPut(seasons[season], stats[requested_pid]['standard'][season], requested_player_name, 'overview');
 					statsPut(seasons[season], stats[requested_pid]['0out'][season], requested_player_name, '0out');
 					statsPut(seasons[season], stats[requested_pid]['1out'][season], requested_player_name, '1out');
@@ -3046,6 +2797,13 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					statsPut(seasons[season], stats[requested_pid]['winning'][season], requested_player_name, 'winning');
 					statsPut(seasons[season], stats[requested_pid]['losing'][season], requested_player_name, 'losing');
 					statsPut(seasons[season], stats[requested_pid]['tied'][season], requested_player_name, 'tied');
+					statsPut(seasons[season], stats[requested_pid]['1st'][season], requested_player_name, '1st');
+					statsPut(seasons[season], stats[requested_pid]['2nd'][season], requested_player_name, '2nd');
+					statsPut(seasons[season], stats[requested_pid]['3rd'][season], requested_player_name, '3rd');
+					statsPut(seasons[season], stats[requested_pid]['4th'][season], requested_player_name, '4th');
+					statsPut(seasons[season], stats[requested_pid]['5th'][season], requested_player_name, '5th');
+					statsPut(seasons[season], stats[requested_pid]['6th'][season], requested_player_name, '6th');
+					statsPut(seasons[season], stats[requested_pid]['extras'][season], requested_player_name, 'extras');
 			
 					pstatsPut(seasons[season], stats[requested_pid]['P_standard'][season], requested_player_name, 'overview');
 					pstatsPut(seasons[season], stats[requested_pid]['P_0out'][season], requested_player_name, '0out');
@@ -3056,6 +2814,13 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					pstatsPut(seasons[season], stats[requested_pid]['P_winning'][season], requested_player_name, 'winning');
 					pstatsPut(seasons[season], stats[requested_pid]['P_losing'][season], requested_player_name, 'losing');
 					pstatsPut(seasons[season], stats[requested_pid]['P_tied'][season], requested_player_name, 'tied');
+					pstatsPut(seasons[season], stats[requested_pid]['P_1st'][season], requested_player_name, '1st');
+					pstatsPut(seasons[season], stats[requested_pid]['P_2nd'][season], requested_player_name, '2nd');
+					pstatsPut(seasons[season], stats[requested_pid]['P_3rd'][season], requested_player_name, '3rd');
+					pstatsPut(seasons[season], stats[requested_pid]['P_4th'][season], requested_player_name, '4th');
+					pstatsPut(seasons[season], stats[requested_pid]['P_5th'][season], requested_player_name, '5th');
+					pstatsPut(seasons[season], stats[requested_pid]['P_6th'][season], requested_player_name, '6th');
+					pstatsPut(seasons[season], stats[requested_pid]['P_extras'][season], requested_player_name, 'extras');
 				}
 				$("#player-name").text("Stats for "+requested_player_name);
 				$("#player-id").text(" ID: "+requested_pid).css('background-color', '#00000038').css('padding', '1px 10px');
@@ -3070,6 +2835,14 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						text: all_teams[team]
 					}));
 					$('#Pteam').append($('<option>', {
+						value: all_teams[team],
+						text: all_teams[team]
+					}));
+					$('#opponent').append($('<option>', {
+						value: all_teams[team],
+						text: all_teams[team]
+					}));
+					$('#Popponent').append($('<option>', {
 						value: all_teams[team],
 						text: all_teams[team]
 					}));
@@ -3115,12 +2888,6 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					Object.keys(obj)
 						.filter( key => predicate(obj[key]) )
 						.reduce( (res, key) => (res[key] = obj[key], res), {} );
-					if(split == 'team') {
-						split = document.getElementById("team").value;
-					} 
-					if(split == 'P_team') {
-						split = "P_"+document.getElementById("Pteam").value;
-					} 
 					o = Object.filter(o, key => !($.isEmptyObject(key[split]))); 
 					var keys = Object.keys(o);
 					keys.sort(function (a, b) {
@@ -3299,12 +3066,6 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 
 				function addRows(listy, split, seasony, table_id, stat, math, stat2, season, results, style) {
 					split = 'standard'; // lol
-					if(split == 'team') {
-						split = document.getElementById("team").value;
-					}
-					if(split == 'P_team') {
-						split = "P_"+document.getElementById("Pteam").value;
-					}
 					otherplayerscount = otherplayerscount + 1;
 					var table = document.getElementById(table_id);
 					var row_count = 0;
@@ -3444,9 +3205,13 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 							continue;
 						}
 						var team = l['Batter Team'];
+						var opp_team = l['Pitcher Team'];
 						var season = l['Season'];
 						if(team in current_teams[season]) {
 							team = current_teams[season][team];
+						}
+						if(opp_team in current_teams[season]) {
+							opp_team = current_teams[season][opp_team];
 						}
 						//Splits
 						if(requested_split.length == 0) {
@@ -3454,7 +3219,6 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						}
 						else {
 							var found_splits = [];
-							var all_splits = ['home','away','0out','1out','2out','1st','2nd','3rd','4th','5th','6th','extras','winning','losing','tied','team']
 							if(l['Inning'].substr(0,1) == 'B') {
 								found_splits.push('home');
 							}
@@ -3515,8 +3279,12 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 								found_splits.push('tied');
 							}
 							var requested_team = document.getElementById('team').value;
+							var requested_opp_team = document.getElementById('opponent').value;
 							if(team == requested_team) {
 								found_splits.push('team');
+							}
+							if(opp_team == requested_opp_team) {
+								found_splits.push('opponent');
 							}
 
 							if(split_type == 'or') {
@@ -3751,9 +3519,13 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 							continue;
 						}
 						var team = l['Pitcher Team'];
+						var opp_team = l['Batter Team'];
 						var season = l['Season'];
 						if(team in current_teams[season]) {
 							team = current_teams[season][team];
+						}
+						if(opp_team in current_teams[season]) {
+							opp_team = current_teams[season][opp_team];
 						}
 						//Splits
 						if(requested_split.length == 0) {
@@ -3821,8 +3593,12 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 								found_splits.push('tied');
 							}
 							var requested_team = document.getElementById('Pteam').value;
+							var requested_opp_team = document.getElementById('Popponent').value;
 							if(team == requested_team) {
 								found_splits.push('team');
+							}
+							if(opp_team == requested_opp_team) {
+								found_splits.push('opponent');
 							}
 
 							if(split_type == 'or') {

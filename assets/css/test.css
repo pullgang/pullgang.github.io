@@ -5,22 +5,20 @@
     width: 100%;
   }
 
+.hidden-fr {
+  display: none;
+}
+
 .div-batting {
-    display: inline-flex;
-    background-color: hsl(0deg 0% 100% / 10%);
-    backdrop-filter: blur(4px);
+    display: table;
     font-size: 16px;
-    border: 1px solid white;
     margin-top: 1rem;
     width: 100%;
 }
 
 .div-pitching {
-    display: inline-flex;
-    background-color: hsl(0deg 0% 100% / 10%);
-    backdrop-filter: blur(4px);
+    display: table;
     font-size: 16px;
-    border: 1px solid white;
     margin-top: 1rem;
     width: 100%;
 }
@@ -33,10 +31,11 @@ table td {
     padding: 0.25em 0.25em;
 }
 
-table {
+.div-batting table {
     margin: 0 0 1rem 0;
-    width: 20%;
+    max-width: 12.5%!important;
     border: 1px solid white;
+    display:inline-table;
 }
 
 thead .added:nth-child(odd) {
@@ -132,6 +131,14 @@ hr {
     display:none!important;
 }
 
+#opponent {
+  display:none!important;
+}
+
+#Popponent {
+  display:none!important;
+}
+
 #hitting_div {
     text-align: left;
 }
@@ -181,6 +188,12 @@ h6 {
     border-bottom: dotted 1px rgba(255, 255, 255, 0.5);
     width: fit-content;
     cursor: pointer;
+}
+
+.toggler-added {
+  border-bottom: dotted 1px rgba(255, 255, 255, 0.5);
+  width: fit-content;
+  cursor: pointer;
 }
 
 table th {
