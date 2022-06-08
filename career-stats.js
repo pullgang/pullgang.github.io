@@ -51,12 +51,6 @@ $.ajax({
 	dataType: "text",
 	success: function (data) { season1RosterData = data; }
 });
-$.ajax({
-	type: "GET",
-	url: "https://pullgang.github.io/roster_s1_no_reddit_special_p.txt",
-	dataType: "text",
-	success: function (data) { season1RosterData = data; }
-});
 
 function loadData() {
 	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=Season7";
