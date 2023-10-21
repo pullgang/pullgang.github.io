@@ -59,7 +59,7 @@ $.ajax({
 });
 
 function loadData() {
-	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=Season8";
+	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=Season9";
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function () {
 		console.log(xmlhttp.readyState);
@@ -74,7 +74,7 @@ function loadData() {
 
 loadData();
 function loadcurrentSeasonPlayers() {
-	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=PlayersS8";
+	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=PlayersS9";
 	xmlhttp2 = new XMLHttpRequest();
 	xmlhttp2.onreadystatechange = function () {
 		console.log(xmlhttp2.readyState);
@@ -100,7 +100,7 @@ function mlr_pa_loader() {
 	} else {
 		currentSeasonData = currentSeasonData.split("\n").slice(1);
 		for (line in currentSeasonData) {
-			currentSeasonData[line] = currentSeasonData[line] + ',8,';
+			currentSeasonData[line] = currentSeasonData[line] + ',9,';
 		}
 		currentSeasonData = currentSeasonData.join("\n");
 		previousSeasonData = previousSeasonData + "\n" + currentSeasonData;
@@ -130,7 +130,7 @@ function mlr_pa_loader() {
 			}
 		}
 
-		var playerTypes = {'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{}};
+		var playerTypes = {'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{}};
 		for (var key in playerTypeData) {
 			var player_name = playerTypeData[key]["Player Name"];
 			var season = playerTypeData[key]["Season"];
@@ -174,12 +174,12 @@ function mlr_pa_loader() {
 				var hits = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'];
 				var tb = 4 * statsdict[key]['HR'] + 3 * statsdict[key]['3B'] + 2 * statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'];
 				var tb_bb_sb = 4 * statsdict[key]['HR'] + 3 * statsdict[key]['3B'] + 2 * statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['BB'] + statsdict[key]['SB'];
-				var abs = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'];
-				var abs_2 = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Auto K'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'];
+				var abs = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'] + statsdict[key]['LO'];
+				var abs_2 = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Auto K'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'] + statsdict[key]['LO'];
 				var ob = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['BB'];
 				var ob_2 = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['BB'] + statsdict[key]['IBB'] + statsdict[key]['Auto BB'];
-				var pas = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'] + statsdict[key]['BB'] + statsdict[key]['Sac'] + statsdict[key]['Bunt Sac'] + statsdict[key]['Bunt'];
-				var pas_2 = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Auto K'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'] + statsdict[key]['BB'] + statsdict[key]['IBB'] + statsdict[key]['Auto BB'] + statsdict[key]['Sac'] + statsdict[key]['Bunt Sac'] + statsdict[key]['Bunt'];
+				var pas = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'] + statsdict[key]['BB'] + statsdict[key]['Sac'] + statsdict[key]['Bunt Sac'] + statsdict[key]['Bunt'] + statsdict[key]['LO'];
+				var pas_2 = statsdict[key]['HR'] + statsdict[key]['3B'] + statsdict[key]['2B'] + statsdict[key]['1B'] + statsdict[key]['Bunt 1B'] + statsdict[key]['FO'] + statsdict[key]['K'] + statsdict[key]['PO'] + statsdict[key]['RGO'] + statsdict[key]['LGO'] + statsdict[key]['DP'] + statsdict[key]['Auto K'] + statsdict[key]['Bunt K'] + statsdict[key]['TP'] + statsdict[key]['Bunt GO'] + statsdict[key]['BB'] + statsdict[key]['IBB'] + statsdict[key]['Auto BB'] + statsdict[key]['Sac'] + statsdict[key]['Bunt Sac'] + statsdict[key]['Bunt'] + statsdict[key]['LO'];
 				try {
 					newStats[key]['AVG'] = parseFloat((hits / abs).toFixed(3)).toFixed(3);
 					if (isNaN(newStats[key]['AVG'])) { newStats[key]['AVG'] = 0; }
@@ -268,15 +268,15 @@ function mlr_pa_loader() {
 				var games = pstatsdict[key]['Games'].length;
 				var hits = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'];
 				var tb = 4 * pstatsdict[key]['HR'] + 3 * pstatsdict[key]['3B'] + 2 * pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'];
-				var abs = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'];
+				var abs = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['LO'];
 				var ob = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['BB'];
-				var pas = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['BB'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'];
-				var bf = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['BB'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'];
-				var abs_2 = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'];
+				var pas = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['BB'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'] + pstatsdict[key]['LO'];
+				var bf = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['BB'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'] + pstatsdict[key]['LO'];
+				var abs_2 = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['LO'];
 				var ob_2 = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['BB'] + pstatsdict[key]['IBB'] + pstatsdict[key]['Auto BB'];
-				var pas_2 = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['BB'] + pstatsdict[key]['IBB'] + pstatsdict[key]['Auto BB'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'];
-				var bf_2 = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['BB'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'] + pstatsdict[key]['Auto BB'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['IBB'];
-				var outs = pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + 2 * pstatsdict[key]['DP'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['Bunt K'] + 3 * pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'] + pstatsdict[key]['CS'];
+				var pas_2 = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['BB'] + pstatsdict[key]['IBB'] + pstatsdict[key]['Auto BB'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'] + pstatsdict[key]['LO'];
+				var bf_2 = pstatsdict[key]['HR'] + pstatsdict[key]['3B'] + pstatsdict[key]['2B'] + pstatsdict[key]['1B'] + pstatsdict[key]['Bunt 1B'] + pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + pstatsdict[key]['DP'] + pstatsdict[key]['Bunt K'] + pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['BB'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'] + pstatsdict[key]['Auto BB'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['IBB'] + pstatsdict[key]['LO'];
+				var outs = pstatsdict[key]['FO'] + pstatsdict[key]['K'] + pstatsdict[key]['PO'] + pstatsdict[key]['RGO'] + pstatsdict[key]['LGO'] + 2 * pstatsdict[key]['DP'] + pstatsdict[key]['Auto K'] + pstatsdict[key]['Bunt K'] + 3 * pstatsdict[key]['TP'] + pstatsdict[key]['Bunt GO'] + pstatsdict[key]['Sac'] + pstatsdict[key]['Bunt Sac'] + pstatsdict[key]['Bunt'] + pstatsdict[key]['CS'] + 2 * pstatsdict[key]['LO'];
 				try {
 					var avg_diff = parseFloat(pstatsdict[key]['Diffs'].reduce((a, b) => parseInt(a) + parseInt(b)) / pstatsdict[key]['Diffs'].length).toFixed(3);
 					var diffmin = Math.min.apply(null,pstatsdict[key]['Diffs']);
@@ -444,7 +444,8 @@ function mlr_pa_loader() {
 				},
 				6: {},
 				7: {},
-				8: {}
+				8: {},
+				9: {},
 			}
 	
 			// for (var playa in pids){
@@ -454,9 +455,11 @@ function mlr_pa_loader() {
 			// 	stats_all[requested_pid]['playerData'] = [];
 			// }
 
-			var special = {'fourhit':{'0':{},'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{}}}
-			var special2 = {'fourhit':{'0':[],'1':[],'2':[],'3':[],'4':[],'5':[],'6':[],'7':[],'8':[]}}
+			var special = {'fourhit':{'0':{},'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{}}}
+			var special2 = {'fourhit':{'0':[],'1':[],'2':[],'3':[],'4':[],'5':[],'6':[],'7':[],'8':[],'9':[]}}
 			var fourhitgames = {'game':'0'}
+
+			// shut up u bum. u dont know shit vvvvvvvvvvvvvvv
 
 			//So here's a few things.
 			//The goal is to, sadly, have two separate things here:
@@ -499,6 +502,12 @@ function mlr_pa_loader() {
 					pteam = current_teams[season][pteam];
 				}
 				var result = mlr_data[line]['Result'];
+				// fake baseball moment
+				if(result === 'AUTO K') result = 'Auto K';
+				if(result === 'AUTO BB') result = 'Auto BB';
+				if(result === 'BUNT 1B') result = 'Bunt 1B';
+				if(result === 'BUNT K') result = 'Bunt K';
+				if(result === 'BUNT Sac') result = 'Bunt Sac';
 				var session = mlr_data[line]['Session'];
 				var game_id = mlr_data[line]['Game ID'];
 				var avg_stuff = ['HR','3B','2B','1B','Bunt 1B'];
@@ -637,8 +646,8 @@ function mlr_pa_loader() {
 			}
 	
 			function doStats(the_stats, dict) {
-				for(var i=0;i<9;i++) {
-					the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'RBI': 0, 'R': 0, 'WPA': [] }
+				for(var i=0;i<10;i++) {
+					the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'LO': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'RBI': 0, 'R': 0, 'WPA': [] }
 				}
 				for(var pa in dict) {
 					if(dict[pa][0] == 'Hitter') {
@@ -700,8 +709,8 @@ function mlr_pa_loader() {
 			}
 	
 			function doPStats(the_stats, dict) {
-				for(var i=0;i<9;i++) {
-					the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'R': 0, 'WPA': [] };
+				for(var i=0;i<10;i++) {
+					the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'LO': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'R': 0, 'WPA': [] };
 				}
 				for(var pa in dict) {
 					if(dict[pa][0] == 'Hitter') {
@@ -979,6 +988,7 @@ function mlr_pa_loader() {
 		<option value="IBB">IBB</option>
 		<option value="K">K</option>
 		<option value="LGO">LGO</option>
+		<option value="LO">LO</option>
 		<option value="OBP">OBP</option>
 		<option value="OBP_2">OBP_2</option>
 		<option value="OPS">OPS</option>
@@ -1034,6 +1044,7 @@ function mlr_pa_loader() {
 		<option value="IBB">IBB</option>
 		<option value="K">K</option>
 		<option value="LGO">LGO</option>
+		<option value="LO">LO</option>
 		<option value="OBP">OBP</option>
 		<option value="OBP_2">OBP_2</option>
 		<option value="OPS">OPS</option>
@@ -1086,6 +1097,7 @@ function mlr_pa_loader() {
 	<option value="IBB">IBB</option>
 	<option value="K">K</option>
 	<option value="LGO">LGO</option>
+	<option value="LO">LO</option>
 	<option value="OBP">OBP</option>
 	<option value="OBP_2">OBP_2</option>
 	<option value="OPS">OPS</option>
@@ -1139,6 +1151,7 @@ function mlr_pa_loader() {
 	<option value="IBB">IBB</option>
 	<option value="K">K</option>
 	<option value="LGO">LGO</option>
+	<option value="LO">LO</option>
 	<option value="OBP">OBP</option>
 	<option value="OBP_2">OBP_2</option>
 	<option value="OPS">OPS</option>
@@ -1289,6 +1302,16 @@ function mlr_pa_loader() {
 			<tbody>
 			</tbody>
 		</table>
+		<table id="s9-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<thead>
+			<tr>
+				<th scope="row">Season 9</th>
+				<th scope="col" id="statt9"></th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 		<table id="s0-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
@@ -1345,6 +1368,7 @@ function mlr_pa_loader() {
 <option value="K">K</option>
 <option value="K6">K6</option>
 <option value="LGO">LGO</option>
+<option value="LO">LO</option>
 <option value="OBP">OBP</option>
 <option value="OBP_2">OBP_2</option>
 <option value="OPS">OPS</option>
@@ -1405,6 +1429,7 @@ function mlr_pa_loader() {
 <option value="K">K</option>
 <option value="K6">K6</option>
 <option value="LGO">LGO</option>
+<option value="LO">LO</option>
 <option value="OBP">OBP</option>
 <option value="OBP_2">OBP_2</option>
 <option value="OPS">OPS</option>
@@ -1462,6 +1487,7 @@ and maximum
 <option value="K">K</option>
 <option value="K6">K6</option>
 <option value="LGO">LGO</option>
+<option value="LO">LO</option>
 <option value="OBP">OBP</option>
 <option value="OBP_2">OBP_2</option>
 <option value="OPS">OPS</option>
@@ -1520,6 +1546,7 @@ and maximum
 <option value="K">K</option>
 <option value="K6">K6</option>
 <option value="LGO">LGO</option>
+<option value="LO">LO</option>
 <option value="OBP">OBP</option>
 <option value="OBP_2">OBP_2</option>
 <option value="OPS">OPS</option>
@@ -1670,6 +1697,16 @@ Split (can select multiple): <span class="form-group col-sm-8">
 				<tbody>
 					</tbody>
 					</table>
+					<table id="s9-P-lb" class="special-table table table-batting table-sm table-striped mt-4">
+					<thead>
+						<tr>
+							<th scope="row">Season 9</th>
+							<th scope="col" id="Pstatt9"></th>
+						</tr>
+					</thead>
+					<tbody>
+						</tbody>
+						</table>
 									<table id="s0-P-lb" class="special-table table table-batting table-sm table-striped mt-4">
 		<thead>
 			<tr>
@@ -1750,6 +1787,16 @@ Split (can select multiple): <span class="form-group col-sm-8">
 			<tbody>
 			</tbody>
 		</table>
+		<table id="s7-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<thead>
+			<tr>
+				<th scope="row">Season 7</th>
+				<th scope="col" id="statt7">Session</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 		<table id="s8-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
@@ -1760,6 +1807,16 @@ Split (can select multiple): <span class="form-group col-sm-8">
 			<tbody>
 			</tbody>
 		</table>
+		<table id="s9-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<thead>
+			<tr>
+				<th scope="row">Season 9</th>
+				<th scope="col" id="statt9">Session</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 	</div>
 </div>
 
@@ -2412,7 +2469,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						return htmly;
 				}
 				
-				var seasons = [0,1,2,3,4,5,6,7,8];
+				var seasons = [0,1,2,3,4,5,6,7,8,9];
 				
 				function overviewBuild(split, a=true, b=true, c='') {
 					if(a) {$('.div-batting-'+split).html($('.div-batting-'+split).html() + statBuilder(seasons,split,c));}
@@ -3129,7 +3186,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					} else if (errorcheck2 > 0) {
 						$("h3").text("[" + errorcheck2 + "] So something here is dividing 0/0 which breaks the leaderboards of seasons: " + error_seasons + ". Trust these with caution... (season 0 is career)");
 						$("h3").css("background", "red");
-					} else if (errorcheck == 0 && seasonCheck == 8) {
+					} else if (errorcheck == 0 && seasonCheck == 9) {
 						$("h3").text("Stats Leaderboards");
 						$("h3").css("background", "transparent");
 					}
@@ -3204,7 +3261,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					otherplayerslist.push(counter);
 					hh = keys2.slice(0, n + counter);
 					seasonCheck++;
-					if(seasonCheck > 8) {seasonCheck = 0;}
+					if(seasonCheck > 9) {seasonCheck = 0;}
 					return hh;
 				}
 
@@ -3497,6 +3554,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					$("#statt6").text(stat_request+mathed2+stat_request_2);
 					$("#statt7").text(stat_request+mathed2+stat_request_2);
 					$("#statt8").text(stat_request+mathed2+stat_request_2);
+					$("#statt9").text(stat_request+mathed2+stat_request_2);
 					if (isNaN(parseFloat(minresult))) {
 						minresult = 0;
 					}
@@ -3519,6 +3577,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					s6_h = getResults(stats_all, 6, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s7_h = getResults(stats_all, 7, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s8_h = getResults(stats_all, 8, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s9_h = getResults(stats_all, 9, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					addRows(s0_h, split, 0, "s0-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s1_h, split, 1,"s1-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s2_h, split, 2, "s2-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
@@ -3528,6 +3587,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					addRows(s6_h, split, 6,"s6-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s7_h, split, 7,"s7-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s8_h, split, 8,"s8-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s9_h, split, 9,"s9-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 				});
 				//End adding to HTML hitting
 
@@ -3727,6 +3787,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					$("#Pstatt6").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt7").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt8").text(stat_request+mathed2+stat_request_2);
+					$("#Pstatt9").text(stat_request+mathed2+stat_request_2);
 					if (isNaN(parseFloat(minresult))) {
 						minresult = 0;
 					}
@@ -3749,6 +3810,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					s6_h = getResults(stats_all, 6, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s7_h = getResults(stats_all, 7, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s8_h = getResults(stats_all, 8, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s9_h = getResults(stats_all, 9, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					addRows(s0_h, split, 0,"s0-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s1_h, split, 1,"s1-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s2_h, split, 2,"s2-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
@@ -3758,6 +3820,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					addRows(s6_h, split, 6,"s6-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s7_h, split, 7,"s7-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s8_h, split, 8,"s8-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s9_h, split, 9,"s9-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 		
 				});
 				//End adding to HTML pitching
@@ -3785,7 +3848,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					}
 				}
 
-				for(var i=1;i<9;i++) {
+				for(var i=1;i<10;i++) {
 					addRowsSpecial(special2['fourhit'],i,"s"+i+"-4hits-lb", 's');
 				}
 
