@@ -267,8 +267,8 @@ onmessage = function(e) {
         //Then, go over each line in the PA logs. Then add splits to each category when applicable. Perhaps this is faster.
         //Finally do the player stats lol. 
 
-        var all_teams = ["TOR","ATL","S1MIN","MIN","PHI","HOU","ARI","PIT","OAK","NYM","BAL","DET","SDP","SEA","BOS","CLE","MTL","SFG","LAD","MIL","COL","TEX","WSH","STL","NYY","KCR","LAA","MIA","CHC","CWS","CIN","TBR"]
-        
+        var all_teams = ["TOR","ATL","S1MIN","MIN","PHI","HOU","ARI","PIT","OAK","NYM","BAL","DET","SDP","SEA","BOS","CLE","MTL","SFG","LAD","MIL","COL","TEX","WSH","STL","NYY","KCR","ANA","MIA","CHC","CWS","CIN","TBR"]
+			
         var current_teams = {
             1: {
                 'MIN': 'S1MIN',
@@ -296,16 +296,26 @@ onmessage = function(e) {
             4: {
                 'LAA': 'TEX',
                 'TEX': 'CLE',
-                'CLE': 'LAA',
+                'CLE': 'ANA',
                 'TBD': 'TBR'
             },
             5: {
                 'LAA': 'TEX',
                 'TEX': 'CLE',
-                'CLE': 'LAA'
+                'CLE': 'ANA'
             },
-            6: {},
-            7: {}
+            6: {
+                'LAA': 'ANA',
+            },
+            7: {
+                'LAA': 'ANA',
+            },
+            8: {
+                'LAA': 'ANA',
+            },
+            9: {
+                'LAA': 'ANA',
+            },
         }
 
         for (var playa in pids){
