@@ -459,6 +459,7 @@ function mlr_pa_loader() {
 					'LAA': 'TEX',
 					'TEX': 'CLE',
 					'CLE': 'ANA'
+					'CLE': 'ANA'
 				},
 				6: {
 					'LAA': 'ANA',
