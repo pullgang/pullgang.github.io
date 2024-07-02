@@ -1,3 +1,18 @@
+/*
+ This project is looking for a new maintainer.
+
+ This really needs a rewrite anyway, but I'll keep it up
+ since it's not super hard to update (albeit tedious)
+ and people rely on it quite a lot.
+
+ This could also just be on the website, but certain
+ components don't align with the official stats
+ (such as alternate/banned accounts being tracked)
+
+ -pull
+
+*/
+
 //Global Variables 
 
 var mlr_pa_finished = 0;
@@ -35,7 +50,7 @@ $.ajax({
 });
 $.ajax({
 	type: "GET",
-	url: "https://pullgang.github.io/AllSeasonsExceptCurrent.csv",
+	url: "https://pullgang.github.io/AllSeasonsExceptCurrent.csv", // UPDATE THIS ON SEASON CHANGE!!!!!!!
 	dataType: "text",
 	success: function (data) { previousSeasonData = data; }
 });
@@ -59,7 +74,7 @@ $.ajax({
 });
 
 function loadData() {
-	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=Season9";
+	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=Season10"; // UPDATE THIS ON SEASON CHANGE!!!!!!!
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function () {
 		console.log(xmlhttp.readyState);
@@ -74,7 +89,7 @@ function loadData() {
 
 loadData();
 function loadcurrentSeasonPlayers() {
-	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=PlayersS9";
+	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=PlayersS10"; // UPDATE THIS ON SEASON CHANGE!!!!!!!
 	xmlhttp2 = new XMLHttpRequest();
 	xmlhttp2.onreadystatechange = function () {
 		console.log(xmlhttp2.readyState);
@@ -100,7 +115,8 @@ function mlr_pa_loader() {
 	} else {
 		currentSeasonData = currentSeasonData.split("\n").slice(1);
 		for (line in currentSeasonData) {
-			currentSeasonData[line] = currentSeasonData[line] + ',9,';
+			// UPDATE THIS ON SEASON CHANGE!!!!!!!
+			currentSeasonData[line] = currentSeasonData[line] + ',10,';
 		}
 		currentSeasonData = currentSeasonData.join("\n");
 		previousSeasonData = previousSeasonData + "\n" + currentSeasonData;
@@ -130,7 +146,8 @@ function mlr_pa_loader() {
 			}
 		}
 
-		var playerTypes = {'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{}};
+		// UPDATE THIS ON SEASON CHANGE!!!!!!!
+		var playerTypes = {'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{},'10':{},};
 		for (var key in playerTypeData) {
 			var player_name = playerTypeData[key]["Player Name"];
 			var season = playerTypeData[key]["Season"];
@@ -407,6 +424,7 @@ function mlr_pa_loader() {
 	
 			var all_teams = ["TOR","ATL","S1MIN","MIN","PHI","HOU","ARI","PIT","OAK","NYM","BAL","DET","SDP","SEA","BOS","CLE","MTL","SFG","LAD","MIL","COL","TEX","WSH","STL","NYY","KCR","ANA","MIA","CHC","CWS","CIN","TBR"]
 			
+			// UPDATE THIS ON SEASON CHANGE!!!!!!!
 			var current_teams = {
 				1: {
 					'MIN': 'S1MIN',
@@ -454,17 +472,14 @@ function mlr_pa_loader() {
 				9: {
 					'LAA': 'ANA',
 				},
+				10: {
+					'LAA': 'ANA',
+				}
 			}
-	
-			// for (var playa in pids){
-			// 	var requested_pid = playa
-			// 	stats_all[requested_pid] = {}
-			// 	stats_all[requested_pid]['standard'] = [];
-			// 	stats_all[requested_pid]['playerData'] = [];
-			// }
 
-			var special = {'fourhit':{'0':{},'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{}}}
-			var special2 = {'fourhit':{'0':[],'1':[],'2':[],'3':[],'4':[],'5':[],'6':[],'7':[],'8':[],'9':[]}}
+			// UPDATE THIS ON SEASON CHANGE!!!!!!!
+			var special = {'fourhit':{'0':{},'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{}, '10': {},}}
+			var special2 = {'fourhit':{'0':[],'1':[],'2':[],'3':[],'4':[],'5':[],'6':[],'7':[],'8':[],'9':[], '10': [],}}
 			var fourhitgames = {'game':'0'}
 
 			// shut up u bum. u dont know shit vvvvvvvvvvvvvvv
@@ -654,7 +669,8 @@ function mlr_pa_loader() {
 			}
 	
 			function doStats(the_stats, dict) {
-				for(var i=0;i<10;i++) {
+				// UPDATE THIS ON SEASON CHANGE!!!!!!!
+				for(var i=0;i<=10;i++) {
 					the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'LO': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'RBI': 0, 'R': 0, 'WPA': [] }
 				}
 				for(var pa in dict) {
@@ -717,7 +733,8 @@ function mlr_pa_loader() {
 			}
 	
 			function doPStats(the_stats, dict) {
-				for(var i=0;i<10;i++) {
+				// UPDATE THIS ON SEASON CHANGE!!!!!!!
+				for(var i=0;i<=10;i++) {
 					the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'LO': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'R': 0, 'WPA': [] };
 				}
 				for(var pa in dict) {
@@ -771,6 +788,7 @@ function mlr_pa_loader() {
 			}
 				console.log('Finished loading');
 
+				// UPDATE THIS ON SEASON CHANGE!!!!!!!
 				$(".inner").html(`
 				<section class="accordion">
 				<section class="accordion-tabs">
@@ -1230,6 +1248,16 @@ function mlr_pa_loader() {
 
 <div class="table-responsive">
 	<div class="div-batting">
+	<table id="s0-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+			<thead>
+				<tr>
+					<th scope="row">Career</th>
+					<th scope="col" id="statt0"></th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
 		<table id="s1-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
 			<thead>
 				<tr>
@@ -1320,16 +1348,16 @@ function mlr_pa_loader() {
 		<tbody>
 		</tbody>
 	</table>
-		<table id="s0-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
-			<thead>
-				<tr>
-					<th scope="row">Career</th>
-					<th scope="col" id="statt0"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+	<table id="s10-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<thead>
+			<tr>
+				<th scope="row">Season 10</th>
+				<th scope="col" id="statt10"></th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 	</div>
 </div>
 
@@ -1625,6 +1653,16 @@ Split (can select multiple): <span class="form-group col-sm-8">
 
 <div class="table-responsive">
 			<div class="div-batting">
+			<table id="s0-P-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<thead>
+			<tr>
+				<th scope="row">Career</th>
+				<th scope="col" id="Pstatt0"></th>
+			</tr>
+		</thead>
+		<tbody>
+			</tbody>
+			</table>
 	<table id="s1-P-lb" class="special-table table table-batting table-sm table-striped mt-4">
 		<thead>
 			<tr>
@@ -1715,16 +1753,16 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					<tbody>
 						</tbody>
 						</table>
-									<table id="s0-P-lb" class="special-table table table-batting table-sm table-striped mt-4">
-		<thead>
-			<tr>
-				<th scope="row">Career</th>
-				<th scope="col" id="Pstatt0"></th>
-			</tr>
-		</thead>
-		<tbody>
-			</tbody>
-			</table>
+						<table id="s10-P-lb" class="special-table table table-batting table-sm table-striped mt-4">
+					<thead>
+						<tr>
+							<th scope="row">Season 10</th>
+							<th scope="col" id="Pstatt10"></th>
+						</tr>
+					</thead>
+					<tbody>
+						</tbody>
+						</table>
 			</div>
 			</div>
 </article>
@@ -1825,18 +1863,25 @@ Split (can select multiple): <span class="form-group col-sm-8">
 		<tbody>
 		</tbody>
 	</table>
+	<table id="s10-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<thead>
+			<tr>
+				<th scope="row">Season 10</th>
+				<th scope="col" id="statt10">Session</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 	</div>
 </div>
-
-What else should i put here. Stuff like no hitters is slightly harder to track sadly but probably POSSIBLE. 
-
 </div>
 </article>
 </section>
 </section>
 
 <footer id="fakefooter">
-						<p class="copyright">&copy; <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">ganger</a></p>
+						<p class="copyright">&copy; <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">pull</a></p>
 					</footer>
 				`);
 
@@ -2477,7 +2522,8 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						return htmly;
 				}
 				
-				var seasons = [0,1,2,3,4,5,6,7,8,9];
+				// UPDATE THIS ON SEASON CHANGE!!!!!!!
+				var seasons = [0,1,2,3,4,5,6,7,8,9,10,];
 				
 				function overviewBuild(split, a=true, b=true, c='') {
 					if(a) {$('.div-batting-'+split).html($('.div-batting-'+split).html() + statBuilder(seasons,split,c));}
@@ -3037,7 +3083,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 		});
 
 				//Add teams to team selector
-				var all_teams = ["ARI","ATL","BAL","BOS","CHC","CIN","CLE","COL","CWS","DET","HOU","KCR","LAA","LAD","MIA","MIL","MIN","MTL","NYM","NYY","OAK","PHI","PIT","S1MIN","SDP","SEA","SFG","STL","TBR","TEX","TOR","WSH"]
+				var all_teams = ["ANA","ARI","ATL","BAL","BOS","CHC","CIN","CLE","COL","CWS","DET","HOU","KCR","LAD","MIA","MIL","MIN","MTL","NYM","NYY","OAK","PHI","PIT","S1MIN","SDP","SEA","SFG","STL","TBR","TEX","TOR","WSH"]
 				for(team in all_teams) {
 					$('#team').append($('<option>', {
 						value: all_teams[team],
@@ -3085,6 +3131,8 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 				var otherplayerscount = -1;
 
 				function getResults(o, season, split, n, stat, math, stat2, result_qualifier, result_qualifier2, min_result, max_result, min_result2, max_result2, highorlow) {
+					console.log("undefined peeps");
+					console.log(o[undefined]);
 					split = 'standard'; // used to have all splits on one, but testing here lol
 					if (seasonCheck == 0) { // on each stat request
 						errorcheck = 0;
@@ -3194,7 +3242,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					} else if (errorcheck2 > 0) {
 						$("h3").text("[" + errorcheck2 + "] So something here is dividing 0/0 which breaks the leaderboards of seasons: " + error_seasons + ". Trust these with caution... (season 0 is career)");
 						$("h3").css("background", "red");
-					} else if (errorcheck == 0 && seasonCheck == 9) {
+					} else if (errorcheck == 0 && seasonCheck == 10) { // UPDATE THIS ON SEASON CHANGE!!!!!!!
 						$("h3").text("Stats Leaderboards");
 						$("h3").css("background", "transparent");
 					}
@@ -3269,7 +3317,8 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					otherplayerslist.push(counter);
 					hh = keys2.slice(0, n + counter);
 					seasonCheck++;
-					if(seasonCheck > 9) {seasonCheck = 0;}
+					// UPDATE THIS ON SEASON CHANGE!!!!!!!
+					if(seasonCheck > 10) {seasonCheck = 0;}
 					return hh;
 				}
 
@@ -3553,6 +3602,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						askStat('playerData','standard',id,stats_all)
 					}
 
+					// UPDATE THIS ON SEASON CHANGE!!!!!!!
 					$("#statt0").text(stat_request+mathed2+stat_request_2);
 					$("#statt1").text(stat_request+mathed2+stat_request_2);
 					$("#statt2").text(stat_request+mathed2+stat_request_2);
@@ -3563,6 +3613,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					$("#statt7").text(stat_request+mathed2+stat_request_2);
 					$("#statt8").text(stat_request+mathed2+stat_request_2);
 					$("#statt9").text(stat_request+mathed2+stat_request_2);
+					$("#statt10").text(stat_request+mathed2+stat_request_2);
 					if (isNaN(parseFloat(minresult))) {
 						minresult = 0;
 					}
@@ -3576,6 +3627,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						maxresult2 = 5000;
 					}
 		
+					// UPDATE THIS ON SEASON CHANGE!!!!!!!
 					s0_h = getResults(stats_all, 0, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s1_h = getResults(stats_all, 1, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s2_h = getResults(stats_all, 2, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
@@ -3586,6 +3638,8 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					s7_h = getResults(stats_all, 7, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s8_h = getResults(stats_all, 8, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s9_h = getResults(stats_all, 9, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s10_h = getResults(stats_all, 10, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					// UPDATE THIS ON SEASON CHANGE!!!!!!!
 					addRows(s0_h, split, 0, "s0-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s1_h, split, 1,"s1-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s2_h, split, 2, "s2-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
@@ -3596,6 +3650,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					addRows(s7_h, split, 7,"s7-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s8_h, split, 8,"s8-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s9_h, split, 9,"s9-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s10_h, split, 10,"s10-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 				});
 				//End adding to HTML hitting
 
@@ -3786,6 +3841,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						askpStat('playerData','standard',id,stats_all)
 					}
 
+					// UPDATE THIS ON SEASON CHANGE!!!!!!!
 					$("#Pstatt0").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt1").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt2").text(stat_request+mathed2+stat_request_2);
@@ -3796,6 +3852,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					$("#Pstatt7").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt8").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt9").text(stat_request+mathed2+stat_request_2);
+					$("#Pstatt10").text(stat_request+mathed2+stat_request_2);
 					if (isNaN(parseFloat(minresult))) {
 						minresult = 0;
 					}
@@ -3809,6 +3866,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 						maxresult2 = 5000;
 					}
 		
+					// UPDATE THIS ON SEASON CHANGE!!!!!!!
 					s0_h = getResults(stats_all, 0, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s1_h = getResults(stats_all, 1, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s2_h = getResults(stats_all, 2, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
@@ -3819,6 +3877,8 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					s7_h = getResults(stats_all, 7, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s8_h = getResults(stats_all, 8, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s9_h = getResults(stats_all, 9, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s10_h = getResults(stats_all, 10, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					// UPDATE THIS ON SEASON CHANGE!!!!!!!
 					addRows(s0_h, split, 0,"s0-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s1_h, split, 1,"s1-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s2_h, split, 2,"s2-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
@@ -3829,6 +3889,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					addRows(s7_h, split, 7,"s7-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s8_h, split, 8,"s8-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s9_h, split, 9,"s9-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s10_h, split, 10,"s10-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 		
 				});
 				//End adding to HTML pitching
@@ -3856,7 +3917,7 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 					}
 				}
 
-				for(var i=1;i<10;i++) {
+				for(var i=1;i<=seasons.length;i++) {
 					addRowsSpecial(special2['fourhit'],i,"s"+i+"-4hits-lb", 's');
 				}
 
@@ -3880,8 +3941,6 @@ What else should i put here. Stuff like no hitters is slightly harder to track s
 				}
 			} else if(tab == 'hitting') {
 				$('.accordion-tab[data-actab-id="1"]').click();
-				//http://127.0.0.1:5500/career-stats.html?tab=hitting&hl=highest&stat=1B&m=&m2=&stat2=&min=&max=&min2=&max2=&s=1st&s=2nd&s=3rd&s=4th&s=5th&s=6th
-				//&s=extras&s=winning&s=losing&s=tied&s=team&s=opponent&type=or&n=10&r=K&r2=1B&tm=BAL&op=CIN
 				$('#highlow option[value="'+params.get('hl')+'"]').prop('selected', true)
 				$('#stat option[value="'+params.get('stat')+'"]').prop('selected', true)
 				$('#math option[value="'+params.get('m')+'"]').prop('selected', true)
