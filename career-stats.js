@@ -74,7 +74,7 @@ $.ajax({
 });
 
 function loadData() {
-	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=Season10"; // UPDATE THIS ON SEASON CHANGE!!!!!!!
+	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=Season11"; // UPDATE THIS ON SEASON CHANGE!!!!!!!
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function () {
 		console.log(xmlhttp.readyState);
@@ -89,7 +89,7 @@ function loadData() {
 
 loadData();
 function loadcurrentSeasonPlayers() {
-	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=PlayersS10"; // UPDATE THIS ON SEASON CHANGE!!!!!!!
+	var url = "https://docs.google.com/spreadsheets/d/1les2TcfGeh2C_ZYtrGNc_47DH_XMUCSGLSr0wK_MWdk/gviz/tq?tqx=out:csv&sheet=PlayersS11"; // UPDATE THIS ON SEASON CHANGE!!!!!!!
 	xmlhttp2 = new XMLHttpRequest();
 	xmlhttp2.onreadystatechange = function () {
 		console.log(xmlhttp2.readyState);
@@ -116,7 +116,7 @@ function mlr_pa_loader() {
 		currentSeasonData = currentSeasonData.split("\n").slice(1);
 		for (line in currentSeasonData) {
 			// UPDATE THIS ON SEASON CHANGE!!!!!!!
-			currentSeasonData[line] = currentSeasonData[line] + ',10,';
+			currentSeasonData[line] = currentSeasonData[line] + ',11,';
 		}
 		currentSeasonData = currentSeasonData.join("\n");
 		previousSeasonData = previousSeasonData + "\n" + currentSeasonData;
@@ -147,7 +147,7 @@ function mlr_pa_loader() {
 		}
 
 		// UPDATE THIS ON SEASON CHANGE!!!!!!!
-		var playerTypes = {'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{},'10':{},};
+		var playerTypes = {'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{},'10':{},'11':{},};
 		for (var key in playerTypeData) {
 			var player_name = playerTypeData[key]["Player Name"];
 			var season = playerTypeData[key]["Season"];
@@ -474,12 +474,16 @@ function mlr_pa_loader() {
 				},
 				10: {
 					'LAA': 'ANA',
+				},
+				11: {
+					'LAA': 'ANA',
+					'MIA': 'FLA',
 				}
 			}
 
 			// UPDATE THIS ON SEASON CHANGE!!!!!!!
-			var special = {'fourhit':{'0':{},'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{}, '10': {},}}
-			var special2 = {'fourhit':{'0':[],'1':[],'2':[],'3':[],'4':[],'5':[],'6':[],'7':[],'8':[],'9':[], '10': [],}}
+			var special = {'fourhit':{'0':{},'1':{},'2':{},'3':{},'4':{},'5':{},'6':{},'7':{},'8':{},'9':{}, '10': {}, '11': {},}}
+			var special2 = {'fourhit':{'0':[],'1':[],'2':[],'3':[],'4':[],'5':[],'6':[],'7':[],'8':[],'9':[], '10': [], '11': [],}}
 			var fourhitgames = {'game':'0'}
 
 			// shut up u bum. u dont know shit vvvvvvvvvvvvvvv
@@ -670,7 +674,7 @@ function mlr_pa_loader() {
 	
 			function doStats(the_stats, dict) {
 				// UPDATE THIS ON SEASON CHANGE!!!!!!!
-				for(var i=0;i<=10;i++) {
+				for(var i=0;i<=11;i++) {
 					the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'LO': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'RBI': 0, 'R': 0, 'WPA': [] }
 				}
 				for(var pa in dict) {
@@ -734,7 +738,7 @@ function mlr_pa_loader() {
 	
 			function doPStats(the_stats, dict) {
 				// UPDATE THIS ON SEASON CHANGE!!!!!!!
-				for(var i=0;i<=10;i++) {
+				for(var i=0;i<=11;i++) {
 					the_stats[i] = { 'HR': 0, '3B': 0, '2B': 0, '1B': 0, 'BB': 0, 'FO': 0, 'K': 0, 'PO': 0, 'RGO': 0, 'LGO': 0, 'DP': 0, 'Sac': 0, 'SB': 0, 'CS': 0, 'IBB': 0, 'Auto BB': 0, 'Auto K': 0, 'Bunt Sac': 0, 'Bunt K': 0, 'Bunt 1B': 0, 'TP': 0, 'LO': 0, 'Bunt': 0, 'Bunt GO': 0, 'Games': [], 'Diffs': [], 'R': 0, 'WPA': [] };
 				}
 				for(var pa in dict) {
@@ -1358,6 +1362,16 @@ function mlr_pa_loader() {
 		<tbody>
 		</tbody>
 	</table>
+	<table id="s11-hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<thead>
+			<tr>
+				<th scope="row">Season 11</th>
+				<th scope="col" id="statt11"></th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 	</div>
 </div>
 
@@ -1763,6 +1777,16 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					<tbody>
 						</tbody>
 						</table>
+						<table id="s11-P-lb" class="special-table table table-batting table-sm table-striped mt-4">
+					<thead>
+						<tr>
+							<th scope="row">Season 11</th>
+							<th scope="col" id="Pstatt11"></th>
+						</tr>
+					</thead>
+					<tbody>
+						</tbody>
+						</table>
 			</div>
 			</div>
 </article>
@@ -1868,6 +1892,16 @@ Split (can select multiple): <span class="form-group col-sm-8">
 			<tr>
 				<th scope="row">Season 10</th>
 				<th scope="col" id="statt10">Session</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<table id="s11-4hits-lb" class="special-table table table-batting table-sm table-striped mt-4">
+		<thead>
+			<tr>
+				<th scope="row">Season 11</th>
+				<th scope="col" id="statt11">Session</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -2523,7 +2557,7 @@ Split (can select multiple): <span class="form-group col-sm-8">
 				}
 				
 				// UPDATE THIS ON SEASON CHANGE!!!!!!!
-				var seasons = [0,1,2,3,4,5,6,7,8,9,10,];
+				var seasons = [0,1,2,3,4,5,6,7,8,9,10,11,];
 				
 				function overviewBuild(split, a=true, b=true, c='') {
 					if(a) {$('.div-batting-'+split).html($('.div-batting-'+split).html() + statBuilder(seasons,split,c));}
@@ -3242,7 +3276,7 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					} else if (errorcheck2 > 0) {
 						$("h3").text("[" + errorcheck2 + "] So something here is dividing 0/0 which breaks the leaderboards of seasons: " + error_seasons + ". Trust these with caution... (season 0 is career)");
 						$("h3").css("background", "red");
-					} else if (errorcheck == 0 && seasonCheck == 10) { // UPDATE THIS ON SEASON CHANGE!!!!!!!
+					} else if (errorcheck == 0 && seasonCheck == 11) { // UPDATE THIS ON SEASON CHANGE!!!!!!!
 						$("h3").text("Stats Leaderboards");
 						$("h3").css("background", "transparent");
 					}
@@ -3318,7 +3352,7 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					hh = keys2.slice(0, n + counter);
 					seasonCheck++;
 					// UPDATE THIS ON SEASON CHANGE!!!!!!!
-					if(seasonCheck > 10) {seasonCheck = 0;}
+					if(seasonCheck > 11) {seasonCheck = 0;}
 					return hh;
 				}
 
@@ -3614,6 +3648,7 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					$("#statt8").text(stat_request+mathed2+stat_request_2);
 					$("#statt9").text(stat_request+mathed2+stat_request_2);
 					$("#statt10").text(stat_request+mathed2+stat_request_2);
+					$("#statt11").text(stat_request+mathed2+stat_request_2);
 					if (isNaN(parseFloat(minresult))) {
 						minresult = 0;
 					}
@@ -3639,6 +3674,7 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					s8_h = getResults(stats_all, 8, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s9_h = getResults(stats_all, 9, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s10_h = getResults(stats_all, 10, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s11_h = getResults(stats_all, 11, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					// UPDATE THIS ON SEASON CHANGE!!!!!!!
 					addRows(s0_h, split, 0, "s0-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s1_h, split, 1,"s1-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
@@ -3651,6 +3687,7 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					addRows(s8_h, split, 8,"s8-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s9_h, split, 9,"s9-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 					addRows(s10_h, split, 10,"s10-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
+					addRows(s11_h, split, 11,"s11-hits-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'h');
 				});
 				//End adding to HTML hitting
 
@@ -3853,6 +3890,7 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					$("#Pstatt8").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt9").text(stat_request+mathed2+stat_request_2);
 					$("#Pstatt10").text(stat_request+mathed2+stat_request_2);
+					$("#Pstatt11").text(stat_request+mathed2+stat_request_2);
 					if (isNaN(parseFloat(minresult))) {
 						minresult = 0;
 					}
@@ -3878,6 +3916,8 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					s8_h = getResults(stats_all, 8, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s9_h = getResults(stats_all, 9, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
 					s10_h = getResults(stats_all, 10, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					s11_h = getResults(stats_all, 11, split, number_of_results, stat_request, mathed, stat_request_2, result_request, result_request2, minresult, maxresult, minresult2, maxresult2, highlow);
+					// UPDATE THIS ON SEASON CHANGE!!!!!!!
 					// UPDATE THIS ON SEASON CHANGE!!!!!!!
 					addRows(s0_h, split, 0,"s0-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s1_h, split, 1,"s1-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
@@ -3890,6 +3930,7 @@ Split (can select multiple): <span class="form-group col-sm-8">
 					addRows(s8_h, split, 8,"s8-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s9_h, split, 9,"s9-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 					addRows(s10_h, split, 10,"s10-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
+					addRows(s11_h, split, 11,"s11-P-lb", stat_request, mathed, stat_request_2, stats_all, number_of_results, 'p');
 		
 				});
 				//End adding to HTML pitching
